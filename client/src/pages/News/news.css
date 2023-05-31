@@ -1,0 +1,17 @@
+.modal-header {
+  padding-top: .4rem;
+  padding-bottom: .4rem;
+  font-size: 2rem;
+  text-align: center;
+  display: block;
+  font-weight: 600;
+  border-bottom: 1px solid #dedede
+}
+form input, textarea {
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+  padding-left: 1rem;
+}
+input {
+  font-size: 1rem!important;
+}

@@ -1,0 +1,63 @@
+
+.auth-main {
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  display:grid;
+  justify-items: center;
+  background: #f8f8f8;
+}
+
+.auth-sub {
+  margin-bottom: 100%;
+}
+
+.pageName {
+  font-size: 32px;
+  font: roboto;
+  color: #8d273d;
+  font-weight: 700;
+}
+
+.auth-form {
+  border: 2px solid;
+  border-color: #dedede;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.labelForm {
+  color: #8d273d;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.button-enter {
+  border-radius: 5px !important;
+  background-color: #8d273d !important;
+  height: 35px !important;
+  width: 140px !important;
+  border: 0px !important;
+  font-size: 1.9rem !important;
+  font-weight: 400 !important;
+  text-align: center !important;
+  line-height: 0px !important;
+  color: #ffffff;
+}
+
+.button-enter:focus {
+  outline: none;
+  box-shadow: 0 0 0 .2rem #5592b040 !important;
+}
+
+.button-enter:active {
+  margin-bottom: 0px;
+  background-color: #6a303d !important;
+}
+
+.form-control:focus {
+  border-color: #5592b0 !important;
+  box-shadow: 0 0 0 .2rem #5592b040 !important;
+  border-color: #bebebe !important;
+}

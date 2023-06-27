@@ -15,12 +15,29 @@ import Napravlenie from './pages/Napravlenie';
 import AdminPage from "./Admin/AdminPage.js";
 import Authorization from "./pages/authorization/AuthorizationPaje.js";
 import { Context } from "./index.js";
+import { check } from "./http/userAPI.js";
+
+
 
 function App() {
-  const {user} = useContext(Context)
+    const {user} = useContext(Context)
+
+
+  // Проверка авторизации
+  const checkAuth = async () => {
+    const data = await check();
+    if (data==='check_auth_error') {
+      return
+    }
+    if (data!='not_auth'){
+      user.setUser(data)
+      user.setIsAuth(true)
+    }
+    return user
+  }
 
     return (
-      <div className="App">
+      <div>
         {
           user.isAuth ? 
           <div>
@@ -43,8 +60,8 @@ function App() {
             <Route path='/*' element={<Navigate to='/authorization'/>}/>
           </Routes>
         }
-
       </div>
+
     );
 }
 

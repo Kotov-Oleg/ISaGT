@@ -5,7 +5,7 @@ export const login = async (login, password) => {
   const {data} = await $host.post('api/user/login', {login, password})
   console.log('login', data)
   localStorage.setItem('token', data.token)
-  return jwt_decode(data.token)
+  return data
 }
 
 export const check = async () => {
@@ -15,7 +15,7 @@ export const check = async () => {
   }
   try {
     localStorage.setItem('token', request.data.token)
-    return jwt_decode(request.data.token)
+    return request.data
   } catch (e) {
     return 'not_auth'
   }

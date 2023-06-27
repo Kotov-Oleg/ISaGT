@@ -60,7 +60,6 @@ class UserController {
     }
   }
 
-
   // Проверка авторизованности пользователя
   async check(req, res, next) {
     console.log('update user jwt')

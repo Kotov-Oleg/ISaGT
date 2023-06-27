@@ -11,6 +11,7 @@ import {login} from '../../http/userAPI';
 // функциональный компонент страницы
 const Authorization = observer(() => {
   const {user} = useContext(Context)
+  console.log(user)
 
   // стейт авторизации
   const [userName, setUserName] = useState('');
@@ -25,6 +26,7 @@ const Authorization = observer(() => {
 
       let data = await login(userName, password)
       user.setIsAuth(true)
+      console.log('user', user)
       console.log('data', data)
       user.setUser(data)
       

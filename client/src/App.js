@@ -16,6 +16,8 @@ import AdminPage from "./Admin/AdminPage.js";
 import Authorization from "./pages/authorization/AuthorizationPaje.js";
 import { Context } from "./index.js";
 import { check } from "./http/userAPI.js";
+import DepartmensList from "./pages/Departments/DepartmenstList.js";
+import DepartmentPage from "./pages/Departments/DepartmentPage.js";
 
 
 
@@ -48,7 +50,8 @@ function App() {
             <Route path='events' element={<Events />} />
             <Route path='events/event/:id' element={<EventPage />} />
             <Route path='dir' element={<Director />} />
-            <Route path='prik_inf' element={<Prik_Inf />} />
+            <Route path='department' element={<DepartmentPage/>}/>
+            <Route path='prik_inf' element={<Prik_Inf />}/>
             <Route path='napr' element={<Napravlenie />} />
             <Route path='*' element={<NotFound />} />
           </Routes>

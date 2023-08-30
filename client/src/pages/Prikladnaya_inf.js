@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Card, Row, Col } from 'react-bootstrap';
-import Accordion from 'react-bootstrap/Accordion';
+
 import Isigt from '../components/data/1.png';
 export default class Prik_Inf extends Component {
     render() {
@@ -35,8 +35,11 @@ export default class Prik_Inf extends Component {
                                 suscipit aut sit illo, adipisci, perspiciatis molestiae saepe reiciendis cum quo.</p>
                             <hr />
                         </Container>
-                        <Container style={{ padding: "0px" }}> <Card className="card3" style={{ margin: "10px 0px", padding: "0px" }}>
-                            <Col className="col-md-5 mb-md-0 p-md-4 logo_for_media_pr"><img src={Isigt} style={{ width: "80%" }} /> </Col>
+                        <Container style={{ padding: "0px" }}> 
+                        <Card className="card3" style={{ margin: "10px 0px", padding: "0px" }}>
+                            <Col className="col-md-5 mb-md-0 p-md-4 logo_for_media_pr">
+                              <img src={Isigt} style={{ width: "80%" }} /> 
+                            </Col>
                             <Col className="text-post1 col-md-7 p-4 ps-md-0" id="text_pr_inf">
                                 <Card.Body className="dir">
                                     <h5>Заведующий кафедрой - Истомин Е.П.</h5>
@@ -158,11 +161,8 @@ export default class Prik_Inf extends Component {
                             </ul>
                         </Container>
                         <hr />
-
                     </Col>
-
                 </Row>
-
             </>
         )
     }

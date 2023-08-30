@@ -5,7 +5,7 @@
 -- Dumped from database version 10.21
 -- Dumped by pg_dump version 10.21
 
--- Started on 2023-06-01 13:18:35
+-- Started on 2023-08-30 15:49:30
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -27,7 +27,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 3791 (class 0 OID 0)
+-- TOC entry 3857 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -73,7 +73,7 @@ CREATE SEQUENCE public.auditoria_id_seq
 ALTER TABLE public.auditoria_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3792 (class 0 OID 0)
+-- TOC entry 3858 (class 0 OID 0)
 -- Dependencies: 197
 -- Name: auditoria_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -144,7 +144,7 @@ CREATE SEQUENCE public.courses_id_seq
 ALTER TABLE public.courses_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3793 (class 0 OID 0)
+-- TOC entry 3859 (class 0 OID 0)
 -- Dependencies: 199
 -- Name: courses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -185,7 +185,7 @@ CREATE SEQUENCE public.dep_specilaties_id_seq
 ALTER TABLE public.dep_specilaties_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3794 (class 0 OID 0)
+-- TOC entry 3860 (class 0 OID 0)
 -- Dependencies: 224
 -- Name: dep_specilaties_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -226,7 +226,7 @@ CREATE SEQUENCE public.dep_stuffs_id_seq
 ALTER TABLE public.dep_stuffs_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3795 (class 0 OID 0)
+-- TOC entry 3861 (class 0 OID 0)
 -- Dependencies: 222
 -- Name: dep_stuffs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -274,7 +274,7 @@ CREATE SEQUENCE public.departments_id_seq
 ALTER TABLE public.departments_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3796 (class 0 OID 0)
+-- TOC entry 3862 (class 0 OID 0)
 -- Dependencies: 211
 -- Name: departments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -322,7 +322,7 @@ CREATE SEQUENCE public.events_id_seq
 ALTER TABLE public.events_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3797 (class 0 OID 0)
+-- TOC entry 3863 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -363,7 +363,7 @@ CREATE SEQUENCE public.events_tags_id_seq
 ALTER TABLE public.events_tags_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3798 (class 0 OID 0)
+-- TOC entry 3864 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: events_tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -407,7 +407,7 @@ CREATE SEQUENCE public.groups_id_seq
 ALTER TABLE public.groups_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3799 (class 0 OID 0)
+-- TOC entry 3865 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -432,6 +432,215 @@ CREATE TABLE public.login (
 
 
 ALTER TABLE public.login OWNER TO postgres;
+
+--
+-- TOC entry 232 (class 1259 OID 95578)
+-- Name: new_departments; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.new_departments (
+    id integer NOT NULL,
+    name character varying NOT NULL,
+    description character varying,
+    logo character(255),
+    id_head integer
+);
+
+
+ALTER TABLE public.new_departments OWNER TO postgres;
+
+--
+-- TOC entry 231 (class 1259 OID 95576)
+-- Name: new_departments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.new_departments_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.new_departments_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3866 (class 0 OID 0)
+-- Dependencies: 231
+-- Name: new_departments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.new_departments_id_seq OWNED BY public.new_departments.id;
+
+
+--
+-- TOC entry 236 (class 1259 OID 95610)
+-- Name: new_direction_of_training; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.new_direction_of_training (
+    id integer NOT NULL,
+    code character(30) NOT NULL,
+    name character(255) NOT NULL,
+    description character varying,
+    form_learning character(30),
+    duration character(30),
+    telephone character(20),
+    email character(50),
+    id_head integer,
+    id_department integer
+);
+
+
+ALTER TABLE public.new_direction_of_training OWNER TO postgres;
+
+--
+-- TOC entry 235 (class 1259 OID 95608)
+-- Name: new_direction_of_training_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.new_direction_of_training_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.new_direction_of_training_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3867 (class 0 OID 0)
+-- Dependencies: 235
+-- Name: new_direction_of_training_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.new_direction_of_training_id_seq OWNED BY public.new_direction_of_training.id;
+
+
+--
+-- TOC entry 238 (class 1259 OID 95631)
+-- Name: new_professions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.new_professions (
+    id integer NOT NULL,
+    name character(70) NOT NULL,
+    id_direction integer
+);
+
+
+ALTER TABLE public.new_professions OWNER TO postgres;
+
+--
+-- TOC entry 237 (class 1259 OID 95629)
+-- Name: new_professions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.new_professions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.new_professions_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3868 (class 0 OID 0)
+-- Dependencies: 237
+-- Name: new_professions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.new_professions_id_seq OWNED BY public.new_professions.id;
+
+
+--
+-- TOC entry 240 (class 1259 OID 95652)
+-- Name: new_subjects; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.new_subjects (
+    id integer NOT NULL,
+    name character(255),
+    id_direction integer
+);
+
+
+ALTER TABLE public.new_subjects OWNER TO postgres;
+
+--
+-- TOC entry 239 (class 1259 OID 95650)
+-- Name: new_subjects_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.new_subjects_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.new_subjects_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3869 (class 0 OID 0)
+-- Dependencies: 239
+-- Name: new_subjects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.new_subjects_id_seq OWNED BY public.new_subjects.id;
+
+
+--
+-- TOC entry 234 (class 1259 OID 95589)
+-- Name: new_teacher; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.new_teacher (
+    id integer NOT NULL,
+    surname character(25) NOT NULL,
+    name character(25) NOT NULL,
+    patronymic character(25) NOT NULL,
+    post character(255) NOT NULL,
+    photo character(255),
+    description character varying,
+    id_department integer
+);
+
+
+ALTER TABLE public.new_teacher OWNER TO postgres;
+
+--
+-- TOC entry 233 (class 1259 OID 95587)
+-- Name: new_teacher_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.new_teacher_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.new_teacher_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3870 (class 0 OID 0)
+-- Dependencies: 233
+-- Name: new_teacher_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.new_teacher_id_seq OWNED BY public.new_teacher.id;
+
 
 --
 -- TOC entry 204 (class 1259 OID 17153)
@@ -467,7 +676,7 @@ CREATE SEQUENCE public.news_id_seq
 ALTER TABLE public.news_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3800 (class 0 OID 0)
+-- TOC entry 3871 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: news_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -508,7 +717,7 @@ CREATE SEQUENCE public.news_tags_id_seq
 ALTER TABLE public.news_tags_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3801 (class 0 OID 0)
+-- TOC entry 3872 (class 0 OID 0)
 -- Dependencies: 220
 -- Name: news_tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -551,7 +760,7 @@ CREATE SEQUENCE public."scienceLabs_id_seq"
 ALTER TABLE public."scienceLabs_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 3802 (class 0 OID 0)
+-- TOC entry 3873 (class 0 OID 0)
 -- Dependencies: 213
 -- Name: scienceLabs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -592,7 +801,7 @@ CREATE SEQUENCE public.spec_courses_id_seq
 ALTER TABLE public.spec_courses_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3803 (class 0 OID 0)
+-- TOC entry 3874 (class 0 OID 0)
 -- Dependencies: 226
 -- Name: spec_courses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -640,7 +849,7 @@ CREATE SEQUENCE public.specialties_id_seq
 ALTER TABLE public.specialties_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3804 (class 0 OID 0)
+-- TOC entry 3875 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: specialties_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -690,7 +899,7 @@ CREATE SEQUENCE public.stuff_id_seq
 ALTER TABLE public.stuff_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3805 (class 0 OID 0)
+-- TOC entry 3876 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: stuff_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -731,7 +940,7 @@ CREATE SEQUENCE public.tags_id_seq
 ALTER TABLE public.tags_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3806 (class 0 OID 0)
+-- TOC entry 3877 (class 0 OID 0)
 -- Dependencies: 205
 -- Name: tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -780,7 +989,7 @@ CREATE SEQUENCE public.timetables_id_seq
 ALTER TABLE public.timetables_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3807 (class 0 OID 0)
+-- TOC entry 3878 (class 0 OID 0)
 -- Dependencies: 228
 -- Name: timetables_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -789,7 +998,7 @@ ALTER SEQUENCE public.timetables_id_seq OWNED BY public.timetables.id;
 
 
 --
--- TOC entry 2782 (class 2604 OID 17122)
+-- TOC entry 2815 (class 2604 OID 17122)
 -- Name: auditoria id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -797,7 +1006,7 @@ ALTER TABLE ONLY public.auditoria ALTER COLUMN id SET DEFAULT nextval('public.au
 
 
 --
--- TOC entry 2783 (class 2604 OID 17135)
+-- TOC entry 2816 (class 2604 OID 17135)
 -- Name: courses id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -805,7 +1014,7 @@ ALTER TABLE ONLY public.courses ALTER COLUMN id SET DEFAULT nextval('public.cour
 
 
 --
--- TOC entry 2795 (class 2604 OID 17372)
+-- TOC entry 2828 (class 2604 OID 17372)
 -- Name: dep_specilaties id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -813,7 +1022,7 @@ ALTER TABLE ONLY public.dep_specilaties ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 2794 (class 2604 OID 17354)
+-- TOC entry 2827 (class 2604 OID 17354)
 -- Name: dep_stuffs id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -821,7 +1030,7 @@ ALTER TABLE ONLY public.dep_stuffs ALTER COLUMN id SET DEFAULT nextval('public.d
 
 
 --
--- TOC entry 2789 (class 2604 OID 17204)
+-- TOC entry 2822 (class 2604 OID 17204)
 -- Name: departments id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -829,7 +1038,7 @@ ALTER TABLE ONLY public.departments ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 2784 (class 2604 OID 17145)
+-- TOC entry 2817 (class 2604 OID 17145)
 -- Name: events id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -837,7 +1046,7 @@ ALTER TABLE ONLY public.events ALTER COLUMN id SET DEFAULT nextval('public.event
 
 
 --
--- TOC entry 2792 (class 2604 OID 17318)
+-- TOC entry 2825 (class 2604 OID 17318)
 -- Name: events_tags id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -845,7 +1054,7 @@ ALTER TABLE ONLY public.events_tags ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 2791 (class 2604 OID 17261)
+-- TOC entry 2824 (class 2604 OID 17261)
 -- Name: groups id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -853,7 +1062,47 @@ ALTER TABLE ONLY public.groups ALTER COLUMN id SET DEFAULT nextval('public.group
 
 
 --
--- TOC entry 2785 (class 2604 OID 17156)
+-- TOC entry 2831 (class 2604 OID 95581)
+-- Name: new_departments id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_departments ALTER COLUMN id SET DEFAULT nextval('public.new_departments_id_seq'::regclass);
+
+
+--
+-- TOC entry 2833 (class 2604 OID 95613)
+-- Name: new_direction_of_training id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_direction_of_training ALTER COLUMN id SET DEFAULT nextval('public.new_direction_of_training_id_seq'::regclass);
+
+
+--
+-- TOC entry 2834 (class 2604 OID 95634)
+-- Name: new_professions id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_professions ALTER COLUMN id SET DEFAULT nextval('public.new_professions_id_seq'::regclass);
+
+
+--
+-- TOC entry 2835 (class 2604 OID 95655)
+-- Name: new_subjects id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_subjects ALTER COLUMN id SET DEFAULT nextval('public.new_subjects_id_seq'::regclass);
+
+
+--
+-- TOC entry 2832 (class 2604 OID 95592)
+-- Name: new_teacher id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_teacher ALTER COLUMN id SET DEFAULT nextval('public.new_teacher_id_seq'::regclass);
+
+
+--
+-- TOC entry 2818 (class 2604 OID 17156)
 -- Name: news id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -861,7 +1110,7 @@ ALTER TABLE ONLY public.news ALTER COLUMN id SET DEFAULT nextval('public.news_id
 
 
 --
--- TOC entry 2793 (class 2604 OID 17336)
+-- TOC entry 2826 (class 2604 OID 17336)
 -- Name: news_tags id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -869,7 +1118,7 @@ ALTER TABLE ONLY public.news_tags ALTER COLUMN id SET DEFAULT nextval('public.ne
 
 
 --
--- TOC entry 2790 (class 2604 OID 17235)
+-- TOC entry 2823 (class 2604 OID 17235)
 -- Name: scienceLabs id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -877,7 +1126,7 @@ ALTER TABLE ONLY public."scienceLabs" ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 2796 (class 2604 OID 17390)
+-- TOC entry 2829 (class 2604 OID 17390)
 -- Name: spec_courses id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -885,7 +1134,7 @@ ALTER TABLE ONLY public.spec_courses ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
--- TOC entry 2788 (class 2604 OID 17193)
+-- TOC entry 2821 (class 2604 OID 17193)
 -- Name: specialties id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -893,7 +1142,7 @@ ALTER TABLE ONLY public.specialties ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 2787 (class 2604 OID 17182)
+-- TOC entry 2820 (class 2604 OID 17182)
 -- Name: stuff id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -901,7 +1150,7 @@ ALTER TABLE ONLY public.stuff ALTER COLUMN id SET DEFAULT nextval('public.stuff_
 
 
 --
--- TOC entry 2786 (class 2604 OID 17167)
+-- TOC entry 2819 (class 2604 OID 17167)
 -- Name: tags id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -909,7 +1158,7 @@ ALTER TABLE ONLY public.tags ALTER COLUMN id SET DEFAULT nextval('public.tags_id
 
 
 --
--- TOC entry 2797 (class 2604 OID 17922)
+-- TOC entry 2830 (class 2604 OID 17922)
 -- Name: timetables id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -917,7 +1166,7 @@ ALTER TABLE ONLY public.timetables ALTER COLUMN id SET DEFAULT nextval('public.t
 
 
 --
--- TOC entry 3751 (class 0 OID 17119)
+-- TOC entry 3807 (class 0 OID 17119)
 -- Dependencies: 198
 -- Data for Name: auditoria; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -925,7 +1174,7 @@ ALTER TABLE ONLY public.timetables ALTER COLUMN id SET DEFAULT nextval('public.t
 
 
 --
--- TOC entry 3749 (class 0 OID 17112)
+-- TOC entry 3805 (class 0 OID 17112)
 -- Dependencies: 196
 -- Data for Name: buildings; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -933,7 +1182,7 @@ ALTER TABLE ONLY public.timetables ALTER COLUMN id SET DEFAULT nextval('public.t
 
 
 --
--- TOC entry 3768 (class 0 OID 17251)
+-- TOC entry 3824 (class 0 OID 17251)
 -- Dependencies: 215
 -- Data for Name: class_names; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -941,7 +1190,7 @@ ALTER TABLE ONLY public.timetables ALTER COLUMN id SET DEFAULT nextval('public.t
 
 
 --
--- TOC entry 3753 (class 0 OID 17132)
+-- TOC entry 3809 (class 0 OID 17132)
 -- Dependencies: 200
 -- Data for Name: courses; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -949,7 +1198,7 @@ ALTER TABLE ONLY public.timetables ALTER COLUMN id SET DEFAULT nextval('public.t
 
 
 --
--- TOC entry 3778 (class 0 OID 17369)
+-- TOC entry 3834 (class 0 OID 17369)
 -- Dependencies: 225
 -- Data for Name: dep_specilaties; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -957,7 +1206,7 @@ ALTER TABLE ONLY public.timetables ALTER COLUMN id SET DEFAULT nextval('public.t
 
 
 --
--- TOC entry 3776 (class 0 OID 17351)
+-- TOC entry 3832 (class 0 OID 17351)
 -- Dependencies: 223
 -- Data for Name: dep_stuffs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -965,7 +1214,7 @@ ALTER TABLE ONLY public.timetables ALTER COLUMN id SET DEFAULT nextval('public.t
 
 
 --
--- TOC entry 3765 (class 0 OID 17201)
+-- TOC entry 3821 (class 0 OID 17201)
 -- Dependencies: 212
 -- Data for Name: departments; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -973,7 +1222,7 @@ ALTER TABLE ONLY public.timetables ALTER COLUMN id SET DEFAULT nextval('public.t
 
 
 --
--- TOC entry 3755 (class 0 OID 17142)
+-- TOC entry 3811 (class 0 OID 17142)
 -- Dependencies: 202
 -- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -985,7 +1234,7 @@ INSERT INTO public.events (id, title, text, cover_path, description, event_date,
 
 
 --
--- TOC entry 3772 (class 0 OID 17315)
+-- TOC entry 3828 (class 0 OID 17315)
 -- Dependencies: 219
 -- Data for Name: events_tags; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -993,7 +1242,7 @@ INSERT INTO public.events (id, title, text, cover_path, description, event_date,
 
 
 --
--- TOC entry 3770 (class 0 OID 17258)
+-- TOC entry 3826 (class 0 OID 17258)
 -- Dependencies: 217
 -- Data for Name: groups; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1001,7 +1250,7 @@ INSERT INTO public.events (id, title, text, cover_path, description, event_date,
 
 
 --
--- TOC entry 3783 (class 0 OID 93378)
+-- TOC entry 3839 (class 0 OID 93378)
 -- Dependencies: 230
 -- Data for Name: login; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1010,7 +1259,47 @@ INSERT INTO public.login (id, surname, name, patronymic, role, email, password) 
 
 
 --
--- TOC entry 3757 (class 0 OID 17153)
+-- TOC entry 3841 (class 0 OID 95578)
+-- Dependencies: 232
+-- Data for Name: new_departments; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 3845 (class 0 OID 95610)
+-- Dependencies: 236
+-- Data for Name: new_direction_of_training; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 3847 (class 0 OID 95631)
+-- Dependencies: 238
+-- Data for Name: new_professions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 3849 (class 0 OID 95652)
+-- Dependencies: 240
+-- Data for Name: new_subjects; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 3843 (class 0 OID 95589)
+-- Dependencies: 234
+-- Data for Name: new_teacher; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 3813 (class 0 OID 17153)
 -- Dependencies: 204
 -- Data for Name: news; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1025,7 +1314,7 @@ INSERT INTO public.news (id, title, text, cover_path, description, media_path) V
 
 
 --
--- TOC entry 3774 (class 0 OID 17333)
+-- TOC entry 3830 (class 0 OID 17333)
 -- Dependencies: 221
 -- Data for Name: news_tags; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1033,7 +1322,7 @@ INSERT INTO public.news (id, title, text, cover_path, description, media_path) V
 
 
 --
--- TOC entry 3767 (class 0 OID 17232)
+-- TOC entry 3823 (class 0 OID 17232)
 -- Dependencies: 214
 -- Data for Name: scienceLabs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1041,7 +1330,7 @@ INSERT INTO public.news (id, title, text, cover_path, description, media_path) V
 
 
 --
--- TOC entry 3780 (class 0 OID 17387)
+-- TOC entry 3836 (class 0 OID 17387)
 -- Dependencies: 227
 -- Data for Name: spec_courses; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1049,7 +1338,7 @@ INSERT INTO public.news (id, title, text, cover_path, description, media_path) V
 
 
 --
--- TOC entry 3763 (class 0 OID 17190)
+-- TOC entry 3819 (class 0 OID 17190)
 -- Dependencies: 210
 -- Data for Name: specialties; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1057,7 +1346,7 @@ INSERT INTO public.news (id, title, text, cover_path, description, media_path) V
 
 
 --
--- TOC entry 3761 (class 0 OID 17179)
+-- TOC entry 3817 (class 0 OID 17179)
 -- Dependencies: 208
 -- Data for Name: stuff; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1065,7 +1354,7 @@ INSERT INTO public.news (id, title, text, cover_path, description, media_path) V
 
 
 --
--- TOC entry 3759 (class 0 OID 17164)
+-- TOC entry 3815 (class 0 OID 17164)
 -- Dependencies: 206
 -- Data for Name: tags; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1073,7 +1362,7 @@ INSERT INTO public.news (id, title, text, cover_path, description, media_path) V
 
 
 --
--- TOC entry 3782 (class 0 OID 17919)
+-- TOC entry 3838 (class 0 OID 17919)
 -- Dependencies: 229
 -- Data for Name: timetables; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1081,7 +1370,7 @@ INSERT INTO public.news (id, title, text, cover_path, description, media_path) V
 
 
 --
--- TOC entry 3808 (class 0 OID 0)
+-- TOC entry 3879 (class 0 OID 0)
 -- Dependencies: 197
 -- Name: auditoria_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1090,7 +1379,7 @@ SELECT pg_catalog.setval('public.auditoria_id_seq', 1, false);
 
 
 --
--- TOC entry 3809 (class 0 OID 0)
+-- TOC entry 3880 (class 0 OID 0)
 -- Dependencies: 199
 -- Name: courses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1099,7 +1388,7 @@ SELECT pg_catalog.setval('public.courses_id_seq', 1, false);
 
 
 --
--- TOC entry 3810 (class 0 OID 0)
+-- TOC entry 3881 (class 0 OID 0)
 -- Dependencies: 224
 -- Name: dep_specilaties_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1108,7 +1397,7 @@ SELECT pg_catalog.setval('public.dep_specilaties_id_seq', 1, false);
 
 
 --
--- TOC entry 3811 (class 0 OID 0)
+-- TOC entry 3882 (class 0 OID 0)
 -- Dependencies: 222
 -- Name: dep_stuffs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1117,7 +1406,7 @@ SELECT pg_catalog.setval('public.dep_stuffs_id_seq', 1, false);
 
 
 --
--- TOC entry 3812 (class 0 OID 0)
+-- TOC entry 3883 (class 0 OID 0)
 -- Dependencies: 211
 -- Name: departments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1126,7 +1415,7 @@ SELECT pg_catalog.setval('public.departments_id_seq', 1, false);
 
 
 --
--- TOC entry 3813 (class 0 OID 0)
+-- TOC entry 3884 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1135,7 +1424,7 @@ SELECT pg_catalog.setval('public.events_id_seq', 1, false);
 
 
 --
--- TOC entry 3814 (class 0 OID 0)
+-- TOC entry 3885 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: events_tags_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1144,7 +1433,7 @@ SELECT pg_catalog.setval('public.events_tags_id_seq', 1, false);
 
 
 --
--- TOC entry 3815 (class 0 OID 0)
+-- TOC entry 3886 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1153,7 +1442,52 @@ SELECT pg_catalog.setval('public.groups_id_seq', 1, false);
 
 
 --
--- TOC entry 3816 (class 0 OID 0)
+-- TOC entry 3887 (class 0 OID 0)
+-- Dependencies: 231
+-- Name: new_departments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.new_departments_id_seq', 1, false);
+
+
+--
+-- TOC entry 3888 (class 0 OID 0)
+-- Dependencies: 235
+-- Name: new_direction_of_training_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.new_direction_of_training_id_seq', 1, false);
+
+
+--
+-- TOC entry 3889 (class 0 OID 0)
+-- Dependencies: 237
+-- Name: new_professions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.new_professions_id_seq', 1, false);
+
+
+--
+-- TOC entry 3890 (class 0 OID 0)
+-- Dependencies: 239
+-- Name: new_subjects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.new_subjects_id_seq', 1, false);
+
+
+--
+-- TOC entry 3891 (class 0 OID 0)
+-- Dependencies: 233
+-- Name: new_teacher_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.new_teacher_id_seq', 1, false);
+
+
+--
+-- TOC entry 3892 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: news_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1162,7 +1496,7 @@ SELECT pg_catalog.setval('public.news_id_seq', 7, true);
 
 
 --
--- TOC entry 3817 (class 0 OID 0)
+-- TOC entry 3893 (class 0 OID 0)
 -- Dependencies: 220
 -- Name: news_tags_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1171,7 +1505,7 @@ SELECT pg_catalog.setval('public.news_tags_id_seq', 1, false);
 
 
 --
--- TOC entry 3818 (class 0 OID 0)
+-- TOC entry 3894 (class 0 OID 0)
 -- Dependencies: 213
 -- Name: scienceLabs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1180,7 +1514,7 @@ SELECT pg_catalog.setval('public."scienceLabs_id_seq"', 1, false);
 
 
 --
--- TOC entry 3819 (class 0 OID 0)
+-- TOC entry 3895 (class 0 OID 0)
 -- Dependencies: 226
 -- Name: spec_courses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1189,7 +1523,7 @@ SELECT pg_catalog.setval('public.spec_courses_id_seq', 1, false);
 
 
 --
--- TOC entry 3820 (class 0 OID 0)
+-- TOC entry 3896 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: specialties_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1198,7 +1532,7 @@ SELECT pg_catalog.setval('public.specialties_id_seq', 1, false);
 
 
 --
--- TOC entry 3821 (class 0 OID 0)
+-- TOC entry 3897 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: stuff_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1207,7 +1541,7 @@ SELECT pg_catalog.setval('public.stuff_id_seq', 1, false);
 
 
 --
--- TOC entry 3822 (class 0 OID 0)
+-- TOC entry 3898 (class 0 OID 0)
 -- Dependencies: 205
 -- Name: tags_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1216,7 +1550,7 @@ SELECT pg_catalog.setval('public.tags_id_seq', 1, false);
 
 
 --
--- TOC entry 3823 (class 0 OID 0)
+-- TOC entry 3899 (class 0 OID 0)
 -- Dependencies: 228
 -- Name: timetables_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1225,7 +1559,7 @@ SELECT pg_catalog.setval('public.timetables_id_seq', 1, false);
 
 
 --
--- TOC entry 2801 (class 2606 OID 17124)
+-- TOC entry 2839 (class 2606 OID 17124)
 -- Name: auditoria auditoria_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1234,7 +1568,7 @@ ALTER TABLE ONLY public.auditoria
 
 
 --
--- TOC entry 2799 (class 2606 OID 17116)
+-- TOC entry 2837 (class 2606 OID 17116)
 -- Name: buildings buildings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1243,7 +1577,7 @@ ALTER TABLE ONLY public.buildings
 
 
 --
--- TOC entry 3587 (class 2606 OID 17255)
+-- TOC entry 3627 (class 2606 OID 17255)
 -- Name: class_names class_names_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1252,7 +1586,7 @@ ALTER TABLE ONLY public.class_names
 
 
 --
--- TOC entry 2803 (class 2606 OID 17137)
+-- TOC entry 2841 (class 2606 OID 17137)
 -- Name: courses courses_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1261,7 +1595,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2805 (class 2606 OID 93247)
+-- TOC entry 2843 (class 2606 OID 95371)
 -- Name: courses courses_title_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1270,7 +1604,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2807 (class 2606 OID 93245)
+-- TOC entry 2845 (class 2606 OID 95373)
 -- Name: courses courses_title_key1; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1279,7 +1613,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2809 (class 2606 OID 93257)
+-- TOC entry 2847 (class 2606 OID 95361)
 -- Name: courses courses_title_key10; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1288,7 +1622,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2811 (class 2606 OID 93347)
+-- TOC entry 2849 (class 2606 OID 95271)
 -- Name: courses courses_title_key100; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1297,7 +1631,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2813 (class 2606 OID 93145)
+-- TOC entry 2851 (class 2606 OID 95473)
 -- Name: courses courses_title_key101; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1306,7 +1640,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2815 (class 2606 OID 93349)
+-- TOC entry 2853 (class 2606 OID 95269)
 -- Name: courses courses_title_key102; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1315,7 +1649,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2817 (class 2606 OID 93143)
+-- TOC entry 2855 (class 2606 OID 95475)
 -- Name: courses courses_title_key103; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1324,7 +1658,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2819 (class 2606 OID 93351)
+-- TOC entry 2857 (class 2606 OID 95267)
 -- Name: courses courses_title_key104; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1333,7 +1667,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2821 (class 2606 OID 93141)
+-- TOC entry 2859 (class 2606 OID 95477)
 -- Name: courses courses_title_key105; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1342,7 +1676,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2823 (class 2606 OID 93353)
+-- TOC entry 2861 (class 2606 OID 95265)
 -- Name: courses courses_title_key106; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1351,7 +1685,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2825 (class 2606 OID 93139)
+-- TOC entry 2863 (class 2606 OID 95479)
 -- Name: courses courses_title_key107; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1360,7 +1694,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2827 (class 2606 OID 93355)
+-- TOC entry 2865 (class 2606 OID 95263)
 -- Name: courses courses_title_key108; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1369,7 +1703,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2829 (class 2606 OID 93137)
+-- TOC entry 2867 (class 2606 OID 95481)
 -- Name: courses courses_title_key109; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1378,7 +1712,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2831 (class 2606 OID 93235)
+-- TOC entry 2869 (class 2606 OID 95383)
 -- Name: courses courses_title_key11; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1387,7 +1721,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2833 (class 2606 OID 93357)
+-- TOC entry 2871 (class 2606 OID 95261)
 -- Name: courses courses_title_key110; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1396,7 +1730,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2835 (class 2606 OID 93135)
+-- TOC entry 2873 (class 2606 OID 95483)
 -- Name: courses courses_title_key111; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1405,7 +1739,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2837 (class 2606 OID 93359)
+-- TOC entry 2875 (class 2606 OID 95259)
 -- Name: courses courses_title_key112; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1414,7 +1748,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2839 (class 2606 OID 93133)
+-- TOC entry 2877 (class 2606 OID 95485)
 -- Name: courses courses_title_key113; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1423,7 +1757,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2841 (class 2606 OID 93361)
+-- TOC entry 2879 (class 2606 OID 95257)
 -- Name: courses courses_title_key114; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1432,7 +1766,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2843 (class 2606 OID 93131)
+-- TOC entry 2881 (class 2606 OID 95487)
 -- Name: courses courses_title_key115; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1441,7 +1775,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2845 (class 2606 OID 93363)
+-- TOC entry 2883 (class 2606 OID 95255)
 -- Name: courses courses_title_key116; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1450,7 +1784,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2847 (class 2606 OID 93129)
+-- TOC entry 2885 (class 2606 OID 95489)
 -- Name: courses courses_title_key117; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1459,7 +1793,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2849 (class 2606 OID 93365)
+-- TOC entry 2887 (class 2606 OID 95253)
 -- Name: courses courses_title_key118; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1468,7 +1802,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2851 (class 2606 OID 93127)
+-- TOC entry 2889 (class 2606 OID 95491)
 -- Name: courses courses_title_key119; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1477,7 +1811,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2853 (class 2606 OID 93259)
+-- TOC entry 2891 (class 2606 OID 95359)
 -- Name: courses courses_title_key12; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1486,7 +1820,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2855 (class 2606 OID 93367)
+-- TOC entry 2893 (class 2606 OID 95251)
 -- Name: courses courses_title_key120; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1495,7 +1829,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2857 (class 2606 OID 93125)
+-- TOC entry 2895 (class 2606 OID 95493)
 -- Name: courses courses_title_key121; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1504,7 +1838,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2859 (class 2606 OID 93369)
+-- TOC entry 2897 (class 2606 OID 95249)
 -- Name: courses courses_title_key122; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1513,7 +1847,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2861 (class 2606 OID 93123)
+-- TOC entry 2899 (class 2606 OID 95495)
 -- Name: courses courses_title_key123; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1522,7 +1856,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2863 (class 2606 OID 93371)
+-- TOC entry 2901 (class 2606 OID 95247)
 -- Name: courses courses_title_key124; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1531,7 +1865,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2865 (class 2606 OID 93121)
+-- TOC entry 2903 (class 2606 OID 95497)
 -- Name: courses courses_title_key125; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1540,7 +1874,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2867 (class 2606 OID 93373)
+-- TOC entry 2905 (class 2606 OID 95245)
 -- Name: courses courses_title_key126; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1549,7 +1883,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2869 (class 2606 OID 93119)
+-- TOC entry 2907 (class 2606 OID 95499)
 -- Name: courses courses_title_key127; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1558,7 +1892,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2871 (class 2606 OID 93375)
+-- TOC entry 2909 (class 2606 OID 95243)
 -- Name: courses courses_title_key128; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1567,7 +1901,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2873 (class 2606 OID 93117)
+-- TOC entry 2911 (class 2606 OID 95501)
 -- Name: courses courses_title_key129; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1576,7 +1910,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2875 (class 2606 OID 93233)
+-- TOC entry 2913 (class 2606 OID 95385)
 -- Name: courses courses_title_key13; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1585,7 +1919,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2877 (class 2606 OID 93377)
+-- TOC entry 2915 (class 2606 OID 95241)
 -- Name: courses courses_title_key130; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1594,7 +1928,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2879 (class 2606 OID 93115)
+-- TOC entry 2917 (class 2606 OID 95503)
 -- Name: courses courses_title_key131; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1603,7 +1937,16 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2881 (class 2606 OID 93261)
+-- TOC entry 2919 (class 2606 OID 95239)
+-- Name: courses courses_title_key132; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.courses
+    ADD CONSTRAINT courses_title_key132 UNIQUE (title);
+
+
+--
+-- TOC entry 2921 (class 2606 OID 95357)
 -- Name: courses courses_title_key14; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1612,7 +1955,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2883 (class 2606 OID 93231)
+-- TOC entry 2923 (class 2606 OID 95387)
 -- Name: courses courses_title_key15; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1621,7 +1964,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2885 (class 2606 OID 93263)
+-- TOC entry 2925 (class 2606 OID 95355)
 -- Name: courses courses_title_key16; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1630,7 +1973,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2887 (class 2606 OID 93229)
+-- TOC entry 2927 (class 2606 OID 95389)
 -- Name: courses courses_title_key17; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1639,7 +1982,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2889 (class 2606 OID 93265)
+-- TOC entry 2929 (class 2606 OID 95353)
 -- Name: courses courses_title_key18; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1648,7 +1991,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2891 (class 2606 OID 93227)
+-- TOC entry 2931 (class 2606 OID 95391)
 -- Name: courses courses_title_key19; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1657,7 +2000,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2893 (class 2606 OID 93249)
+-- TOC entry 2933 (class 2606 OID 95369)
 -- Name: courses courses_title_key2; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1666,7 +2009,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2895 (class 2606 OID 93267)
+-- TOC entry 2935 (class 2606 OID 95351)
 -- Name: courses courses_title_key20; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1675,7 +2018,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2897 (class 2606 OID 93225)
+-- TOC entry 2937 (class 2606 OID 95393)
 -- Name: courses courses_title_key21; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1684,7 +2027,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2899 (class 2606 OID 93269)
+-- TOC entry 2939 (class 2606 OID 95349)
 -- Name: courses courses_title_key22; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1693,7 +2036,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2901 (class 2606 OID 93223)
+-- TOC entry 2941 (class 2606 OID 95395)
 -- Name: courses courses_title_key23; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1702,7 +2045,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2903 (class 2606 OID 93271)
+-- TOC entry 2943 (class 2606 OID 95347)
 -- Name: courses courses_title_key24; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1711,7 +2054,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2905 (class 2606 OID 93221)
+-- TOC entry 2945 (class 2606 OID 95397)
 -- Name: courses courses_title_key25; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1720,7 +2063,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2907 (class 2606 OID 93273)
+-- TOC entry 2947 (class 2606 OID 95345)
 -- Name: courses courses_title_key26; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1729,7 +2072,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2909 (class 2606 OID 93219)
+-- TOC entry 2949 (class 2606 OID 95399)
 -- Name: courses courses_title_key27; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1738,7 +2081,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2911 (class 2606 OID 93275)
+-- TOC entry 2951 (class 2606 OID 95343)
 -- Name: courses courses_title_key28; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1747,7 +2090,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2913 (class 2606 OID 93217)
+-- TOC entry 2953 (class 2606 OID 95401)
 -- Name: courses courses_title_key29; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1756,7 +2099,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2915 (class 2606 OID 93243)
+-- TOC entry 2955 (class 2606 OID 95375)
 -- Name: courses courses_title_key3; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1765,7 +2108,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2917 (class 2606 OID 93277)
+-- TOC entry 2957 (class 2606 OID 95341)
 -- Name: courses courses_title_key30; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1774,7 +2117,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2919 (class 2606 OID 93215)
+-- TOC entry 2959 (class 2606 OID 95403)
 -- Name: courses courses_title_key31; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1783,7 +2126,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2921 (class 2606 OID 93279)
+-- TOC entry 2961 (class 2606 OID 95339)
 -- Name: courses courses_title_key32; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1792,7 +2135,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2923 (class 2606 OID 93213)
+-- TOC entry 2963 (class 2606 OID 95405)
 -- Name: courses courses_title_key33; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1801,7 +2144,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2925 (class 2606 OID 93281)
+-- TOC entry 2965 (class 2606 OID 95337)
 -- Name: courses courses_title_key34; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1810,7 +2153,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2927 (class 2606 OID 93211)
+-- TOC entry 2967 (class 2606 OID 95407)
 -- Name: courses courses_title_key35; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1819,7 +2162,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2929 (class 2606 OID 93283)
+-- TOC entry 2969 (class 2606 OID 95335)
 -- Name: courses courses_title_key36; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1828,7 +2171,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2931 (class 2606 OID 93209)
+-- TOC entry 2971 (class 2606 OID 95409)
 -- Name: courses courses_title_key37; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1837,7 +2180,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2933 (class 2606 OID 93285)
+-- TOC entry 2973 (class 2606 OID 95333)
 -- Name: courses courses_title_key38; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1846,7 +2189,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2935 (class 2606 OID 93207)
+-- TOC entry 2975 (class 2606 OID 95411)
 -- Name: courses courses_title_key39; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1855,7 +2198,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2937 (class 2606 OID 93251)
+-- TOC entry 2977 (class 2606 OID 95367)
 -- Name: courses courses_title_key4; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1864,7 +2207,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2939 (class 2606 OID 93287)
+-- TOC entry 2979 (class 2606 OID 95331)
 -- Name: courses courses_title_key40; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1873,7 +2216,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2941 (class 2606 OID 93205)
+-- TOC entry 2981 (class 2606 OID 95413)
 -- Name: courses courses_title_key41; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1882,7 +2225,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2943 (class 2606 OID 93289)
+-- TOC entry 2983 (class 2606 OID 95329)
 -- Name: courses courses_title_key42; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1891,7 +2234,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2945 (class 2606 OID 93203)
+-- TOC entry 2985 (class 2606 OID 95415)
 -- Name: courses courses_title_key43; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1900,7 +2243,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2947 (class 2606 OID 93291)
+-- TOC entry 2987 (class 2606 OID 95327)
 -- Name: courses courses_title_key44; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1909,7 +2252,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2949 (class 2606 OID 93201)
+-- TOC entry 2989 (class 2606 OID 95417)
 -- Name: courses courses_title_key45; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1918,7 +2261,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2951 (class 2606 OID 93293)
+-- TOC entry 2991 (class 2606 OID 95325)
 -- Name: courses courses_title_key46; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1927,7 +2270,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2953 (class 2606 OID 93199)
+-- TOC entry 2993 (class 2606 OID 95419)
 -- Name: courses courses_title_key47; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1936,7 +2279,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2955 (class 2606 OID 93295)
+-- TOC entry 2995 (class 2606 OID 95323)
 -- Name: courses courses_title_key48; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1945,7 +2288,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2957 (class 2606 OID 93197)
+-- TOC entry 2997 (class 2606 OID 95421)
 -- Name: courses courses_title_key49; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1954,7 +2297,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2959 (class 2606 OID 93241)
+-- TOC entry 2999 (class 2606 OID 95377)
 -- Name: courses courses_title_key5; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1963,7 +2306,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2961 (class 2606 OID 93297)
+-- TOC entry 3001 (class 2606 OID 95321)
 -- Name: courses courses_title_key50; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1972,7 +2315,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2963 (class 2606 OID 93195)
+-- TOC entry 3003 (class 2606 OID 95423)
 -- Name: courses courses_title_key51; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1981,7 +2324,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2965 (class 2606 OID 93299)
+-- TOC entry 3005 (class 2606 OID 95319)
 -- Name: courses courses_title_key52; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1990,7 +2333,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2967 (class 2606 OID 93193)
+-- TOC entry 3007 (class 2606 OID 95425)
 -- Name: courses courses_title_key53; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1999,7 +2342,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2969 (class 2606 OID 93301)
+-- TOC entry 3009 (class 2606 OID 95317)
 -- Name: courses courses_title_key54; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2008,7 +2351,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2971 (class 2606 OID 93191)
+-- TOC entry 3011 (class 2606 OID 95427)
 -- Name: courses courses_title_key55; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2017,7 +2360,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2973 (class 2606 OID 93303)
+-- TOC entry 3013 (class 2606 OID 95315)
 -- Name: courses courses_title_key56; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2026,7 +2369,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2975 (class 2606 OID 93189)
+-- TOC entry 3015 (class 2606 OID 95429)
 -- Name: courses courses_title_key57; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2035,7 +2378,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2977 (class 2606 OID 93305)
+-- TOC entry 3017 (class 2606 OID 95313)
 -- Name: courses courses_title_key58; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2044,7 +2387,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2979 (class 2606 OID 93187)
+-- TOC entry 3019 (class 2606 OID 95431)
 -- Name: courses courses_title_key59; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2053,7 +2396,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2981 (class 2606 OID 93253)
+-- TOC entry 3021 (class 2606 OID 95365)
 -- Name: courses courses_title_key6; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2062,7 +2405,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2983 (class 2606 OID 93307)
+-- TOC entry 3023 (class 2606 OID 95311)
 -- Name: courses courses_title_key60; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2071,7 +2414,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2985 (class 2606 OID 93185)
+-- TOC entry 3025 (class 2606 OID 95433)
 -- Name: courses courses_title_key61; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2080,7 +2423,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2987 (class 2606 OID 93309)
+-- TOC entry 3027 (class 2606 OID 95309)
 -- Name: courses courses_title_key62; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2089,7 +2432,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2989 (class 2606 OID 93183)
+-- TOC entry 3029 (class 2606 OID 95435)
 -- Name: courses courses_title_key63; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2098,7 +2441,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2991 (class 2606 OID 93311)
+-- TOC entry 3031 (class 2606 OID 95307)
 -- Name: courses courses_title_key64; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2107,7 +2450,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2993 (class 2606 OID 93181)
+-- TOC entry 3033 (class 2606 OID 95437)
 -- Name: courses courses_title_key65; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2116,7 +2459,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2995 (class 2606 OID 93313)
+-- TOC entry 3035 (class 2606 OID 95305)
 -- Name: courses courses_title_key66; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2125,7 +2468,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2997 (class 2606 OID 93179)
+-- TOC entry 3037 (class 2606 OID 95439)
 -- Name: courses courses_title_key67; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2134,7 +2477,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 2999 (class 2606 OID 93315)
+-- TOC entry 3039 (class 2606 OID 95303)
 -- Name: courses courses_title_key68; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2143,7 +2486,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3001 (class 2606 OID 93177)
+-- TOC entry 3041 (class 2606 OID 95441)
 -- Name: courses courses_title_key69; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2152,7 +2495,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3003 (class 2606 OID 93239)
+-- TOC entry 3043 (class 2606 OID 95379)
 -- Name: courses courses_title_key7; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2161,7 +2504,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3005 (class 2606 OID 93317)
+-- TOC entry 3045 (class 2606 OID 95301)
 -- Name: courses courses_title_key70; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2170,7 +2513,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3007 (class 2606 OID 93175)
+-- TOC entry 3047 (class 2606 OID 95443)
 -- Name: courses courses_title_key71; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2179,7 +2522,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3009 (class 2606 OID 93319)
+-- TOC entry 3049 (class 2606 OID 95299)
 -- Name: courses courses_title_key72; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2188,7 +2531,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3011 (class 2606 OID 93173)
+-- TOC entry 3051 (class 2606 OID 95445)
 -- Name: courses courses_title_key73; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2197,7 +2540,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3013 (class 2606 OID 93321)
+-- TOC entry 3053 (class 2606 OID 95297)
 -- Name: courses courses_title_key74; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2206,7 +2549,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3015 (class 2606 OID 93171)
+-- TOC entry 3055 (class 2606 OID 95447)
 -- Name: courses courses_title_key75; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2215,7 +2558,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3017 (class 2606 OID 93323)
+-- TOC entry 3057 (class 2606 OID 95295)
 -- Name: courses courses_title_key76; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2224,7 +2567,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3019 (class 2606 OID 93169)
+-- TOC entry 3059 (class 2606 OID 95449)
 -- Name: courses courses_title_key77; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2233,7 +2576,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3021 (class 2606 OID 93325)
+-- TOC entry 3061 (class 2606 OID 95293)
 -- Name: courses courses_title_key78; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2242,7 +2585,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3023 (class 2606 OID 93167)
+-- TOC entry 3063 (class 2606 OID 95451)
 -- Name: courses courses_title_key79; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2251,7 +2594,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3025 (class 2606 OID 93255)
+-- TOC entry 3065 (class 2606 OID 95363)
 -- Name: courses courses_title_key8; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2260,7 +2603,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3027 (class 2606 OID 93327)
+-- TOC entry 3067 (class 2606 OID 95291)
 -- Name: courses courses_title_key80; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2269,7 +2612,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3029 (class 2606 OID 93165)
+-- TOC entry 3069 (class 2606 OID 95453)
 -- Name: courses courses_title_key81; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2278,7 +2621,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3031 (class 2606 OID 93329)
+-- TOC entry 3071 (class 2606 OID 95289)
 -- Name: courses courses_title_key82; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2287,7 +2630,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3033 (class 2606 OID 93163)
+-- TOC entry 3073 (class 2606 OID 95455)
 -- Name: courses courses_title_key83; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2296,7 +2639,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3035 (class 2606 OID 93331)
+-- TOC entry 3075 (class 2606 OID 95287)
 -- Name: courses courses_title_key84; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2305,7 +2648,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3037 (class 2606 OID 93161)
+-- TOC entry 3077 (class 2606 OID 95457)
 -- Name: courses courses_title_key85; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2314,7 +2657,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3039 (class 2606 OID 93333)
+-- TOC entry 3079 (class 2606 OID 95285)
 -- Name: courses courses_title_key86; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2323,7 +2666,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3041 (class 2606 OID 93159)
+-- TOC entry 3081 (class 2606 OID 95459)
 -- Name: courses courses_title_key87; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2332,7 +2675,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3043 (class 2606 OID 93335)
+-- TOC entry 3083 (class 2606 OID 95283)
 -- Name: courses courses_title_key88; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2341,7 +2684,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3045 (class 2606 OID 93157)
+-- TOC entry 3085 (class 2606 OID 95461)
 -- Name: courses courses_title_key89; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2350,7 +2693,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3047 (class 2606 OID 93237)
+-- TOC entry 3087 (class 2606 OID 95381)
 -- Name: courses courses_title_key9; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2359,7 +2702,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3049 (class 2606 OID 93337)
+-- TOC entry 3089 (class 2606 OID 95281)
 -- Name: courses courses_title_key90; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2368,7 +2711,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3051 (class 2606 OID 93155)
+-- TOC entry 3091 (class 2606 OID 95463)
 -- Name: courses courses_title_key91; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2377,7 +2720,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3053 (class 2606 OID 93339)
+-- TOC entry 3093 (class 2606 OID 95279)
 -- Name: courses courses_title_key92; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2386,7 +2729,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3055 (class 2606 OID 93153)
+-- TOC entry 3095 (class 2606 OID 95465)
 -- Name: courses courses_title_key93; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2395,7 +2738,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3057 (class 2606 OID 93341)
+-- TOC entry 3097 (class 2606 OID 95277)
 -- Name: courses courses_title_key94; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2404,7 +2747,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3059 (class 2606 OID 93151)
+-- TOC entry 3099 (class 2606 OID 95467)
 -- Name: courses courses_title_key95; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2413,7 +2756,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3061 (class 2606 OID 93343)
+-- TOC entry 3101 (class 2606 OID 95275)
 -- Name: courses courses_title_key96; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2422,7 +2765,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3063 (class 2606 OID 93149)
+-- TOC entry 3103 (class 2606 OID 95469)
 -- Name: courses courses_title_key97; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2431,7 +2774,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3065 (class 2606 OID 93345)
+-- TOC entry 3105 (class 2606 OID 95273)
 -- Name: courses courses_title_key98; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2440,7 +2783,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3067 (class 2606 OID 93147)
+-- TOC entry 3107 (class 2606 OID 95471)
 -- Name: courses courses_title_key99; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2449,7 +2792,7 @@ ALTER TABLE ONLY public.courses
 
 
 --
--- TOC entry 3597 (class 2606 OID 17374)
+-- TOC entry 3637 (class 2606 OID 17374)
 -- Name: dep_specilaties dep_specilaties_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2458,7 +2801,7 @@ ALTER TABLE ONLY public.dep_specilaties
 
 
 --
--- TOC entry 3595 (class 2606 OID 17356)
+-- TOC entry 3635 (class 2606 OID 17356)
 -- Name: dep_stuffs dep_stuffs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2467,7 +2810,7 @@ ALTER TABLE ONLY public.dep_stuffs
 
 
 --
--- TOC entry 3583 (class 2606 OID 17209)
+-- TOC entry 3623 (class 2606 OID 17209)
 -- Name: departments departments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2476,7 +2819,7 @@ ALTER TABLE ONLY public.departments
 
 
 --
--- TOC entry 3069 (class 2606 OID 17150)
+-- TOC entry 3109 (class 2606 OID 17150)
 -- Name: events events_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2485,7 +2828,7 @@ ALTER TABLE ONLY public.events
 
 
 --
--- TOC entry 3591 (class 2606 OID 17320)
+-- TOC entry 3631 (class 2606 OID 17320)
 -- Name: events_tags events_tags_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2494,7 +2837,7 @@ ALTER TABLE ONLY public.events_tags
 
 
 --
--- TOC entry 3589 (class 2606 OID 17266)
+-- TOC entry 3629 (class 2606 OID 17266)
 -- Name: groups groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2503,7 +2846,7 @@ ALTER TABLE ONLY public.groups
 
 
 --
--- TOC entry 3603 (class 2606 OID 93385)
+-- TOC entry 3643 (class 2606 OID 93385)
 -- Name: login login_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2512,7 +2855,52 @@ ALTER TABLE ONLY public.login
 
 
 --
--- TOC entry 3071 (class 2606 OID 17161)
+-- TOC entry 3645 (class 2606 OID 95586)
+-- Name: new_departments new_departments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_departments
+    ADD CONSTRAINT new_departments_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3649 (class 2606 OID 95618)
+-- Name: new_direction_of_training new_direction_of_training_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_direction_of_training
+    ADD CONSTRAINT new_direction_of_training_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3651 (class 2606 OID 95636)
+-- Name: new_professions new_professions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_professions
+    ADD CONSTRAINT new_professions_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3653 (class 2606 OID 95657)
+-- Name: new_subjects new_subjects_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_subjects
+    ADD CONSTRAINT new_subjects_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3647 (class 2606 OID 95597)
+-- Name: new_teacher new_teacher_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_teacher
+    ADD CONSTRAINT new_teacher_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3111 (class 2606 OID 17161)
 -- Name: news news_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2521,7 +2909,7 @@ ALTER TABLE ONLY public.news
 
 
 --
--- TOC entry 3593 (class 2606 OID 17338)
+-- TOC entry 3633 (class 2606 OID 17338)
 -- Name: news_tags news_tags_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2530,7 +2918,7 @@ ALTER TABLE ONLY public.news_tags
 
 
 --
--- TOC entry 3585 (class 2606 OID 17240)
+-- TOC entry 3625 (class 2606 OID 17240)
 -- Name: scienceLabs scienceLabs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2539,7 +2927,7 @@ ALTER TABLE ONLY public."scienceLabs"
 
 
 --
--- TOC entry 3599 (class 2606 OID 17392)
+-- TOC entry 3639 (class 2606 OID 17392)
 -- Name: spec_courses spec_courses_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2548,7 +2936,7 @@ ALTER TABLE ONLY public.spec_courses
 
 
 --
--- TOC entry 3581 (class 2606 OID 17198)
+-- TOC entry 3621 (class 2606 OID 17198)
 -- Name: specialties specialties_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2557,7 +2945,7 @@ ALTER TABLE ONLY public.specialties
 
 
 --
--- TOC entry 3579 (class 2606 OID 17187)
+-- TOC entry 3619 (class 2606 OID 17187)
 -- Name: stuff stuff_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2566,7 +2954,7 @@ ALTER TABLE ONLY public.stuff
 
 
 --
--- TOC entry 3073 (class 2606 OID 92690)
+-- TOC entry 3113 (class 2606 OID 92690)
 -- Name: tags tags_color_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2575,7 +2963,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3075 (class 2606 OID 92692)
+-- TOC entry 3115 (class 2606 OID 92692)
 -- Name: tags tags_color_key1; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2584,7 +2972,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3077 (class 2606 OID 92680)
+-- TOC entry 3117 (class 2606 OID 92680)
 -- Name: tags tags_color_key10; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2593,7 +2981,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3079 (class 2606 OID 92594)
+-- TOC entry 3119 (class 2606 OID 92594)
 -- Name: tags tags_color_key100; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2602,7 +2990,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3081 (class 2606 OID 92796)
+-- TOC entry 3121 (class 2606 OID 92796)
 -- Name: tags tags_color_key101; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2611,7 +2999,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3083 (class 2606 OID 92592)
+-- TOC entry 3123 (class 2606 OID 92592)
 -- Name: tags tags_color_key102; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2620,7 +3008,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3085 (class 2606 OID 92798)
+-- TOC entry 3125 (class 2606 OID 92798)
 -- Name: tags tags_color_key103; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2629,7 +3017,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3087 (class 2606 OID 92590)
+-- TOC entry 3127 (class 2606 OID 92590)
 -- Name: tags tags_color_key104; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2638,7 +3026,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3089 (class 2606 OID 92800)
+-- TOC entry 3129 (class 2606 OID 92800)
 -- Name: tags tags_color_key105; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2647,7 +3035,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3091 (class 2606 OID 92588)
+-- TOC entry 3131 (class 2606 OID 92588)
 -- Name: tags tags_color_key106; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2656,7 +3044,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3093 (class 2606 OID 92802)
+-- TOC entry 3133 (class 2606 OID 92802)
 -- Name: tags tags_color_key107; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2665,7 +3053,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3095 (class 2606 OID 92586)
+-- TOC entry 3135 (class 2606 OID 92586)
 -- Name: tags tags_color_key108; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2674,7 +3062,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3097 (class 2606 OID 92804)
+-- TOC entry 3137 (class 2606 OID 92804)
 -- Name: tags tags_color_key109; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2683,7 +3071,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3099 (class 2606 OID 92702)
+-- TOC entry 3139 (class 2606 OID 92702)
 -- Name: tags tags_color_key11; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2692,7 +3080,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3101 (class 2606 OID 92584)
+-- TOC entry 3141 (class 2606 OID 92584)
 -- Name: tags tags_color_key110; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2701,7 +3089,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3103 (class 2606 OID 92806)
+-- TOC entry 3143 (class 2606 OID 92806)
 -- Name: tags tags_color_key111; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2710,7 +3098,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3105 (class 2606 OID 92582)
+-- TOC entry 3145 (class 2606 OID 92582)
 -- Name: tags tags_color_key112; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2719,7 +3107,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3107 (class 2606 OID 92808)
+-- TOC entry 3147 (class 2606 OID 92808)
 -- Name: tags tags_color_key113; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2728,7 +3116,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3109 (class 2606 OID 92580)
+-- TOC entry 3149 (class 2606 OID 92580)
 -- Name: tags tags_color_key114; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2737,7 +3125,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3111 (class 2606 OID 92810)
+-- TOC entry 3151 (class 2606 OID 92810)
 -- Name: tags tags_color_key115; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2746,7 +3134,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3113 (class 2606 OID 92578)
+-- TOC entry 3153 (class 2606 OID 92578)
 -- Name: tags tags_color_key116; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2755,7 +3143,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3115 (class 2606 OID 92812)
+-- TOC entry 3155 (class 2606 OID 92812)
 -- Name: tags tags_color_key117; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2764,7 +3152,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3117 (class 2606 OID 92576)
+-- TOC entry 3157 (class 2606 OID 92576)
 -- Name: tags tags_color_key118; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2773,7 +3161,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3119 (class 2606 OID 92814)
+-- TOC entry 3159 (class 2606 OID 92814)
 -- Name: tags tags_color_key119; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2782,7 +3170,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3121 (class 2606 OID 92678)
+-- TOC entry 3161 (class 2606 OID 92678)
 -- Name: tags tags_color_key12; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2791,7 +3179,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3123 (class 2606 OID 92574)
+-- TOC entry 3163 (class 2606 OID 92574)
 -- Name: tags tags_color_key120; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2800,7 +3188,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3125 (class 2606 OID 92816)
+-- TOC entry 3165 (class 2606 OID 92816)
 -- Name: tags tags_color_key121; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2809,7 +3197,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3127 (class 2606 OID 92572)
+-- TOC entry 3167 (class 2606 OID 92572)
 -- Name: tags tags_color_key122; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2818,7 +3206,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3129 (class 2606 OID 92818)
+-- TOC entry 3169 (class 2606 OID 92818)
 -- Name: tags tags_color_key123; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2827,7 +3215,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3131 (class 2606 OID 92570)
+-- TOC entry 3171 (class 2606 OID 92570)
 -- Name: tags tags_color_key124; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2836,7 +3224,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3133 (class 2606 OID 92704)
+-- TOC entry 3173 (class 2606 OID 92704)
 -- Name: tags tags_color_key13; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2845,7 +3233,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3135 (class 2606 OID 92676)
+-- TOC entry 3175 (class 2606 OID 92676)
 -- Name: tags tags_color_key14; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2854,7 +3242,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3137 (class 2606 OID 92706)
+-- TOC entry 3177 (class 2606 OID 92706)
 -- Name: tags tags_color_key15; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2863,7 +3251,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3139 (class 2606 OID 92674)
+-- TOC entry 3179 (class 2606 OID 92674)
 -- Name: tags tags_color_key16; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2872,7 +3260,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3141 (class 2606 OID 92708)
+-- TOC entry 3181 (class 2606 OID 92708)
 -- Name: tags tags_color_key17; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2881,7 +3269,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3143 (class 2606 OID 92672)
+-- TOC entry 3183 (class 2606 OID 92672)
 -- Name: tags tags_color_key18; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2890,7 +3278,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3145 (class 2606 OID 92710)
+-- TOC entry 3185 (class 2606 OID 92710)
 -- Name: tags tags_color_key19; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2899,7 +3287,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3147 (class 2606 OID 92688)
+-- TOC entry 3187 (class 2606 OID 92688)
 -- Name: tags tags_color_key2; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2908,7 +3296,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3149 (class 2606 OID 92670)
+-- TOC entry 3189 (class 2606 OID 92670)
 -- Name: tags tags_color_key20; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2917,7 +3305,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3151 (class 2606 OID 92712)
+-- TOC entry 3191 (class 2606 OID 92712)
 -- Name: tags tags_color_key21; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2926,7 +3314,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3153 (class 2606 OID 92668)
+-- TOC entry 3193 (class 2606 OID 92668)
 -- Name: tags tags_color_key22; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2935,7 +3323,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3155 (class 2606 OID 92714)
+-- TOC entry 3195 (class 2606 OID 92714)
 -- Name: tags tags_color_key23; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2944,7 +3332,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3157 (class 2606 OID 92666)
+-- TOC entry 3197 (class 2606 OID 92666)
 -- Name: tags tags_color_key24; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2953,7 +3341,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3159 (class 2606 OID 92716)
+-- TOC entry 3199 (class 2606 OID 92716)
 -- Name: tags tags_color_key25; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2962,7 +3350,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3161 (class 2606 OID 92664)
+-- TOC entry 3201 (class 2606 OID 92664)
 -- Name: tags tags_color_key26; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2971,7 +3359,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3163 (class 2606 OID 92718)
+-- TOC entry 3203 (class 2606 OID 92718)
 -- Name: tags tags_color_key27; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2980,7 +3368,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3165 (class 2606 OID 92662)
+-- TOC entry 3205 (class 2606 OID 92662)
 -- Name: tags tags_color_key28; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2989,7 +3377,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3167 (class 2606 OID 92720)
+-- TOC entry 3207 (class 2606 OID 92720)
 -- Name: tags tags_color_key29; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2998,7 +3386,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3169 (class 2606 OID 92694)
+-- TOC entry 3209 (class 2606 OID 92694)
 -- Name: tags tags_color_key3; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3007,7 +3395,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3171 (class 2606 OID 92660)
+-- TOC entry 3211 (class 2606 OID 92660)
 -- Name: tags tags_color_key30; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3016,7 +3404,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3173 (class 2606 OID 92722)
+-- TOC entry 3213 (class 2606 OID 92722)
 -- Name: tags tags_color_key31; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3025,7 +3413,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3175 (class 2606 OID 92658)
+-- TOC entry 3215 (class 2606 OID 92658)
 -- Name: tags tags_color_key32; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3034,7 +3422,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3177 (class 2606 OID 92724)
+-- TOC entry 3217 (class 2606 OID 92724)
 -- Name: tags tags_color_key33; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3043,7 +3431,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3179 (class 2606 OID 92656)
+-- TOC entry 3219 (class 2606 OID 92656)
 -- Name: tags tags_color_key34; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3052,7 +3440,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3181 (class 2606 OID 92726)
+-- TOC entry 3221 (class 2606 OID 92726)
 -- Name: tags tags_color_key35; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3061,7 +3449,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3183 (class 2606 OID 92654)
+-- TOC entry 3223 (class 2606 OID 92654)
 -- Name: tags tags_color_key36; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3070,7 +3458,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3185 (class 2606 OID 92728)
+-- TOC entry 3225 (class 2606 OID 92728)
 -- Name: tags tags_color_key37; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3079,7 +3467,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3187 (class 2606 OID 92652)
+-- TOC entry 3227 (class 2606 OID 92652)
 -- Name: tags tags_color_key38; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3088,7 +3476,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3189 (class 2606 OID 92730)
+-- TOC entry 3229 (class 2606 OID 92730)
 -- Name: tags tags_color_key39; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3097,7 +3485,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3191 (class 2606 OID 92686)
+-- TOC entry 3231 (class 2606 OID 92686)
 -- Name: tags tags_color_key4; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3106,7 +3494,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3193 (class 2606 OID 92650)
+-- TOC entry 3233 (class 2606 OID 92650)
 -- Name: tags tags_color_key40; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3115,7 +3503,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3195 (class 2606 OID 92732)
+-- TOC entry 3235 (class 2606 OID 92732)
 -- Name: tags tags_color_key41; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3124,7 +3512,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3197 (class 2606 OID 92648)
+-- TOC entry 3237 (class 2606 OID 92648)
 -- Name: tags tags_color_key42; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3133,7 +3521,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3199 (class 2606 OID 92734)
+-- TOC entry 3239 (class 2606 OID 92734)
 -- Name: tags tags_color_key43; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3142,7 +3530,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3201 (class 2606 OID 92646)
+-- TOC entry 3241 (class 2606 OID 92646)
 -- Name: tags tags_color_key44; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3151,7 +3539,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3203 (class 2606 OID 92736)
+-- TOC entry 3243 (class 2606 OID 92736)
 -- Name: tags tags_color_key45; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3160,7 +3548,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3205 (class 2606 OID 92644)
+-- TOC entry 3245 (class 2606 OID 92644)
 -- Name: tags tags_color_key46; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3169,7 +3557,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3207 (class 2606 OID 92738)
+-- TOC entry 3247 (class 2606 OID 92738)
 -- Name: tags tags_color_key47; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3178,7 +3566,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3209 (class 2606 OID 92642)
+-- TOC entry 3249 (class 2606 OID 92642)
 -- Name: tags tags_color_key48; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3187,7 +3575,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3211 (class 2606 OID 92740)
+-- TOC entry 3251 (class 2606 OID 92740)
 -- Name: tags tags_color_key49; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3196,7 +3584,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3213 (class 2606 OID 92696)
+-- TOC entry 3253 (class 2606 OID 92696)
 -- Name: tags tags_color_key5; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3205,7 +3593,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3215 (class 2606 OID 92640)
+-- TOC entry 3255 (class 2606 OID 92640)
 -- Name: tags tags_color_key50; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3214,7 +3602,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3217 (class 2606 OID 92742)
+-- TOC entry 3257 (class 2606 OID 92742)
 -- Name: tags tags_color_key51; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3223,7 +3611,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3219 (class 2606 OID 92638)
+-- TOC entry 3259 (class 2606 OID 92638)
 -- Name: tags tags_color_key52; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3232,7 +3620,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3221 (class 2606 OID 92744)
+-- TOC entry 3261 (class 2606 OID 92744)
 -- Name: tags tags_color_key53; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3241,7 +3629,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3223 (class 2606 OID 92636)
+-- TOC entry 3263 (class 2606 OID 92636)
 -- Name: tags tags_color_key54; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3250,7 +3638,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3225 (class 2606 OID 92746)
+-- TOC entry 3265 (class 2606 OID 92746)
 -- Name: tags tags_color_key55; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3259,7 +3647,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3227 (class 2606 OID 92634)
+-- TOC entry 3267 (class 2606 OID 92634)
 -- Name: tags tags_color_key56; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3268,7 +3656,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3229 (class 2606 OID 92748)
+-- TOC entry 3269 (class 2606 OID 92748)
 -- Name: tags tags_color_key57; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3277,7 +3665,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3231 (class 2606 OID 92632)
+-- TOC entry 3271 (class 2606 OID 92632)
 -- Name: tags tags_color_key58; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3286,7 +3674,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3233 (class 2606 OID 92750)
+-- TOC entry 3273 (class 2606 OID 92750)
 -- Name: tags tags_color_key59; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3295,7 +3683,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3235 (class 2606 OID 92684)
+-- TOC entry 3275 (class 2606 OID 92684)
 -- Name: tags tags_color_key6; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3304,7 +3692,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3237 (class 2606 OID 92630)
+-- TOC entry 3277 (class 2606 OID 92630)
 -- Name: tags tags_color_key60; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3313,7 +3701,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3239 (class 2606 OID 92752)
+-- TOC entry 3279 (class 2606 OID 92752)
 -- Name: tags tags_color_key61; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3322,7 +3710,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3241 (class 2606 OID 92628)
+-- TOC entry 3281 (class 2606 OID 92628)
 -- Name: tags tags_color_key62; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3331,7 +3719,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3243 (class 2606 OID 92754)
+-- TOC entry 3283 (class 2606 OID 92754)
 -- Name: tags tags_color_key63; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3340,7 +3728,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3245 (class 2606 OID 92626)
+-- TOC entry 3285 (class 2606 OID 92626)
 -- Name: tags tags_color_key64; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3349,7 +3737,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3247 (class 2606 OID 92756)
+-- TOC entry 3287 (class 2606 OID 92756)
 -- Name: tags tags_color_key65; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3358,7 +3746,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3249 (class 2606 OID 92624)
+-- TOC entry 3289 (class 2606 OID 92624)
 -- Name: tags tags_color_key66; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3367,7 +3755,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3251 (class 2606 OID 92760)
+-- TOC entry 3291 (class 2606 OID 92760)
 -- Name: tags tags_color_key67; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3376,7 +3764,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3253 (class 2606 OID 92766)
+-- TOC entry 3293 (class 2606 OID 92766)
 -- Name: tags tags_color_key68; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3385,7 +3773,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3255 (class 2606 OID 92762)
+-- TOC entry 3295 (class 2606 OID 92762)
 -- Name: tags tags_color_key69; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3394,7 +3782,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3257 (class 2606 OID 92698)
+-- TOC entry 3297 (class 2606 OID 92698)
 -- Name: tags tags_color_key7; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3403,7 +3791,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3259 (class 2606 OID 92764)
+-- TOC entry 3299 (class 2606 OID 92764)
 -- Name: tags tags_color_key70; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3412,7 +3800,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3261 (class 2606 OID 92758)
+-- TOC entry 3301 (class 2606 OID 92758)
 -- Name: tags tags_color_key71; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3421,7 +3809,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3263 (class 2606 OID 92622)
+-- TOC entry 3303 (class 2606 OID 92622)
 -- Name: tags tags_color_key72; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3430,7 +3818,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3265 (class 2606 OID 92768)
+-- TOC entry 3305 (class 2606 OID 92768)
 -- Name: tags tags_color_key73; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3439,7 +3827,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3267 (class 2606 OID 92620)
+-- TOC entry 3307 (class 2606 OID 92620)
 -- Name: tags tags_color_key74; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3448,7 +3836,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3269 (class 2606 OID 92770)
+-- TOC entry 3309 (class 2606 OID 92770)
 -- Name: tags tags_color_key75; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3457,7 +3845,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3271 (class 2606 OID 92618)
+-- TOC entry 3311 (class 2606 OID 92618)
 -- Name: tags tags_color_key76; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3466,7 +3854,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3273 (class 2606 OID 92772)
+-- TOC entry 3313 (class 2606 OID 92772)
 -- Name: tags tags_color_key77; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3475,7 +3863,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3275 (class 2606 OID 92616)
+-- TOC entry 3315 (class 2606 OID 92616)
 -- Name: tags tags_color_key78; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3484,7 +3872,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3277 (class 2606 OID 92774)
+-- TOC entry 3317 (class 2606 OID 92774)
 -- Name: tags tags_color_key79; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3493,7 +3881,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3279 (class 2606 OID 92682)
+-- TOC entry 3319 (class 2606 OID 92682)
 -- Name: tags tags_color_key8; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3502,7 +3890,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3281 (class 2606 OID 92614)
+-- TOC entry 3321 (class 2606 OID 92614)
 -- Name: tags tags_color_key80; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3511,7 +3899,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3283 (class 2606 OID 92776)
+-- TOC entry 3323 (class 2606 OID 92776)
 -- Name: tags tags_color_key81; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3520,7 +3908,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3285 (class 2606 OID 92612)
+-- TOC entry 3325 (class 2606 OID 92612)
 -- Name: tags tags_color_key82; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3529,7 +3917,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3287 (class 2606 OID 92778)
+-- TOC entry 3327 (class 2606 OID 92778)
 -- Name: tags tags_color_key83; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3538,7 +3926,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3289 (class 2606 OID 92610)
+-- TOC entry 3329 (class 2606 OID 92610)
 -- Name: tags tags_color_key84; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3547,7 +3935,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3291 (class 2606 OID 92780)
+-- TOC entry 3331 (class 2606 OID 92780)
 -- Name: tags tags_color_key85; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3556,7 +3944,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3293 (class 2606 OID 92608)
+-- TOC entry 3333 (class 2606 OID 92608)
 -- Name: tags tags_color_key86; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3565,7 +3953,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3295 (class 2606 OID 92782)
+-- TOC entry 3335 (class 2606 OID 92782)
 -- Name: tags tags_color_key87; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3574,7 +3962,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3297 (class 2606 OID 92606)
+-- TOC entry 3337 (class 2606 OID 92606)
 -- Name: tags tags_color_key88; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3583,7 +3971,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3299 (class 2606 OID 92784)
+-- TOC entry 3339 (class 2606 OID 92784)
 -- Name: tags tags_color_key89; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3592,7 +3980,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3301 (class 2606 OID 92700)
+-- TOC entry 3341 (class 2606 OID 92700)
 -- Name: tags tags_color_key9; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3601,7 +3989,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3303 (class 2606 OID 92604)
+-- TOC entry 3343 (class 2606 OID 92604)
 -- Name: tags tags_color_key90; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3610,7 +3998,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3305 (class 2606 OID 92786)
+-- TOC entry 3345 (class 2606 OID 92786)
 -- Name: tags tags_color_key91; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3619,7 +4007,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3307 (class 2606 OID 92602)
+-- TOC entry 3347 (class 2606 OID 92602)
 -- Name: tags tags_color_key92; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3628,7 +4016,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3309 (class 2606 OID 92788)
+-- TOC entry 3349 (class 2606 OID 92788)
 -- Name: tags tags_color_key93; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3637,7 +4025,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3311 (class 2606 OID 92600)
+-- TOC entry 3351 (class 2606 OID 92600)
 -- Name: tags tags_color_key94; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3646,7 +4034,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3313 (class 2606 OID 92790)
+-- TOC entry 3353 (class 2606 OID 92790)
 -- Name: tags tags_color_key95; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3655,7 +4043,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3315 (class 2606 OID 92598)
+-- TOC entry 3355 (class 2606 OID 92598)
 -- Name: tags tags_color_key96; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3664,7 +4052,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3317 (class 2606 OID 92792)
+-- TOC entry 3357 (class 2606 OID 92792)
 -- Name: tags tags_color_key97; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3673,7 +4061,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3319 (class 2606 OID 92596)
+-- TOC entry 3359 (class 2606 OID 92596)
 -- Name: tags tags_color_key98; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3682,7 +4070,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3321 (class 2606 OID 92794)
+-- TOC entry 3361 (class 2606 OID 92794)
 -- Name: tags tags_color_key99; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3691,7 +4079,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3323 (class 2606 OID 17172)
+-- TOC entry 3363 (class 2606 OID 17172)
 -- Name: tags tags_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3700,7 +4088,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3325 (class 2606 OID 92440)
+-- TOC entry 3365 (class 2606 OID 92440)
 -- Name: tags tags_tag_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3709,7 +4097,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3327 (class 2606 OID 92442)
+-- TOC entry 3367 (class 2606 OID 92442)
 -- Name: tags tags_tag_key1; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3718,7 +4106,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3329 (class 2606 OID 92430)
+-- TOC entry 3369 (class 2606 OID 92430)
 -- Name: tags tags_tag_key10; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3727,7 +4115,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3331 (class 2606 OID 92340)
+-- TOC entry 3371 (class 2606 OID 92340)
 -- Name: tags tags_tag_key100; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3736,7 +4124,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3333 (class 2606 OID 92542)
+-- TOC entry 3373 (class 2606 OID 92542)
 -- Name: tags tags_tag_key101; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3745,7 +4133,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3335 (class 2606 OID 92338)
+-- TOC entry 3375 (class 2606 OID 92338)
 -- Name: tags tags_tag_key102; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3754,7 +4142,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3337 (class 2606 OID 92544)
+-- TOC entry 3377 (class 2606 OID 92544)
 -- Name: tags tags_tag_key103; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3763,7 +4151,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3339 (class 2606 OID 92336)
+-- TOC entry 3379 (class 2606 OID 92336)
 -- Name: tags tags_tag_key104; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3772,7 +4160,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3341 (class 2606 OID 92546)
+-- TOC entry 3381 (class 2606 OID 92546)
 -- Name: tags tags_tag_key105; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3781,7 +4169,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3343 (class 2606 OID 92334)
+-- TOC entry 3383 (class 2606 OID 92334)
 -- Name: tags tags_tag_key106; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3790,7 +4178,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3345 (class 2606 OID 92548)
+-- TOC entry 3385 (class 2606 OID 92548)
 -- Name: tags tags_tag_key107; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3799,7 +4187,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3347 (class 2606 OID 92332)
+-- TOC entry 3387 (class 2606 OID 92332)
 -- Name: tags tags_tag_key108; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3808,7 +4196,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3349 (class 2606 OID 92550)
+-- TOC entry 3389 (class 2606 OID 92550)
 -- Name: tags tags_tag_key109; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3817,7 +4205,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3351 (class 2606 OID 92452)
+-- TOC entry 3391 (class 2606 OID 92452)
 -- Name: tags tags_tag_key11; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3826,7 +4214,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3353 (class 2606 OID 92330)
+-- TOC entry 3393 (class 2606 OID 92330)
 -- Name: tags tags_tag_key110; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3835,7 +4223,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3355 (class 2606 OID 92552)
+-- TOC entry 3395 (class 2606 OID 92552)
 -- Name: tags tags_tag_key111; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3844,7 +4232,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3357 (class 2606 OID 92328)
+-- TOC entry 3397 (class 2606 OID 92328)
 -- Name: tags tags_tag_key112; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3853,7 +4241,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3359 (class 2606 OID 92554)
+-- TOC entry 3399 (class 2606 OID 92554)
 -- Name: tags tags_tag_key113; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3862,7 +4250,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3361 (class 2606 OID 92326)
+-- TOC entry 3401 (class 2606 OID 92326)
 -- Name: tags tags_tag_key114; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3871,7 +4259,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3363 (class 2606 OID 92556)
+-- TOC entry 3403 (class 2606 OID 92556)
 -- Name: tags tags_tag_key115; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3880,7 +4268,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3365 (class 2606 OID 92324)
+-- TOC entry 3405 (class 2606 OID 92324)
 -- Name: tags tags_tag_key116; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3889,7 +4277,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3367 (class 2606 OID 92558)
+-- TOC entry 3407 (class 2606 OID 92558)
 -- Name: tags tags_tag_key117; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3898,7 +4286,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3369 (class 2606 OID 92322)
+-- TOC entry 3409 (class 2606 OID 92322)
 -- Name: tags tags_tag_key118; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3907,7 +4295,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3371 (class 2606 OID 92560)
+-- TOC entry 3411 (class 2606 OID 92560)
 -- Name: tags tags_tag_key119; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3916,7 +4304,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3373 (class 2606 OID 92428)
+-- TOC entry 3413 (class 2606 OID 92428)
 -- Name: tags tags_tag_key12; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3925,7 +4313,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3375 (class 2606 OID 92320)
+-- TOC entry 3415 (class 2606 OID 92320)
 -- Name: tags tags_tag_key120; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3934,7 +4322,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3377 (class 2606 OID 92562)
+-- TOC entry 3417 (class 2606 OID 92562)
 -- Name: tags tags_tag_key121; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3943,7 +4331,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3379 (class 2606 OID 92318)
+-- TOC entry 3419 (class 2606 OID 92318)
 -- Name: tags tags_tag_key122; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3952,7 +4340,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3381 (class 2606 OID 92564)
+-- TOC entry 3421 (class 2606 OID 92564)
 -- Name: tags tags_tag_key123; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3961,7 +4349,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3383 (class 2606 OID 92316)
+-- TOC entry 3423 (class 2606 OID 92316)
 -- Name: tags tags_tag_key124; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3970,7 +4358,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3385 (class 2606 OID 92566)
+-- TOC entry 3425 (class 2606 OID 92566)
 -- Name: tags tags_tag_key125; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3979,7 +4367,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3387 (class 2606 OID 92314)
+-- TOC entry 3427 (class 2606 OID 92314)
 -- Name: tags tags_tag_key126; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3988,7 +4376,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3389 (class 2606 OID 92454)
+-- TOC entry 3429 (class 2606 OID 92454)
 -- Name: tags tags_tag_key13; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3997,7 +4385,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3391 (class 2606 OID 92426)
+-- TOC entry 3431 (class 2606 OID 92426)
 -- Name: tags tags_tag_key14; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4006,7 +4394,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3393 (class 2606 OID 92456)
+-- TOC entry 3433 (class 2606 OID 92456)
 -- Name: tags tags_tag_key15; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4015,7 +4403,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3395 (class 2606 OID 92424)
+-- TOC entry 3435 (class 2606 OID 92424)
 -- Name: tags tags_tag_key16; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4024,7 +4412,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3397 (class 2606 OID 92458)
+-- TOC entry 3437 (class 2606 OID 92458)
 -- Name: tags tags_tag_key17; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4033,7 +4421,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3399 (class 2606 OID 92422)
+-- TOC entry 3439 (class 2606 OID 92422)
 -- Name: tags tags_tag_key18; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4042,7 +4430,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3401 (class 2606 OID 92460)
+-- TOC entry 3441 (class 2606 OID 92460)
 -- Name: tags tags_tag_key19; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4051,7 +4439,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3403 (class 2606 OID 92438)
+-- TOC entry 3443 (class 2606 OID 92438)
 -- Name: tags tags_tag_key2; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4060,7 +4448,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3405 (class 2606 OID 92420)
+-- TOC entry 3445 (class 2606 OID 92420)
 -- Name: tags tags_tag_key20; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4069,7 +4457,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3407 (class 2606 OID 92462)
+-- TOC entry 3447 (class 2606 OID 92462)
 -- Name: tags tags_tag_key21; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4078,7 +4466,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3409 (class 2606 OID 92418)
+-- TOC entry 3449 (class 2606 OID 92418)
 -- Name: tags tags_tag_key22; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4087,7 +4475,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3411 (class 2606 OID 92464)
+-- TOC entry 3451 (class 2606 OID 92464)
 -- Name: tags tags_tag_key23; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4096,7 +4484,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3413 (class 2606 OID 92416)
+-- TOC entry 3453 (class 2606 OID 92416)
 -- Name: tags tags_tag_key24; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4105,7 +4493,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3415 (class 2606 OID 92466)
+-- TOC entry 3455 (class 2606 OID 92466)
 -- Name: tags tags_tag_key25; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4114,7 +4502,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3417 (class 2606 OID 92414)
+-- TOC entry 3457 (class 2606 OID 92414)
 -- Name: tags tags_tag_key26; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4123,7 +4511,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3419 (class 2606 OID 92468)
+-- TOC entry 3459 (class 2606 OID 92468)
 -- Name: tags tags_tag_key27; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4132,7 +4520,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3421 (class 2606 OID 92412)
+-- TOC entry 3461 (class 2606 OID 92412)
 -- Name: tags tags_tag_key28; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4141,7 +4529,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3423 (class 2606 OID 92470)
+-- TOC entry 3463 (class 2606 OID 92470)
 -- Name: tags tags_tag_key29; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4150,7 +4538,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3425 (class 2606 OID 92444)
+-- TOC entry 3465 (class 2606 OID 92444)
 -- Name: tags tags_tag_key3; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4159,7 +4547,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3427 (class 2606 OID 92410)
+-- TOC entry 3467 (class 2606 OID 92410)
 -- Name: tags tags_tag_key30; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4168,7 +4556,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3429 (class 2606 OID 92472)
+-- TOC entry 3469 (class 2606 OID 92472)
 -- Name: tags tags_tag_key31; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4177,7 +4565,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3431 (class 2606 OID 92408)
+-- TOC entry 3471 (class 2606 OID 92408)
 -- Name: tags tags_tag_key32; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4186,7 +4574,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3433 (class 2606 OID 92474)
+-- TOC entry 3473 (class 2606 OID 92474)
 -- Name: tags tags_tag_key33; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4195,7 +4583,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3435 (class 2606 OID 92406)
+-- TOC entry 3475 (class 2606 OID 92406)
 -- Name: tags tags_tag_key34; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4204,7 +4592,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3437 (class 2606 OID 92476)
+-- TOC entry 3477 (class 2606 OID 92476)
 -- Name: tags tags_tag_key35; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4213,7 +4601,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3439 (class 2606 OID 92404)
+-- TOC entry 3479 (class 2606 OID 92404)
 -- Name: tags tags_tag_key36; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4222,7 +4610,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3441 (class 2606 OID 92478)
+-- TOC entry 3481 (class 2606 OID 92478)
 -- Name: tags tags_tag_key37; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4231,7 +4619,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3443 (class 2606 OID 92402)
+-- TOC entry 3483 (class 2606 OID 92402)
 -- Name: tags tags_tag_key38; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4240,7 +4628,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3445 (class 2606 OID 92480)
+-- TOC entry 3485 (class 2606 OID 92480)
 -- Name: tags tags_tag_key39; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4249,7 +4637,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3447 (class 2606 OID 92436)
+-- TOC entry 3487 (class 2606 OID 92436)
 -- Name: tags tags_tag_key4; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4258,7 +4646,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3449 (class 2606 OID 92400)
+-- TOC entry 3489 (class 2606 OID 92400)
 -- Name: tags tags_tag_key40; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4267,7 +4655,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3451 (class 2606 OID 92482)
+-- TOC entry 3491 (class 2606 OID 92482)
 -- Name: tags tags_tag_key41; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4276,7 +4664,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3453 (class 2606 OID 92398)
+-- TOC entry 3493 (class 2606 OID 92398)
 -- Name: tags tags_tag_key42; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4285,7 +4673,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3455 (class 2606 OID 92484)
+-- TOC entry 3495 (class 2606 OID 92484)
 -- Name: tags tags_tag_key43; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4294,7 +4682,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3457 (class 2606 OID 92396)
+-- TOC entry 3497 (class 2606 OID 92396)
 -- Name: tags tags_tag_key44; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4303,7 +4691,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3459 (class 2606 OID 92486)
+-- TOC entry 3499 (class 2606 OID 92486)
 -- Name: tags tags_tag_key45; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4312,7 +4700,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3461 (class 2606 OID 92394)
+-- TOC entry 3501 (class 2606 OID 92394)
 -- Name: tags tags_tag_key46; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4321,7 +4709,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3463 (class 2606 OID 92488)
+-- TOC entry 3503 (class 2606 OID 92488)
 -- Name: tags tags_tag_key47; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4330,7 +4718,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3465 (class 2606 OID 92392)
+-- TOC entry 3505 (class 2606 OID 92392)
 -- Name: tags tags_tag_key48; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4339,7 +4727,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3467 (class 2606 OID 92490)
+-- TOC entry 3507 (class 2606 OID 92490)
 -- Name: tags tags_tag_key49; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4348,7 +4736,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3469 (class 2606 OID 92446)
+-- TOC entry 3509 (class 2606 OID 92446)
 -- Name: tags tags_tag_key5; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4357,7 +4745,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3471 (class 2606 OID 92390)
+-- TOC entry 3511 (class 2606 OID 92390)
 -- Name: tags tags_tag_key50; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4366,7 +4754,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3473 (class 2606 OID 92492)
+-- TOC entry 3513 (class 2606 OID 92492)
 -- Name: tags tags_tag_key51; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4375,7 +4763,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3475 (class 2606 OID 92388)
+-- TOC entry 3515 (class 2606 OID 92388)
 -- Name: tags tags_tag_key52; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4384,7 +4772,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3477 (class 2606 OID 92494)
+-- TOC entry 3517 (class 2606 OID 92494)
 -- Name: tags tags_tag_key53; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4393,7 +4781,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3479 (class 2606 OID 92386)
+-- TOC entry 3519 (class 2606 OID 92386)
 -- Name: tags tags_tag_key54; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4402,7 +4790,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3481 (class 2606 OID 92496)
+-- TOC entry 3521 (class 2606 OID 92496)
 -- Name: tags tags_tag_key55; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4411,7 +4799,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3483 (class 2606 OID 92384)
+-- TOC entry 3523 (class 2606 OID 92384)
 -- Name: tags tags_tag_key56; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4420,7 +4808,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3485 (class 2606 OID 92498)
+-- TOC entry 3525 (class 2606 OID 92498)
 -- Name: tags tags_tag_key57; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4429,7 +4817,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3487 (class 2606 OID 92382)
+-- TOC entry 3527 (class 2606 OID 92382)
 -- Name: tags tags_tag_key58; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4438,7 +4826,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3489 (class 2606 OID 92500)
+-- TOC entry 3529 (class 2606 OID 92500)
 -- Name: tags tags_tag_key59; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4447,7 +4835,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3491 (class 2606 OID 92434)
+-- TOC entry 3531 (class 2606 OID 92434)
 -- Name: tags tags_tag_key6; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4456,7 +4844,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3493 (class 2606 OID 92380)
+-- TOC entry 3533 (class 2606 OID 92380)
 -- Name: tags tags_tag_key60; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4465,7 +4853,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3495 (class 2606 OID 92502)
+-- TOC entry 3535 (class 2606 OID 92502)
 -- Name: tags tags_tag_key61; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4474,7 +4862,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3497 (class 2606 OID 92378)
+-- TOC entry 3537 (class 2606 OID 92378)
 -- Name: tags tags_tag_key62; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4483,7 +4871,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3499 (class 2606 OID 92504)
+-- TOC entry 3539 (class 2606 OID 92504)
 -- Name: tags tags_tag_key63; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4492,7 +4880,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3501 (class 2606 OID 92376)
+-- TOC entry 3541 (class 2606 OID 92376)
 -- Name: tags tags_tag_key64; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4501,7 +4889,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3503 (class 2606 OID 92506)
+-- TOC entry 3543 (class 2606 OID 92506)
 -- Name: tags tags_tag_key65; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4510,7 +4898,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3505 (class 2606 OID 92374)
+-- TOC entry 3545 (class 2606 OID 92374)
 -- Name: tags tags_tag_key66; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4519,7 +4907,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3507 (class 2606 OID 92508)
+-- TOC entry 3547 (class 2606 OID 92508)
 -- Name: tags tags_tag_key67; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4528,7 +4916,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3509 (class 2606 OID 92372)
+-- TOC entry 3549 (class 2606 OID 92372)
 -- Name: tags tags_tag_key68; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4537,7 +4925,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3511 (class 2606 OID 92510)
+-- TOC entry 3551 (class 2606 OID 92510)
 -- Name: tags tags_tag_key69; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4546,7 +4934,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3513 (class 2606 OID 92448)
+-- TOC entry 3553 (class 2606 OID 92448)
 -- Name: tags tags_tag_key7; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4555,7 +4943,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3515 (class 2606 OID 92370)
+-- TOC entry 3555 (class 2606 OID 92370)
 -- Name: tags tags_tag_key70; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4564,7 +4952,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3517 (class 2606 OID 92512)
+-- TOC entry 3557 (class 2606 OID 92512)
 -- Name: tags tags_tag_key71; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4573,7 +4961,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3519 (class 2606 OID 92368)
+-- TOC entry 3559 (class 2606 OID 92368)
 -- Name: tags tags_tag_key72; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4582,7 +4970,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3521 (class 2606 OID 92514)
+-- TOC entry 3561 (class 2606 OID 92514)
 -- Name: tags tags_tag_key73; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4591,7 +4979,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3523 (class 2606 OID 92366)
+-- TOC entry 3563 (class 2606 OID 92366)
 -- Name: tags tags_tag_key74; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4600,7 +4988,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3525 (class 2606 OID 92516)
+-- TOC entry 3565 (class 2606 OID 92516)
 -- Name: tags tags_tag_key75; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4609,7 +4997,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3527 (class 2606 OID 92364)
+-- TOC entry 3567 (class 2606 OID 92364)
 -- Name: tags tags_tag_key76; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4618,7 +5006,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3529 (class 2606 OID 92518)
+-- TOC entry 3569 (class 2606 OID 92518)
 -- Name: tags tags_tag_key77; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4627,7 +5015,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3531 (class 2606 OID 92362)
+-- TOC entry 3571 (class 2606 OID 92362)
 -- Name: tags tags_tag_key78; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4636,7 +5024,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3533 (class 2606 OID 92520)
+-- TOC entry 3573 (class 2606 OID 92520)
 -- Name: tags tags_tag_key79; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4645,7 +5033,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3535 (class 2606 OID 92432)
+-- TOC entry 3575 (class 2606 OID 92432)
 -- Name: tags tags_tag_key8; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4654,7 +5042,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3537 (class 2606 OID 92360)
+-- TOC entry 3577 (class 2606 OID 92360)
 -- Name: tags tags_tag_key80; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4663,7 +5051,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3539 (class 2606 OID 92522)
+-- TOC entry 3579 (class 2606 OID 92522)
 -- Name: tags tags_tag_key81; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4672,7 +5060,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3541 (class 2606 OID 92358)
+-- TOC entry 3581 (class 2606 OID 92358)
 -- Name: tags tags_tag_key82; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4681,7 +5069,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3543 (class 2606 OID 92524)
+-- TOC entry 3583 (class 2606 OID 92524)
 -- Name: tags tags_tag_key83; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4690,7 +5078,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3545 (class 2606 OID 92356)
+-- TOC entry 3585 (class 2606 OID 92356)
 -- Name: tags tags_tag_key84; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4699,7 +5087,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3547 (class 2606 OID 92526)
+-- TOC entry 3587 (class 2606 OID 92526)
 -- Name: tags tags_tag_key85; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4708,7 +5096,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3549 (class 2606 OID 92354)
+-- TOC entry 3589 (class 2606 OID 92354)
 -- Name: tags tags_tag_key86; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4717,7 +5105,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3551 (class 2606 OID 92528)
+-- TOC entry 3591 (class 2606 OID 92528)
 -- Name: tags tags_tag_key87; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4726,7 +5114,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3553 (class 2606 OID 92352)
+-- TOC entry 3593 (class 2606 OID 92352)
 -- Name: tags tags_tag_key88; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4735,7 +5123,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3555 (class 2606 OID 92530)
+-- TOC entry 3595 (class 2606 OID 92530)
 -- Name: tags tags_tag_key89; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4744,7 +5132,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3557 (class 2606 OID 92450)
+-- TOC entry 3597 (class 2606 OID 92450)
 -- Name: tags tags_tag_key9; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4753,7 +5141,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3559 (class 2606 OID 92350)
+-- TOC entry 3599 (class 2606 OID 92350)
 -- Name: tags tags_tag_key90; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4762,7 +5150,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3561 (class 2606 OID 92532)
+-- TOC entry 3601 (class 2606 OID 92532)
 -- Name: tags tags_tag_key91; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4771,7 +5159,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3563 (class 2606 OID 92348)
+-- TOC entry 3603 (class 2606 OID 92348)
 -- Name: tags tags_tag_key92; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4780,7 +5168,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3565 (class 2606 OID 92534)
+-- TOC entry 3605 (class 2606 OID 92534)
 -- Name: tags tags_tag_key93; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4789,7 +5177,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3567 (class 2606 OID 92346)
+-- TOC entry 3607 (class 2606 OID 92346)
 -- Name: tags tags_tag_key94; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4798,7 +5186,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3569 (class 2606 OID 92536)
+-- TOC entry 3609 (class 2606 OID 92536)
 -- Name: tags tags_tag_key95; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4807,7 +5195,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3571 (class 2606 OID 92344)
+-- TOC entry 3611 (class 2606 OID 92344)
 -- Name: tags tags_tag_key96; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4816,7 +5204,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3573 (class 2606 OID 92538)
+-- TOC entry 3613 (class 2606 OID 92538)
 -- Name: tags tags_tag_key97; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4825,7 +5213,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3575 (class 2606 OID 92342)
+-- TOC entry 3615 (class 2606 OID 92342)
 -- Name: tags tags_tag_key98; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4834,7 +5222,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3577 (class 2606 OID 92540)
+-- TOC entry 3617 (class 2606 OID 92540)
 -- Name: tags tags_tag_key99; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4843,7 +5231,7 @@ ALTER TABLE ONLY public.tags
 
 
 --
--- TOC entry 3601 (class 2606 OID 17927)
+-- TOC entry 3641 (class 2606 OID 17927)
 -- Name: timetables timetables_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4852,7 +5240,7 @@ ALTER TABLE ONLY public.timetables
 
 
 --
--- TOC entry 3604 (class 2606 OID 93107)
+-- TOC entry 3654 (class 2606 OID 95231)
 -- Name: auditoria auditoria_building_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4861,7 +5249,7 @@ ALTER TABLE ONLY public.auditoria
 
 
 --
--- TOC entry 3620 (class 2606 OID 92022)
+-- TOC entry 3670 (class 2606 OID 92022)
 -- Name: dep_specilaties dep_specilaties_dep_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4870,7 +5258,7 @@ ALTER TABLE ONLY public.dep_specilaties
 
 
 --
--- TOC entry 3619 (class 2606 OID 92027)
+-- TOC entry 3669 (class 2606 OID 92027)
 -- Name: dep_specilaties dep_specilaties_spec_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4879,7 +5267,7 @@ ALTER TABLE ONLY public.dep_specilaties
 
 
 --
--- TOC entry 3618 (class 2606 OID 92012)
+-- TOC entry 3668 (class 2606 OID 92012)
 -- Name: dep_stuffs dep_stuffs_dep_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4888,7 +5276,7 @@ ALTER TABLE ONLY public.dep_stuffs
 
 
 --
--- TOC entry 3617 (class 2606 OID 92017)
+-- TOC entry 3667 (class 2606 OID 92017)
 -- Name: dep_stuffs dep_stuffs_employee_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4897,7 +5285,7 @@ ALTER TABLE ONLY public.dep_stuffs
 
 
 --
--- TOC entry 3605 (class 2606 OID 92834)
+-- TOC entry 3655 (class 2606 OID 92834)
 -- Name: departments departments_adress_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4906,7 +5294,7 @@ ALTER TABLE ONLY public.departments
 
 
 --
--- TOC entry 3608 (class 2606 OID 92819)
+-- TOC entry 3658 (class 2606 OID 92819)
 -- Name: departments departments_headOfDep_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4915,7 +5303,7 @@ ALTER TABLE ONLY public.departments
 
 
 --
--- TOC entry 3607 (class 2606 OID 92824)
+-- TOC entry 3657 (class 2606 OID 92824)
 -- Name: departments departments_headOfUMR_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4924,7 +5312,7 @@ ALTER TABLE ONLY public.departments
 
 
 --
--- TOC entry 3606 (class 2606 OID 92829)
+-- TOC entry 3656 (class 2606 OID 92829)
 -- Name: departments departments_headOfUVR_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4933,7 +5321,7 @@ ALTER TABLE ONLY public.departments
 
 
 --
--- TOC entry 3614 (class 2606 OID 91992)
+-- TOC entry 3664 (class 2606 OID 91992)
 -- Name: events_tags events_tags_event_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4942,7 +5330,7 @@ ALTER TABLE ONLY public.events_tags
 
 
 --
--- TOC entry 3613 (class 2606 OID 91997)
+-- TOC entry 3663 (class 2606 OID 91997)
 -- Name: events_tags events_tags_tag_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4951,7 +5339,7 @@ ALTER TABLE ONLY public.events_tags
 
 
 --
--- TOC entry 3612 (class 2606 OID 91957)
+-- TOC entry 3662 (class 2606 OID 91957)
 -- Name: groups groups_department_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4960,7 +5348,7 @@ ALTER TABLE ONLY public.groups
 
 
 --
--- TOC entry 3611 (class 2606 OID 91962)
+-- TOC entry 3661 (class 2606 OID 91962)
 -- Name: groups groups_specialty_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4969,7 +5357,61 @@ ALTER TABLE ONLY public.groups
 
 
 --
--- TOC entry 3616 (class 2606 OID 92002)
+-- TOC entry 3678 (class 2606 OID 95603)
+-- Name: new_departments new_departments_id_head_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_departments
+    ADD CONSTRAINT new_departments_id_head_fkey FOREIGN KEY (id_head) REFERENCES public.new_teacher(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3680 (class 2606 OID 95624)
+-- Name: new_direction_of_training new_direction_of_training_id_department_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_direction_of_training
+    ADD CONSTRAINT new_direction_of_training_id_department_fkey FOREIGN KEY (id_department) REFERENCES public.new_departments(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3681 (class 2606 OID 95619)
+-- Name: new_direction_of_training new_direction_of_training_id_head_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_direction_of_training
+    ADD CONSTRAINT new_direction_of_training_id_head_fkey FOREIGN KEY (id_head) REFERENCES public.new_teacher(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3682 (class 2606 OID 95637)
+-- Name: new_professions new_professions_id_direction_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_professions
+    ADD CONSTRAINT new_professions_id_direction_fkey FOREIGN KEY (id_direction) REFERENCES public.new_direction_of_training(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3683 (class 2606 OID 95658)
+-- Name: new_subjects new_subjects_id_direction_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_subjects
+    ADD CONSTRAINT new_subjects_id_direction_fkey FOREIGN KEY (id_direction) REFERENCES public.new_direction_of_training(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3679 (class 2606 OID 95598)
+-- Name: new_teacher new_teacher_id_department_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.new_teacher
+    ADD CONSTRAINT new_teacher_id_department_fkey FOREIGN KEY (id_department) REFERENCES public.new_departments(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3666 (class 2606 OID 92002)
 -- Name: news_tags news_tags_news_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4978,7 +5420,7 @@ ALTER TABLE ONLY public.news_tags
 
 
 --
--- TOC entry 3615 (class 2606 OID 92007)
+-- TOC entry 3665 (class 2606 OID 92007)
 -- Name: news_tags news_tags_tag_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4987,7 +5429,7 @@ ALTER TABLE ONLY public.news_tags
 
 
 --
--- TOC entry 3609 (class 2606 OID 92844)
+-- TOC entry 3659 (class 2606 OID 92844)
 -- Name: scienceLabs scienceLabs_adress_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4996,7 +5438,7 @@ ALTER TABLE ONLY public."scienceLabs"
 
 
 --
--- TOC entry 3610 (class 2606 OID 92839)
+-- TOC entry 3660 (class 2606 OID 92839)
 -- Name: scienceLabs scienceLabs_head_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -5005,7 +5447,7 @@ ALTER TABLE ONLY public."scienceLabs"
 
 
 --
--- TOC entry 3621 (class 2606 OID 92037)
+-- TOC entry 3671 (class 2606 OID 92037)
 -- Name: spec_courses spec_courses_course_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -5014,7 +5456,7 @@ ALTER TABLE ONLY public.spec_courses
 
 
 --
--- TOC entry 3622 (class 2606 OID 92032)
+-- TOC entry 3672 (class 2606 OID 92032)
 -- Name: spec_courses spec_courses_spec_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -5023,7 +5465,7 @@ ALTER TABLE ONLY public.spec_courses
 
 
 --
--- TOC entry 3623 (class 2606 OID 91987)
+-- TOC entry 3673 (class 2606 OID 91987)
 -- Name: timetables timetables_auditorium_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -5032,7 +5474,7 @@ ALTER TABLE ONLY public.timetables
 
 
 --
--- TOC entry 3627 (class 2606 OID 91967)
+-- TOC entry 3677 (class 2606 OID 91967)
 -- Name: timetables timetables_class_number_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -5041,7 +5483,7 @@ ALTER TABLE ONLY public.timetables
 
 
 --
--- TOC entry 3625 (class 2606 OID 91977)
+-- TOC entry 3675 (class 2606 OID 91977)
 -- Name: timetables timetables_course_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -5050,7 +5492,7 @@ ALTER TABLE ONLY public.timetables
 
 
 --
--- TOC entry 3626 (class 2606 OID 91972)
+-- TOC entry 3676 (class 2606 OID 91972)
 -- Name: timetables timetables_group_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -5059,7 +5501,7 @@ ALTER TABLE ONLY public.timetables
 
 
 --
--- TOC entry 3624 (class 2606 OID 91982)
+-- TOC entry 3674 (class 2606 OID 91982)
 -- Name: timetables timetables_lecturer_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -5067,7 +5509,7 @@ ALTER TABLE ONLY public.timetables
     ADD CONSTRAINT timetables_lecturer_fkey FOREIGN KEY (lecturer) REFERENCES public.stuff(id);
 
 
--- Completed on 2023-06-01 13:18:36
+-- Completed on 2023-08-30 15:49:38
 
 --
 -- PostgreSQL database dump complete

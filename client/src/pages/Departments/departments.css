@@ -1,0 +1,15 @@
+.department-page-grid {
+  display: grid;
+  grid-template-columns: 20% 75%;
+  justify-content: space-between;
+}
+
+.left-pannel {
+  border: 1px solid grey;
+}
+
+.teacher-card-grid {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20%;
+  justify-content: space-between;
+}

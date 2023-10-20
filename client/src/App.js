@@ -14,7 +14,6 @@ import Prik_Inf from './pages/Prikladnaya_inf.js';
 import Napravlenie from './pages/Napravlenie';
 import AdminPage from "./Admin/AdminPage.js";
 import Authorization from "./pages/authorization/AuthorizationPaje.js";
-import { Context } from "./index.js";
 import { check } from "./http/userAPI.js";
 import DepartmensList from "./pages/Departments/DepartmenstList.js";
 import DepartmentPage from "./pages/Departments/DepartmentPage.js";
@@ -22,48 +21,25 @@ import DepartmentPage from "./pages/Departments/DepartmentPage.js";
 
 
 function App() {
-    const {user} = useContext(Context)
 
 
-  // Проверка авторизации
-  const checkAuth = async () => {
-    const data = await check();
-    if (data==='check_auth_error') {
-      return
-    }
-    if (data!='not_auth'){
-      user.setUser(data)
-      user.setIsAuth(true)
-    }
-    return user
-  }
 
     return (
-      <div>
-        {
-          user.isAuth ? 
-          <div>
-          <Header />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='admin/*' element={<AdminPage/>}/>
-            <Route path='events' element={<Events />} />
-            <Route path='events/event/:id' element={<EventPage />} />
-            <Route path='dir' element={<Director />} />
-            <Route path='department' element={<DepartmentPage/>}/>
-            <Route path='prik_inf' element={<Prik_Inf />}/>
-            <Route path='napr' element={<Napravlenie />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-          <Footer />
-          </div>
-          :
-          <Routes>
-            <Route path='/authorization' element={<Authorization/>}/>
-            <Route path='/*' element={<Navigate to='/authorization'/>}/>
-          </Routes>
-        }
-      </div>
+      <>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='admin/*' element={<AdminPage/>}/>
+          <Route path='events' element={<Events />} />
+          <Route path='events/event/:id' element={<EventPage />} />
+          <Route path='dir' element={<Director />} />
+          <Route path='department' element={<DepartmentPage/>}/>
+          <Route path='prik_inf' element={<Prik_Inf />}/>
+          <Route path='napr' element={<Napravlenie />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </>
 
     );
 }

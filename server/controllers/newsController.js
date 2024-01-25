@@ -52,8 +52,6 @@ class NewsController {
       res.status(500).send('Невозможно выполнить запрос!\n' + String(error))
     }
   }
-  
-
 }
 
 module.exports = new NewsController()

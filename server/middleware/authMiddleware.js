@@ -7,16 +7,14 @@ module.exports = function (req, res, next) {
   }
   try {
     const token = req.headers.authorization.split(' ')[1] // Bearer sdkfbnaslnvlas
-    if (!token) {
-      throw 'empty token'
-    }
-    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY)
-    req.user = decoded
+    if (!token) { throw 'empty token' }
+    req.user = jwt.verify(token, process.env.JWT_SECRET_KEY) // decoded
     console.log('=================================')
-    console.log('- check auth', dayjs().format('DD.MM.YYYY HH:mm:ss'), '|', req.user.name)
+    console.log(dayjs().format('DD.MM.YYYY HH:mm:ss'), '|', req.user.name)
     next()
-  } catch (e) {
-    console.log(e)
-    res.status(401).json({message: 'Пользователь не авторизован!'})
+  } catch (err) {
+    const message = 'Пользователь не авторизован!'
+    console.log('\x1b[31m%s\x1b[0m', `${message}\n${err}`)
+    res.status(401).json({message})
   }
 }

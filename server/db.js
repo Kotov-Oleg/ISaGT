@@ -1,4 +1,3 @@
-require('dotenv').config() // подключение .env
 const {Pool} = require('pg')
 const pool = new Pool({
   host: process.env.DB_HOST,

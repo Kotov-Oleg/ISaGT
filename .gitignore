@@ -1,0 +1,10 @@
+.idea
+.gitignore
+
+/client/node_modules
+package-lock.json
+/client/.env
+
+/server/node_modules
+/server/package-lock.json
+/server/.env

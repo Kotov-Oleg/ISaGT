@@ -1,11 +1,11 @@
 const Router = require('express')
 const router = new Router()
 
-const userRouter = require('./userRouter')
-const newsRouter = require('./newsRouter')
-
 // Подключение роутеров
-router.use('/user', userRouter)
-router.use('/news', newsRouter)
+router.use('/user', require('./userRouter'))
+router.use('/admin', require('./adminRouter'))
+
+router.use('/news_tag', require('./newsTagRouter'))
+router.use('/news', require('./newsRouter'))
 
 module.exports = router

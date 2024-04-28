@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-var dayjs = require('dayjs')
+const dayjs = require('dayjs')
 
 module.exports = function (req, res, next) {
   if (req.method === 'OPTIONS') {

@@ -1,0 +1,30 @@
+.save-btn {
+  appearance: none;
+  border: none;
+  height: 2rem;
+  width: 2rem;
+  background-size: 2rem;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("../../../data/icons/save.svg");
+  vertical-align: center;
+  horiz-align: center;
+}
+
+.save-btn:hover {
+  transform: scale(1.1);
+  background-image: url("../../../data/icons/save-hover.svg");
+}
+
+.save-btn:focus-visible {
+  outline: none;
+}
+
+.save-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.save-btn:disabled:hover {
+  background-image: url("../../../data/icons/save.svg");
+  transform: none;
+}

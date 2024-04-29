@@ -1,0 +1,114 @@
+:root {
+  --warning-color: #c21313;
+
+  /* Таблицы */
+  --head-back: #ededed;
+  --border-color: #ddd;
+  --grey-back-odd: #fff;
+  --grey-back-even: #f8f8f8;
+
+  /* Кнопки */
+  --accept-btn: #5592b0;
+  --cancel-btn: #8d273d;
+  --green-btn: #399c35;
+  --gray-btn: #F0F0F0FF;
+
+  /* Текст */
+  --dark-text: #333;
+  --gray-text: #555;
+  --white-text: #FFF;
+}
+
+html {
+  font-size: 10px;
+}
+
+
+/* Дефолтный шрифт */
+@font-face {
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: normal;
+  src:
+    local('Segoe UI'),
+    url('data/fonts/segoe-ui/woff2/SegoeUI.woff2') format('woff2'),
+    url('data/fonts/segoe-ui/woff/SegoeUI.woff') format('woff'),
+    url('data/fonts/segoe-ui/ttf/SegoeUI.ttf') format('ttf'),
+    url('data/fonts/segoe-ui/eot/SegoeUI.eot') format('eot');
+}
+/* Лайт шрифт */
+@font-face {
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: 300;
+  src:
+    local('Segoe UI Light'),
+    url('data/fonts/segoe-ui/woff2/SegoeUI-Light.woff2') format('woff2'),
+    url('data/fonts/segoe-ui/woff/SegoeUI-Light.woff') format('woff'),
+    url('data/fonts/segoe-ui/ttf/SegoeUI-Light.ttf') format('ttf'),
+    url('data/fonts/segoe-ui/eot/SegoeUI-Light.eot') format('eot');
+}
+/* Полужирный шрифт */
+@font-face {
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: 600;
+  src:
+    local('Segoe UI Semibold'),
+    url('data/fonts/segoe-ui/woff2/SegoeUI-SemiBold.woff2') format('woff2'),
+    url('data/fonts/segoe-ui/woff/SegoeUI-SemiBold.woff') format('woff'),
+    url('data/fonts/segoe-ui/ttf/SegoeUI-SemiBold.ttf') format('ttf'),
+    url('data/fonts/segoe-ui/eot/SegoeUI-SemiBold.eot') format('eot');
+}
+/*  Дефолтный курсив */
+@font-face {
+  font-family: 'Segoe UI';
+  font-style: italic;
+  font-weight: normal;
+  src:
+    local('Segoe UI Italic'),
+    url('data/fonts/segoe-ui/woff2/SegoeUI-Italic.woff2') format('woff2'),
+    url('data/fonts/segoe-ui/woff/SegoeUI-Italic.woff') format('woff'),
+    url('data/fonts/segoe-ui/ttf/SegoeUI-Italic.ttf') format('ttf'),
+    url('data/fonts/segoe-ui/eot/SegoeUI-Italic.eot') format('eot');
+}
+/* Жирный шрифт */
+@font-face {
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: bold;
+  src:
+    local('Segoe UI Полужирный'),
+    url('data/fonts/segoe-ui/woff2/SegoeUI-Bold.woff2') format('woff2'),
+    url('data/fonts/segoe-ui/woff/SegoeUI-Bold.woff') format('woff'),
+    url('data/fonts/segoe-ui/ttf/SegoeUI-Bold.ttf') format('ttf'),
+    url('data/fonts/segoe-ui/eot/SegoeUI-Bold.eot') format('eot');
+}
+/* Жирный курсив */
+@font-face {
+  font-family: 'Segoe UI';
+  font-style: italic;
+  font-weight: bold;
+  src:
+    local('Segoe UI Полужирный Курсив'),
+    url('data/fonts/segoe-ui/woff2/SegoeUI-BoldItalic.woff2') format('woff2'),
+    url('data/fonts/segoe-ui/woff/SegoeUI-BoldItalic.woff') format('woff'),
+    url('data/fonts/segoe-ui/ttf/SegoeUI-BoldItalic.ttf') format('ttf'),
+    url('data/fonts/segoe-ui/eot/SegoeUI-BoldItalic.eot') format('eot');
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', serif;
+  color: var(--dark-text);
+  font-size: 1.8rem;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+button {
+  cursor: pointer;
+}

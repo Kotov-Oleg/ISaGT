@@ -1,0 +1,23 @@
+.button {
+  height: 3rem;
+  border-radius: 0.6rem;
+  background-color: var(--gray-btn);
+  color: var(--dark-text);
+  font-size: 1.8rem;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  line-height: 2.8rem;
+  border: 1px solid #dedede;
+  box-sizing: border-box;
+}
+
+.button:focus-visible {
+  outline: none !important;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

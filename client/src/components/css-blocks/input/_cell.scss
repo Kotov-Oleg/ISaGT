@@ -1,0 +1,16 @@
+.input_cell {
+    height: 100%;
+    outline: none;
+    border: none;
+    border-radius: 0;
+}
+
+.input_cell:focus {
+    z-index: 1;
+    position: relative;
+}
+
+
+.input_cell.input_warning {
+    outline: 2px solid var(--warning-color) !important;
+}

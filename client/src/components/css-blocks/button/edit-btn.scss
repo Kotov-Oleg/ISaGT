@@ -1,0 +1,16 @@
+.edit-btn {
+    height: 2rem;
+    width: 2rem;
+    background-size: 2rem;
+    background-image: url("../../../data/icons/edit.svg");
+    background-color: rgba(0,0,0,0);
+    border: none;
+}
+
+.edit-btn:hover {
+    background-image: url("../../../data/icons/edit-red.svg");
+}
+
+.edit-btn:focus-visible {
+    outline: none !important;
+}

@@ -1,0 +1,42 @@
+.sort-btn {
+    width: 2rem;
+    height: 1.6rem;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    background: none;
+}
+
+.sort-btn::before {
+    content: url('../../../data/icons/sort-none.svg');
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.sort-btn.less::before {
+    content: url('../../../data/icons/sort-less.svg');
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.sort-btn.more::before {
+    content: url('../../../data/icons/sort-more.svg');
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.sort-btn:focus-visible {
+    outline: none !important;
+}

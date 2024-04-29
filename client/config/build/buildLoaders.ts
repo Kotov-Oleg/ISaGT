@@ -49,8 +49,11 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
                 options: {
                     // Включение модульности css
                     modules: {
+                        // Этот параметр отвечает за то, какие файлы буду модульными
+                        // Если true - то модульность включена только в файлах .module
+                        auto: true,
                         // Шаблон названия имени класса
-                        localIdentName: isDev ? '[path][name]__[local]' : 'hash:base64:8'
+                        localIdentName: isDev ? '[local]__[hash:base64:5]' : 'hash:base64:8'
                     },
                 },
             },

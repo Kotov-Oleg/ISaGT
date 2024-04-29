@@ -1,0 +1,21 @@
+.input {
+    appearance: none;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-family: inherit;
+    border: 1px solid var(--border-color);
+    border-radius: .5rem;
+    background: none;
+    padding: 0 .5rem;
+}
+
+.input:hover {
+    border-color: var(--input-focus);
+}
+
+.input:focus {
+    outline: 1px solid var(--input-focus);
+}

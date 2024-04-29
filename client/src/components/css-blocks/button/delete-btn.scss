@@ -1,0 +1,19 @@
+.delete-btn {
+    appearance: none;
+    border: none;
+    height: 2rem;
+    width: 2rem;
+    background-size: 2rem;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("../../../data/icons/bin.svg");
+    vertical-align: center;
+    horiz-align: center;
+}
+
+.delete-btn:hover {
+    background-image: url("../../../data/icons/bin-hover.svg");
+}
+
+.delete-btn:focus-visible {
+    outline: none;
+}

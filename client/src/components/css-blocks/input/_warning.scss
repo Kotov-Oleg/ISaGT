@@ -1,0 +1,7 @@
+.input_warning {
+    border-color: var(--warning-color) !important;
+}
+
+.input_warning:focus {
+    outline: 2px solid var(--warning-color) !important;
+}

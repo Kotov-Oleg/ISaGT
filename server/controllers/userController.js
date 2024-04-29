@@ -10,9 +10,9 @@ const { Formatter } = require('fracturedjsonjs');
 const formatter = new Formatter();
 
 // Генерация токена
-const generateJwt = (id, name, role) => {
+const generateJwt = (id, surname, name, patronymic, access) => {
   return jwt.sign(
-    {id, name, role},
+    {id, surname, name, patronymic, access},
     process.env.JWT_SECRET_KEY,
     {expiresIn: '14d'}
   )
@@ -27,8 +27,16 @@ class UserController {
     try {
       const {login, password} = req.body
       const query = `
-        SELECT id, role, password, surname || ' ' || name AS name
-        FROM employee WHERE '${login}' IN (email, user_name) AND NOT fired;
+        SELECT a.id, password, surname, name, patronymic, json_build_object(
+          'super',  a2.super,
+          'slider', a2.slider,
+          'news',   a2.news,
+          'pages',  a2.pages,
+          'events', a2.events,
+          'faq',    a2.faq
+        ) AS access
+        FROM admin a JOIN public.access a2 on a.id = a2.id
+        WHERE '${login}' = a.login;
       `
       const user = (await db.query(query)).rows[0]
 
@@ -38,7 +46,7 @@ class UserController {
       }
       
       // Генерируем токен
-      const token = generateJwt(user.id, user.name, user.role)
+      const token = generateJwt(user.id, user.surname, user.name, user.patronymic, user.access)
       res.status(200).json({token})
     } catch (err) {
       res.status(500).json({ message: 'Не удалось выполнить вход!'})
@@ -48,7 +56,7 @@ class UserController {
   // Проверка авторизованности пользователя
   async check(req, res) {
     console.log('update user jwt\n')
-    const token = generateJwt(req.user.id, req.user.name, req.user.role)
+    const token = generateJwt(req.user.id, req.user.surname, req.user.name, req.user.patronymic, req.user.access)
     res.status(200).json({token})
   }
 }

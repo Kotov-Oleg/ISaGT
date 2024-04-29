@@ -6,7 +6,7 @@ module.exports = function (req, res, next) {
     next()
   }
   try {
-    const token = req.headers.authorization.split(' ')[1] // Bearer sdkfbnaslnvlas
+    const token = req.headers.authorization.split(' ')[1] // Bearer
     if (!token) { throw 'empty token' }
     req.user = jwt.verify(token, process.env.JWT_SECRET_KEY) // decoded
     console.log('=================================')

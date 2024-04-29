@@ -21,7 +21,9 @@ class AdminController {
             'super',  ac.super,
             'slider', ac.slider,
             'news',   ac.news,
-            'pages',  ac.pages
+            'pages',  ac.pages,
+            'events', ac.events,
+            'faq',    ac.faq
           ) AS access
         FROM admin ad JOIN access ac ON ad.id = ac.id;
       `
@@ -113,6 +115,8 @@ class AdminController {
           slider = subq.slider,
           news   = subq.news,
           pages  = subq.pages,
+          events = subq.events,
+          faq    = subq.faq
         FROM (
           SELECT super, slider, news, pages
           FROM json_populate_recordset(null::json_access, '${JSON.stringify(access)}')

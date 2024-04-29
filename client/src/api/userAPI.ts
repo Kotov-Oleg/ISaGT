@@ -5,7 +5,16 @@ import {AxiosResponse} from "axios";
 export interface UserDataI {
   id: number,
   name: string,
-  role: string
+  access: UserAccessI
+}
+
+export interface UserAccessI {
+  super: boolean,
+  slider: boolean,
+  news: boolean,
+  pages: boolean,
+  events: boolean,
+  faq: boolean
 }
 
 // Авторизация

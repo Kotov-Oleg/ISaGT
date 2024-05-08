@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../db/db');
 const uuid = require('uuid')
 const path = require("node:path");
 

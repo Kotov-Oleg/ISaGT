@@ -1,29 +1,45 @@
-const path = require('path')
+// Импорт переменных среды из '.env' в 'process.env'
+require('dotenv').config()
 
-require('dotenv').config() // Импорт переменных среды из '.env' в 'process.env'
+const path = require('path')
+const express = require("express")
+const cors = require('cors')
+const fileUpload = require('express-fileupload')
+const router = require('./routes/index')
+const minioClient = require('./db/minioConnect.js')
 
 
 // Определение порта
 const port = process.env.PORT
 
 // Создание express приложения
-const express = require("express")
 const app = express()
-app.use(express.json()) // Подключение парсера JSON
-
-// Подключение раздачи статики из папки
-app.use(express.static(path.resolve(__dirname, 'data')))
+// Подключение парсера JSON
+app.use(express.json())
 
 // Подключение CORS
-const cors = require('cors')
 app.use(cors())
 
-const fileUpload = require('express-fileupload')
 app.use(fileUpload({}))
 
+// Расположены в правильном порядке
 // Подключение роутера запросов
-const router = require('./routes/index')
 app.use('/api', router)
+// Middleware для раздачи статики из MinIO
+app.use('/', (req, res, next) => {
+  // удаляем первый слеш из пути
+  const objectName = req.path.slice(1);
+  // Получаем объект из MinIO
+  minioClient.getObject('images', objectName, (err, dataStream) => {
+    if (err) {
+      console.log(err)
+      res.status(404).send('Файл не найден');
+      return;
+    }
+    // Отправляем содержимое объекта в ответ на запрос
+    dataStream.pipe(res);
+  });
+});
 
 // Запуск сервера
 app.listen(port, () => console.log(`Server started on port ${port}`))

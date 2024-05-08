@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../db/db');
 const uuid = require('uuid')
 const path = require("node:path");
 
@@ -38,7 +38,7 @@ class NewsController {
       const {q, rowsPerPage, page} = req.query
       const qLower = q.toLowerCase()
 
-      let query =  `
+      let query =  ` 
         SELECT id, title, date, preview
         FROM news WHERE lower(title) LIKE '%${qLower}%'
         LIMIT ${rowsPerPage} OFFSET ${rowsPerPage*(page-1)};

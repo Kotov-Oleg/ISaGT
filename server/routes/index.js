@@ -7,7 +7,7 @@ router.use('/admin', require('./adminRouter'))
 
 // router.use('/news_tag', require('./newsTagRouter'))
 router.use('/news', require('./newsRouter'))
-router.use('/static', require('./staticRouter'))
+router.use('/image', require('./imageRouter'))
 
 
 module.exports = router

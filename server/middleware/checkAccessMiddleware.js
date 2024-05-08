@@ -1,4 +1,4 @@
-const db = require('../db')
+const db = require('../db/db')
 const jwt = require('jsonwebtoken')
 const dayjs = require('dayjs')
 

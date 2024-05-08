@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../db/db');
 
 // Форматирование JSON
 const {Formatter} = require('fracturedjsonjs');

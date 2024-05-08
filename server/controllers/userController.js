@@ -11,6 +11,7 @@ const formatter = new Formatter();
 
 // Генерация токена
 const generateJwt = (id, surname, name, patronymic, access) => {
+  console.log({id, surname, name, patronymic, access})
   return jwt.sign(
     {id, surname, name, patronymic, access},
     process.env.JWT_SECRET_KEY,
@@ -39,6 +40,8 @@ class UserController {
         WHERE '${login}' = a.login;
       `
       const user = (await db.query(query)).rows[0]
+      const psd = CryptoJS.AES.encrypt('admin', KEY).toString()
+      console.log('password', psd)
 
       // Проверка
       if (user.password===null || (CryptoJS.AES.decrypt(user.password, KEY).toString(CryptoJS.enc.Utf8) !== password)) {

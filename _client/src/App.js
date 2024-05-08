@@ -1,7 +1,7 @@
 
 import React, { useContext } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout.js';
 import Home from './pages/Home/Homepage.js'
 import Events from './pages/Events.js';

@@ -4,11 +4,13 @@ import * as cl from './NewsHead.module.scss'
 
 const NewsHead = () => {
   return (
-    <div className={cl.head}>
-      <div className={'item'}>Название</div>
-      <div className={'item'}>Дата</div>
-      <div className={'item'}></div>
-    </div>
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th className={'table__center'}>Дата</th>
+        <th></th>
+      </tr>
+    </thead>
   );
 };
 

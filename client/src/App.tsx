@@ -1,37 +1,55 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
+
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 // Импорт стилей
 import './index.scss';
 import './components/css-blocks/index.scss'
 
-import {BrowserRouter, createBrowserRouter, Navigate, Route, RouterProvider, Routes} from "react-router-dom";
-import Main from "src/components/pages/main/Main";
-import Admin from "src/components/pages/admin/Admin";
-import AdminNews from "src/components/pages/admin/pages/admin-news/AdminNews";
-import AdminEvents from "src/components/pages/admin/pages/admin-events/AdminEvents";
-import AdminSlider from "src/components/pages/admin/pages/admin-slider/AdminSlider";
-import EditorPages from "src/components/pages/admin/pages/editor-pages/EditorPages";
-import AdminAccounts from "src/components/pages/admin/pages/admin-accounts/AdminAccounts";
-import AdminFAQ from "src/components/pages/admin/pages/admin-faq/AdminFAQ";
+// Импорт маршрутов
+import {adminRoutes} from "src/routes/authorizedRoutes";
+import {defaultRoutes} from "src/routes/defaultRoutes";
+import {unauthorizedRoutes} from "src/routes/unauthorizedRoutes";
+
+// Импорт стора юзера
+import {useUserStore} from "src/store/userStore";
+
+// Импорт запросов
+import {checkAuth} from "src/api/userAPI";
+import Loader from "src/components/react-blocks/loader/Loader";
+
 
 const App: FC = () => {
+  const isAuth = useUserStore(state => state.isAuth)
+  const login = useUserStore(state => state.login)
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Автоматическая авторизация при наличии токена
+  useEffect(() => {
+    const token: string | null = localStorage.getItem('token')
+    if (token) {
+      checkAuth()
+        .then(data => login(data))
+        .finally(() => setIsLoading(false))
+    } else {
+      setIsLoading(false)
+    }
+  }, []);
+
+  if (isLoading) {
+    return (
+      <Loader/>
+    )
+  }
+
   return (
-    <BrowserRouter>
-      <Routes>
-
-        <Route path={'/'} element={<Main />}/>
-
-        <Route path={'/admin'} element={<Admin/>}>
-          <Route index element={<AdminNews/>}/>
-          <Route path={'events'} element={<AdminEvents/>}/>
-          <Route path={'slider'} element={<AdminSlider/>}/>
-          <Route path={'editor-pages'} element={<EditorPages/>}/>
-          <Route path={'accounts'} element={<AdminAccounts/>}/>
-          <Route path={'faq'} element={<AdminFAQ/>}/>
-        </Route>
-
-      </Routes>
-    </BrowserRouter>
+    <RouterProvider
+      router={createBrowserRouter([
+        ...unauthorizedRoutes(isAuth),
+        ...adminRoutes(isAuth),
+        ...defaultRoutes()
+      ])}
+    />
   );
 }
 

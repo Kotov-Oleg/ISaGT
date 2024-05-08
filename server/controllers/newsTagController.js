@@ -26,7 +26,6 @@ class NewsTagController {
       res.status(500).json({message})
     }
   }
-
 }
 
 module.exports = new NewsTagController()

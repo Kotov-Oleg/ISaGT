@@ -79,8 +79,8 @@ class AdminController {
 
       query = `
         -- Создание доступов администратора
-        INSERT INTO access (id, super, slider, news, pages)
-        SELECT ${adminId}, super, slider, news, pages
+        INSERT INTO access (id, super, slider, news, pages, events, faq)
+        SELECT ${adminId}, super, slider, news, pages, events, faq
         FROM json_populate_recordset(null::json_access, '${JSON.stringify(access)}');
       `
       await db.query(query)

@@ -18,7 +18,7 @@ export default (env: EnvVariables) => {
     }
 
     return buildWebpack({
-        port: env.port ?? 3000,
+        port: env.port ?? 3003,
         mode: env.mode ?? 'development',
         paths: paths,
         analyze: env.analyze,

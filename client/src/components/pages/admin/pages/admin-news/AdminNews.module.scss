@@ -1,10 +1,5 @@
-.menu {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  align-items: center;
+.table tr {
+  display: grid;
+  grid-template-columns: 1fr 12rem 7rem;
 }
 
-.title {
-  font-size: 4rem;
-}

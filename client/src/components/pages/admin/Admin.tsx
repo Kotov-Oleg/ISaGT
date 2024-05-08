@@ -1,19 +1,21 @@
 import React from 'react';
-import cn from 'classnames'
 import * as cl from './Admin.module.scss'
 import AdminPanel from "src/components/pages/admin/admin-panel/AdminPanel";
-import {createBrowserRouter, Outlet, Route, RouterProvider, Routes} from "react-router-dom";
-import AdminNews from "src/components/pages/admin/pages/admin-news/AdminNews";
-import AdminEvents from "src/components/pages/admin/pages/admin-events/AdminEvents";
-import Main from "src/components/pages/main/Main";
+import {Outlet} from "react-router-dom";
+import AdminNavbar from "src/components/pages/admin/admin-navbar/AdminNavbar";
 
 
 const Admin = () => {
   return (
     <div className={cl.adminPage}>
-      <AdminPanel />
-      <div className={cl.page}>
-        <Outlet/>
+      <AdminNavbar/>
+      <div className={cl.adminContent}>
+        {/*<div className={cl.navbar}>*/}
+        {/*</div>*/}
+        <AdminPanel/>
+        <div className={cl.page}>
+          <Outlet/>
+        </div>
       </div>
     </div>
   );

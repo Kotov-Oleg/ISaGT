@@ -1,7 +1,30 @@
 .adminPanel {
-  width: 30%;
-  height: 100vh;
-  background-color: pink;
+  width: 25rem;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  margin: 1rem 0 0 1rem;
+}
+.link {
+  height: 3rem;
+  line-height: 3rem;
+  appearance: none;
+  text-decoration: underline;
+  padding-left: 2rem;
+  color: #0b3c81;
+  background-color: #e1e1f4;
+}
+.link:global(.active) {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.link:active {
+  color: var(--dark-text);
+}
+.adminPanel .link:first-child {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+.adminPanel .link:last-child {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }

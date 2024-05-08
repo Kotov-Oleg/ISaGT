@@ -1,4 +1,7 @@
+const path = require('path')
+
 require('dotenv').config() // Импорт переменных среды из '.env' в 'process.env'
+
 
 // Определение порта
 const port = process.env.PORT
@@ -7,6 +10,9 @@ const port = process.env.PORT
 const express = require("express")
 const app = express()
 app.use(express.json()) // Подключение парсера JSON
+
+// Подключение раздачи статики из папки
+app.use(express.static(path.resolve(__dirname, 'data')))
 
 // Подключение CORS
 const cors = require('cors')

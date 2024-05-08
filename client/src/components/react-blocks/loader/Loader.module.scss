@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loader {
+  border: 1rem solid var(--border-color);
+  border-top: 1rem solid var(--blue-color);
+  border-radius: 50%;
+  width: 13rem;
+  height: 13rem;
+  opacity: 1;
+  animation: opacityOn .5s normal forwards, spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes opacityOn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}

@@ -1,5 +1,9 @@
 :root {
   --warning-color: #c21313;
+  --body-color: #fff;
+
+  /* Акценты */
+  --blue-color: #1332c5;
 
   /* Таблицы */
   --head-back: #ededed;
@@ -17,6 +21,11 @@
   --dark-text: #333;
   --gray-text: #555;
   --white-text: #FFF;
+
+  /* Инпут */
+  --input-focus: #a3c6da;
+
+
 }
 
 html {
@@ -111,4 +120,12 @@ code {
 
 button {
   cursor: pointer;
+}
+
+.ant-modal-content {
+  padding: 0!important;
+}
+
+.img-crop-modal .ant-modal-content {
+  padding: 1rem !important;
 }

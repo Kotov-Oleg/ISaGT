@@ -1,25 +1,53 @@
-import React from 'react';
+import React, {ReactNode, useEffect, useState} from 'react';
 
 import * as cl from './AdminNews.module.scss'
 import NewsHead from "src/components/pages/admin/pages/admin-news/news-head/NewsHead";
+import NewsLine from "src/components/pages/admin/pages/admin-news/news-line/NewsLine";
+import cn from "classnames";
+import AdminMenu from "src/components/pages/admin/admin-menu/AdminMenu";
+import {useFetchData} from "src/scripts/fetchData";
+import {createNews, getNews} from "src/api/newsAPI";
+import NewsForm from "src/components/pages/admin/pages/admin-news/news-form/NewsForm";
+
+
 
 const AdminNews = () => {
+  const {data} = useFetchData(() => getNews({page: 1, q: '', rowsPerPage: 50}))
+
+  const [newsComponents, setNewsComponents] = useState<ReactNode[]>([])
+
+  useEffect(() => {
+    if (data) {
+      let newComponents: ReactNode[] = []
+      data.forEach(n => {
+        newComponents.push(<NewsLine
+          key={n.id}
+          {...n}
+        />)
+      })
+      setNewsComponents(newComponents)
+    }
+  }, [data]);
+
+
   return (
     <div>
-      <div className={cl.menu}>
-        <div className={cl.title}>
-          Редактирование новостей
-        </div>
-        <button className={'button button_accept'}>Создать новость</button>
-      </div>
+      <AdminMenu
+        title={'Редактирование новостей'}
+        button={
+          <NewsForm type={'add'}/>
+        }
+      />
       <div>
-        <NewsHead/>
-        Таблица
-        Название
-        Дата
-        Кнопки редактирования/удаления
+        <table className={cn('table', cl.table)}>
+          <NewsHead/>
+          <tbody>
+          {newsComponents}
+          </tbody>
+        </table>
       </div>
     </div>
+
   );
 };
 

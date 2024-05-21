@@ -1,0 +1,18 @@
+.sortableItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  margin: 4px 0;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+
+}
+
+.sortButton {
+  cursor: grab;
+  width: 3rem;
+  height: 3rem;
+  background-color: #0b3c81;
+}

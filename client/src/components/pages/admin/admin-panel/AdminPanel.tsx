@@ -1,11 +1,13 @@
 import React from 'react';
+
 import * as cl from './AdminPanel.module.scss'
-import {Link, NavLink} from "react-router-dom";
+
+import {NavLink} from "react-router-dom";
 import {
   adminAccountsRoute,
   adminEditorPagesRoute,
   adminEventsRoute, adminFAQRoute,
-  adminNewsRoute,
+  adminNewsRoute, adminScheduleRoute,
   adminSliderRoute
 } from "src/routes/authorizedRoutes";
 
@@ -38,14 +40,20 @@ const AdminPanel = () => {
       </NavLink>
       <NavLink
         className={cl.link}
-        to={adminAccountsRoute}>
+        to={adminFAQRoute}>
         FAQ
       </NavLink>
       <NavLink
         className={cl.link}
-        to={adminFAQRoute}
+        to={adminAccountsRoute}
       >
         Аккаунты
+      </NavLink>
+      <NavLink
+        className={cl.link}
+        to={adminScheduleRoute}
+      >
+        Расписание
       </NavLink>
     </div>
   );

@@ -5,11 +5,13 @@ const authMiddleware = require('../middleware/authMiddleware')
 const checkAccess = require('../middleware/checkAccessMiddleware')
 
 router.get('/', newsController.getNews)
-router.get('/admin', newsController.getNewsAdmin)
 router.get('/page_count', newsController.getNewsPageCount)
 router.get('/:id', newsController.getOneNews)
 
 router.post('/', checkAccess('news'), newsController.createNews)
-// router.post('/', newsController.createNews)
+
+router.put('/', checkAccess('news'), newsController.updateNews)
+
+router.delete('/:id', checkAccess('news'), newsController.deleteNews)
 
 module.exports = router

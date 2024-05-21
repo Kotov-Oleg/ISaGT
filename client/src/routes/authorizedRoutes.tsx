@@ -10,6 +10,7 @@ import AdminSlider from "src/components/pages/admin/pages/admin-slider/AdminSlid
 import EditorPages from "src/components/pages/admin/pages/editor-pages/EditorPages";
 import AdminAccounts from "src/components/pages/admin/pages/admin-accounts/AdminAccounts";
 import AdminFAQ from "src/components/pages/admin/pages/admin-faq/AdminFAQ";
+import AdminSchedule from "src/components/pages/admin/pages/admin-schedule/AdminSchedule";
 
 export const adminRoute: string = ''
 export const adminNewsRoute: string = 'admin-news'
@@ -18,6 +19,7 @@ export const adminSliderRoute: string = 'admin-slider'
 export const adminEditorPagesRoute: string = 'admin-editor-pages'
 export const adminAccountsRoute: string = 'admin-accounts'
 export const adminFAQRoute: string = 'admin-faq'
+export const adminScheduleRoute: string = 'admin-schedule'
 
 export const adminRoutes = (isAuth: boolean): RouteObject[] => {
   console.log('isAuth', isAuth)
@@ -49,6 +51,10 @@ export const adminRoutes = (isAuth: boolean): RouteObject[] => {
         {
           path: adminFAQRoute,
           element: <AdminFAQ/>
+        },
+        {
+          path: adminScheduleRoute,
+          element: <AdminSchedule/>
         }
       ]
     }]

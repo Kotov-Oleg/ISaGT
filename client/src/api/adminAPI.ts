@@ -6,6 +6,8 @@ export interface AccessI {
   slider: boolean
   news: boolean
   pages: boolean
+  events: boolean
+  faq: boolean
 }
 
 export interface EmployeeI {

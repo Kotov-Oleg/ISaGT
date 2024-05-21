@@ -1,8 +1,8 @@
 const Router = require('express')
 const router = new Router()
-const StaticController = require('../controllers/imageController')
+const ImageController = require('../controllers/imageController')
 
-router.post('/', StaticController.saveImage)
-
+router.post('/', ImageController.saveImage)
+router.delete('/', ImageController.deleteImages)
 
 module.exports = router

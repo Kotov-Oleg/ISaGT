@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.title {
+  font-size: 1.8rem;
+}
+
+.tags {
+  display: flex;
+  gap: .7rem;
+}
+
+.tag {
+  background-color: rgba(56, 142, 255, 0.6);
+  padding: .2rem 1rem;
+  border-radius: 1rem;
+  color: var(--white-text);
+}

@@ -3,11 +3,13 @@ import {useUserStore} from "src/store/userStore";
 import Form from "src/components/pages/admin/pages/admin-news/news-form/Form";
 
 interface FormAddI {
-  type: 'add',
+  type: 'add'
+  update: () => void
   id?: number
 }
 interface FormEditI {
-  type: 'edit',
+  type: 'edit'
+  update: () => void
   id: number
 }
 
@@ -15,7 +17,8 @@ type PropsT = FormAddI | FormEditI
 
 const NewsForm: FC<PropsT> = ({
   type,
-  id
+  id,
+  update
 }) => {
 
   const access = useUserStore(state => state.user.access.news)
@@ -49,6 +52,7 @@ const NewsForm: FC<PropsT> = ({
           open={open}
           id={id}
           closeHandler={closeHandler}
+          update={update}
         />
       )}
     </>

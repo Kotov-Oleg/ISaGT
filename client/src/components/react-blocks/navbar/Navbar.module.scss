@@ -1,0 +1,35 @@
+.navbar {
+  width: 100%;
+  background: rgb(62,101,180);
+  background: linear-gradient(45deg, rgba(62,101,180,1) 0%, rgba(92,191,170,1) 100%);
+}
+.navbarContent {
+  width: 128rem;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.title {
+  text-decoration: none;
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--white-text);
+}
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+.link {
+  font-size: 2.2rem;
+  font-weight: bold;
+  appearance: none;
+  text-decoration: none;
+  color: var(--white-text);
+}
+.link:global(.active) {
+  border-bottom: 3px solid var(--white-text);
+}
+.link:active {
+  color: var(--white-text);
+}

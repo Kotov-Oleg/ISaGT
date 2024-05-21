@@ -60,8 +60,8 @@ class AdminController {
     console.log('request: create admin')
     console.log(`data:    ${formatter.Serialize(req.body)}`)
     try {
-      const {surname, name, patronymic, login, password, access} = req.body
-
+      let {surname, name, patronymic, login, password, access} = req.body
+      access = JSON.parse(access)
       let query = `
         INSERT INTO
           admin (surname, name, patronymic, login, password)
@@ -75,19 +75,21 @@ class AdminController {
 
         SELECT CAST(currval('admin_id_seq') AS integer) AS "adminId";
       `
+      console.log('query1', query)
       const {adminId} = (await db.query(query))[1].rows[0]
 
       query = `
         -- Создание доступов администратора
         INSERT INTO access (id, super, slider, news, pages, events, faq)
-        SELECT ${adminId}, super, slider, news, pages, events, faq
-        FROM json_populate_recordset(null::json_access, '${JSON.stringify(access)}');
+        SELECT ${adminId}, d.super, d.slider, d.news, d.pages, d.events, d.faq
+        FROM json_populate_record(null::json_access, '${JSON.stringify(access)}') AS d;
       `
+      console.log('query2', query)
       await db.query(query)
 
       res.status(200).json({message: 'Администратор успешно добавлен!'})
     } catch (err) {
-      const message = '[admin:88] Не удалось добавить администратора!'
+      const message = 'Не удалось добавить администратора!'
       console.log('\x1b[31m%s\x1b[0m', `${message}\n${err}`)
       res.status(500).json({message})
     }
@@ -98,10 +100,11 @@ class AdminController {
     console.log('request: update admin')
     console.log(`data:    ${formatter.Serialize(req.body)}`)
     try {
-      const {id: adminId, surname, name, patronymic, login, password, access} = req.body
+      let {id: adminId, surname, name, patronymic, login, password, access} = req.body
+      access = JSON.parse(access)
 
       let query = `
-        UPDATE admin SET (surname, name, patronymic, login, password)
+        UPDATE admin SET
           surname    = '${surname}',
           name       = '${name}',
           patronymic = ${patronymic === '' ? null : `'${patronymic}'`},
@@ -118,11 +121,12 @@ class AdminController {
           events = subq.events,
           faq    = subq.faq
         FROM (
-          SELECT super, slider, news, pages
-          FROM json_populate_recordset(null::json_access, '${JSON.stringify(access)}')
-        ) subq
+          SELECT super, slider, news, pages, events, faq
+          FROM json_populate_record(null::json_access, '${JSON.stringify(access)}')
+        ) AS subq
         WHERE id = ${adminId};
       `
+      console.log('query', query)
       await db.query(query)
 
       res.status(200).json({message: 'Данные администратора успешно обновлены!'})

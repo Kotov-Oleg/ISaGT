@@ -1,0 +1,27 @@
+.pageEditor {
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+  padding: 1rem;
+}
+
+.editorComponent {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+}
+
+.addBtn {
+  width: 15rem;
+}
+
+.deleteBtnContainer {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.componentTitle {
+  font-size: 2rem;
+  font-weight: 600;
+}

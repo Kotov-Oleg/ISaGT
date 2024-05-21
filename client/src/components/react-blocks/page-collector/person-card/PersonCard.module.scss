@@ -1,0 +1,43 @@
+.personCard {
+  border: 1px solid #DFDFDF;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  background-color: #FFFFFF;
+  display: flex;
+  gap: 3rem;
+}
+
+.avatar {
+  width: 20rem;
+  height: 20rem;
+  border-radius: 1rem;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.tags {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.tag {
+  background-color: rgba(56, 142, 255, 0.25);
+  font-size: 1.8rem;
+  height: 3rem;
+  line-height: 3rem;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  padding: 0 1rem;
+  border-radius: .7rem;
+}
+

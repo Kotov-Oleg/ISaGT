@@ -1,0 +1,72 @@
+/* Дефолтный шрифт */
+@font-face {
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: normal;
+  src:
+    local('Segoe UI'),
+    url('woff2/SegoeUI.woff2') format('woff2'),
+    url('woff/SegoeUI.woff') format('woff'),
+    url('ttf/SegoeUI.ttf') format('ttf'),
+    url('eot/SegoeUI.eot') format('eot');
+}
+/* Лайт шрифт */
+@font-face {
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: 300;
+  src:
+    local('Segoe UI Light'),
+    url('woff2/SegoeUI-Light.woff2') format('woff2'),
+    url('woff/SegoeUI-Light.woff') format('woff'),
+    url('ttf/SegoeUI-Light.ttf') format('ttf'),
+    url('eot/SegoeUI-Light.eot') format('eot');
+}
+/* Полужирный шрифт */
+@font-face {
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: 600;
+  src:
+    local('Segoe UI Semibold'),
+    url('woff2/SegoeUI-SemiBold.woff2') format('woff2'),
+    url('woff/SegoeUI-SemiBold.woff') format('woff'),
+    url('ttf/SegoeUI-SemiBold.ttf') format('ttf'),
+    url('eot/SegoeUI-SemiBold.eot') format('eot');
+}
+/*  Дефолтный курсив */
+@font-face {
+  font-family: 'Segoe UI';
+  font-style: italic;
+  font-weight: normal;
+  src:
+    local('Segoe UI Italic'),
+    url('woff2/SegoeUI-Italic.woff2') format('woff2'),
+    url('woff/SegoeUI-Italic.woff') format('woff'),
+    url('ttf/SegoeUI-Italic.ttf') format('ttf'),
+    url('eot/SegoeUI-Italic.eot') format('eot');
+}
+/* Жирный шрифт */
+@font-face {
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: bold;
+  src:
+    local('Segoe UI Полужирный'),
+    url('woff2/SegoeUI-Bold.woff2') format('woff2'),
+    url('woff/SegoeUI-Bold.woff') format('woff'),
+    url('ttf/SegoeUI-Bold.ttf') format('ttf'),
+    url('eot/SegoeUI-Bold.eot') format('eot');
+}
+/* Жирный курсив */
+@font-face {
+  font-family: 'Segoe UI';
+  font-style: italic;
+  font-weight: bold;
+  src:
+    local('Segoe UI Полужирный Курсив'),
+    url('woff2/SegoeUI-BoldItalic.woff2') format('woff2'),
+    url('woff/SegoeUI-BoldItalic.woff') format('woff'),
+    url('ttf/SegoeUI-BoldItalic.ttf') format('ttf'),
+    url('eot/SegoeUI-BoldItalic.eot') format('eot');
+}

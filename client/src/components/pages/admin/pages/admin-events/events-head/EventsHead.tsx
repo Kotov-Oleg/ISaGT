@@ -3,11 +3,14 @@ import * as cl from './EventsHead.module.scss';
 
 const EventsHead = () => {
   return (
-    <div className={cl.head}>
-      <div className={'item-head item-head_start'}>Название</div>
-      <div className={'item-head item-head_center'}>Дата</div>
-      <div className={'item-head item-head_end'}></div>
-    </div>
+    <thead>
+    <tr>
+      <th>Название</th>
+      <th className={'table__center'}>Дата</th>
+      <th className={'table__center'}>Время</th>
+      <th></th>
+    </tr>
+    </thead>
   );
 };
 

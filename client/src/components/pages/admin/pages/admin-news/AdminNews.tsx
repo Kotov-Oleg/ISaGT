@@ -6,13 +6,13 @@ import NewsLine from "src/components/pages/admin/pages/admin-news/news-line/News
 import cn from "classnames";
 import AdminMenu from "src/components/pages/admin/admin-menu/AdminMenu";
 import {useFetchData} from "src/scripts/fetchData";
-import {createNews, getNews} from "src/api/newsAPI";
+import {getNews} from "src/api/newsAPI";
 import NewsForm from "src/components/pages/admin/pages/admin-news/news-form/NewsForm";
 
 
 
 const AdminNews = () => {
-  const {data} = useFetchData(() => getNews({page: 1, q: '', rowsPerPage: 50}))
+  const {data, update} = useFetchData(() => getNews({page: 1, q: '', rowsPerPage: 50, filter: 'all'}))
 
   const [newsComponents, setNewsComponents] = useState<ReactNode[]>([])
 
@@ -22,6 +22,7 @@ const AdminNews = () => {
       data.forEach(n => {
         newComponents.push(<NewsLine
           key={n.id}
+          update={update}
           {...n}
         />)
       })
@@ -35,17 +36,15 @@ const AdminNews = () => {
       <AdminMenu
         title={'Редактирование новостей'}
         button={
-          <NewsForm type={'add'}/>
+          <NewsForm type={'add'} update={update}/>
         }
       />
-      <div>
-        <table className={cn('table', cl.table)}>
-          <NewsHead/>
-          <tbody>
+      <table className={cn('table', cl.table)}>
+        <NewsHead/>
+        <tbody>
           {newsComponents}
-          </tbody>
-        </table>
-      </div>
+        </tbody>
+      </table>
     </div>
 
   );

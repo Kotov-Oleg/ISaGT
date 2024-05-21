@@ -32,7 +32,7 @@ interface FormI {
   date: Dayjs | null
   document: {}
   fileList: UploadFile[]
-  removeList: string[]
+  // removeList: string[]
 }
 
 const apiUrl = 'http://localhost:5000/'

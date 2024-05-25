@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import {createNews, getOneNews, NewsI, updateNews} from "src/api/newsAPI";
-import {Controller, SubmitHandler, useForm} from 'react-hook-form'
+import {Controller, FormProvider, SubmitHandler, useForm} from 'react-hook-form'
 
 import * as cl from './NewsForm.module.scss'
 import dayjs, {Dayjs} from "dayjs";
@@ -11,9 +11,12 @@ import {Modal, Upload} from 'antd';
 import type { GetProp, UploadFile, UploadProps } from 'antd';
 import ImgCrop from 'antd-img-crop';
 import {dateOnClient, dateOnServer} from "src/scripts/validation/change";
-import {deleteImages} from "src/api/imageAPI";
+import {deleteImages, uploadURL} from "src/api/imageAPI";
 import PageEditor from "src/components/pages/admin/page-editor/PageEditor";
 import {ComponentI} from "src/types/pageEditor";
+import TextareaAutosize from 'react-textarea-autosize';
+import {onPreview} from "src/scripts/upload/onPreview";
+import {uploadFile} from "src/scripts/upload/uploadFile";
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
@@ -30,9 +33,10 @@ interface FormI {
   id?: number
   title: string
   date: Dayjs | null
-  document: {}
   fileList: UploadFile[]
-  // removeList: string[]
+  removeList: string[],
+  editorImages: string[],
+  editorComponents: ComponentI[]
 }
 
 const apiUrl = 'http://localhost:5000/'
@@ -46,37 +50,40 @@ const Form: FC<PropsI> = ({
 }) => {
 
   // Изображения
-  const [fileList, setFileList] = useState<UploadFile[]>([]);
-  const [removeList, setRemoveList] = useState<string[]>([])
+  // const [fileList, setFileList] = useState<UploadFile[]>([]);
+  // const [removeList, setRemoveList] = useState<string[]>([])
 
-  const [editorImages, setEditorImages] = useState<string[]>([])
-  const [editorComponents, setEditorComponents] = useState<ComponentI[]>([])
+  // const [editorImages, setEditorImages] = useState<string[]>([])
+  // const [editorComponents, setEditorComponents] = useState<ComponentI[]>([])
 
-  const {control, handleSubmit, reset} = useForm<FormI>({
+  const form = useForm<FormI>({
     defaultValues: async (): Promise<FormI> => {
       if (type === 'add') {
         return {
           title: '',
           date: null,
-          document: {},
-          fileList: []
+          fileList: [],
+          removeList: [],
+          editorImages: [],
+          editorComponents: []
         }
       } else {
         console.log('form render')
         await getOneNews(id)
           .then(res => {
-            setFileList([{
-              uid: '1',
-              name: res.preview,
-              status: 'done',
-              url: apiUrl + res.preview
-            }])
-            reset({
+            form.reset({
               id: res.id,
               title: res.title,
               date: dayjs(res.date),
-              fileList: [],
-              document: {}
+              fileList: [{
+                uid: '1',
+                name: res.preview,
+                status: 'done',
+                url: apiUrl + res.preview
+              }],
+              removeList: [],
+              editorImages: [], // TODO доделать логику с бека
+              editorComponents: [] // TODO
             })
           })
       }
@@ -85,13 +92,13 @@ const Form: FC<PropsI> = ({
   })
 
   const onSubmit: SubmitHandler<FormI> = async (data): Promise<void> => {
-    console.log('onSubmit')
+    console.log('onSubmit', data)
     if (type === 'add') {
       await createNews({
         title: data.title,
         date: dateOnServer(data.date),
         document: JSON.stringify({}),
-        fileName: fileList[0].name
+        fileName: data.fileList[0].name
       })
     } else {
       await updateNews({
@@ -99,50 +106,13 @@ const Form: FC<PropsI> = ({
         title: data.title,
         date: dateOnServer(data.date),
         document: JSON.stringify({}),
-        fileName: fileList[0].name,
+        fileName: data.fileList[0].name
       })
-      await deleteImages(removeList)
+      await deleteImages(data.removeList)
     }
     await update()
     closeHandler()
   }
-
-  const uploadProps: UploadProps = {
-    onChange: ({ fileList: newFileList, file }) => {
-      console.log('change')
-      if (file.status === 'done') {
-        const list = fileList.map(f => {
-          console.log(fileList.length)
-          if (f.uid === file.uid) {
-            let newFile = {...file}
-            newFile.name = newFile.response.fileName
-            return newFile
-          }
-          return f
-        })
-        setFileList(list)
-        return
-      }
-      setFileList(newFileList)
-    },
-    fileList,
-  };
-
-  const onPreview = async (file: UploadFile) => {
-    let src = file.url as string;
-    if (!src) {
-      src = await new Promise((resolve) => {
-        console.log('resolve', resolve)
-        const reader = new FileReader();
-        reader.readAsDataURL(file.originFileObj as FileType);
-        reader.onload = () => resolve(reader.result as string);
-      });
-    }
-    const image = new Image();
-    image.src = src;
-    const imgWindow = window.open(src);
-    imgWindow?.document.write(image.outerHTML);
-  };
 
 
   useEffect(() => {
@@ -170,116 +140,90 @@ const Form: FC<PropsI> = ({
       <div className={cl.title}>
         {`${type === 'add' ? 'Создание' : 'Редактирование'} новости`}
       </div>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div className={cl.form}>
-          <div>Название</div>
-          <Controller
-            name={'title'}
-            control={control}
-            render={({field, fieldState}) => {
-              const {value, onChange} = field
-              return (
-                <TextArea
-                  value={value}
-                  callback={onChange}
-                />
-              )
-            }}
-          />
-          <div>Дата</div>
-          <Controller
-            name={'date'}
-            control={control}
-            render={({field}) => {
-              const {value, onChange} = field
-              return (
-                <DatePicker
-                  value={value}
-                  callback={onChange}
-                  styleContainer={{padding: 0, width: '10rem'}}
-                />
-              )
-            }}
-          />
-          <div>Превью</div>
-          <div>
+      <FormProvider {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
+          <div className={cl.form}>
+            <div>Название</div>
+            <TextareaAutosize
+              className={'input'}
+              {...form.register('title')}
+            />
+            <div>Дата</div>
             <Controller
               name={'date'}
-              control={control}
+              control={form.control}
               render={({field}) => {
                 const {value, onChange} = field
                 return (
-                  <ImgCrop
-                    modalTitle={'Обрезка изображения'}
-                    modalOk={'Сохранить'}
-                    modalCancel={'Отмена'}
-                    modalWidth={'100rem'}
-                    aspect={1.5} // Ширина на высоту
-                  >
-                    <Upload
-                      action={'http://localhost:5000/api/image'}
-                      maxCount={1}
-                      listType='picture-card'
-                      onPreview={onPreview}
-                      //{...uploadProps}
-                      onRemove={(file) => {
-                        setRemoveList(prev => [...prev, file.name])
-                      }}
-                      onChange={({ fileList: newFileList, file }) => {
-                        console.log('change')
-                        if (file.status === 'done') {
-                          const list = fileList.map(f => {
-                            console.log(fileList.length)
-                            if (f.uid === file.uid) {
-                              let newFile = {...file}
-                              newFile.name = newFile.response.fileName
-                              return newFile
-                            }
-                            return f
-                          })
-                          setFileList(list)
-                          return
-                        }
-                        setFileList(newFileList)
-                      }}
-                      fileList={fileList}
-                    >
-                      {fileList.length < 5 && '+ Upload'}
-                    </Upload>
-                  </ImgCrop>
+                  <DatePicker
+                    value={value}
+                    callback={onChange}
+                    styleContainer={{padding: 0, width: '10rem'}}
+                  />
                 )
               }}
             />
-
+            <div>Превью</div>
+            <div>
+              <Controller
+                name={'fileList'}
+                control={form.control}
+                render={({field}) => {
+                  const {value: fileList, onChange: setFileList} = field
+                  const removeList = form.getValues('removeList')
+                  return (
+                    <ImgCrop
+                      modalTitle={'Обрезка изображения'}
+                      modalOk={'Сохранить'}
+                      modalCancel={'Отмена'}
+                      modalWidth={'100rem'}
+                      aspect={1.5} // Ширина на высоту
+                    >
+                      <Upload
+                        action={uploadURL}
+                        maxCount={1}
+                        listType='picture-card'
+                        onPreview={onPreview}
+                        onRemove={(file) => {
+                          form.setValue('removeList', [...removeList, file.name])
+                        }}
+                        onChange={({fileList: newFileList, file}) => {
+                          setFileList(uploadFile(fileList, newFileList, file))
+                        }}
+                        fileList={fileList}
+                      >
+                        {'Загрузить'}
+                      </Upload>
+                    </ImgCrop>
+                  )
+                }}
+              />
+            </div>
           </div>
-        </div>
-        <div className={cl.secondTitle}>
-          Редактор страницы
-        </div>
-        <PageEditor
-          imageList={editorImages}
-          componentsList={editorComponents}
-          imageHandler={setEditorImages}
-          componentsHandler={setEditorComponents}
-        />
-        <div style={{display: 'flex', justifyContent: 'end', padding: '0 1rem 1rem 0', gap: '1rem'}}>
-          <button
-            style={{width: '14rem'}}
-            className={'button button_deny'}
-            onClick={closeHandler}
-          >
-            Отменить
-          </button>
-          <button
-            style={{width: '14rem'}}
-            className={'button button_accept'}
-            type={'submit'}
-          >Сохранить
-          </button>
-        </div>
-      </form>
+          <div className={cl.secondTitle}>
+            Редактор страницы
+          </div>
+          <PageEditor/>
+          <div style={{display: 'flex', justifyContent: 'end', padding: '0 1rem 1rem 0', gap: '1rem'}}>
+            <button
+              style={{width: '14rem'}}
+              className={'button button_deny'}
+              onClick={closeHandler}
+            >
+              Отменить
+            </button>
+            <button
+              style={{width: '14rem'}}
+              className={'button button_accept'}
+              type={'submit'}
+            >Сохранить
+            </button>
+          </div>
+        </form>
+      </FormProvider>
+
     </Modal>
   );
 };

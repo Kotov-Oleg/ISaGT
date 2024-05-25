@@ -12,3 +12,5 @@ export const deleteImages = async (deleteList: string[]): Promise<ResponseMessag
     return response
   } catch (err: any) { throw new Error(err.response.data.message) }
 }
+
+export const uploadURL = 'http://localhost:5000/api/image'

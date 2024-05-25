@@ -1,6 +1,13 @@
-// Вся страница
-export interface PageI {
+// Отдельная страница
+export interface IndividualPageI {
   name: string
+  images?: string[]
+  components: ComponentI[]
+}
+
+// Страница новости / мероприятия
+export interface PageI {
+  images?: string[]
   components: ComponentI[]
 }
 
@@ -21,7 +28,6 @@ interface ComponentsOptionsI {
 // Компонент страницы
 export interface ComponentI {
   name: string
-  images?: string[]
   document?: TitleI |
     SubtitleI |
     TextI |
@@ -43,7 +49,7 @@ export interface TextI {
 export interface PersonCardI {
   fio: string,
   position: string // Должность
-  photo: string
+  photo: string[]
   stepen: string
   zvanie: string
   text: string
@@ -102,7 +108,7 @@ const defaultText: TextI = {
 const defaultPersonCard: PersonCardI = {
   fio: '',
   position: '',
-  photo: '',
+  photo: [],
   stepen: '',
   zvanie: '',
   text: ''
@@ -136,7 +142,6 @@ export const defaultValues: ComponentI[] = [
   },
   {
     name: 'person-card',
-    images: [],
     document: defaultPersonCard
   },
   {

@@ -5,6 +5,11 @@ import cn from "classnames";
 import {ComponentI, defaultValues} from "src/types/pageEditor";
 import SelectComponent from "src/components/pages/admin/page-editor/select-component/SelectComponent";
 import Title from "src/components/pages/admin/page-editor/title/Title";
+import {Controller, FieldValues, useFieldArray, useFormContext} from "react-hook-form";
+import Subtitle from "src/components/pages/admin/page-editor/subtitle/Subtitle";
+import Text from "src/components/pages/admin/page-editor/text/Text";
+import PageLink from "src/components/pages/admin/page-editor/page-link/PageLink";
+import PersonCard from "src/components/pages/admin/page-editor/person-card/PersonCard";
 
 export interface ComponentsPropsI {
   index: number
@@ -12,75 +17,64 @@ export interface ComponentsPropsI {
 }
 
 interface PropsI {
-  imageList: string[] // список страниц
-  componentsList: ComponentI[] // данные компонентов
-  imageHandler: (a: string[]) => void
-  componentsHandler:  React.Dispatch<React.SetStateAction<ComponentI[]>>
+
 }
 
-const PageEditor: FC<PropsI> = ({imageList, componentsList, imageHandler, componentsHandler}) => {
-
-  const [components, setComponents] = useState<ReactNode[]>([])
+const PageEditor: FC<PropsI> = ({}) => {
+  console.log('render editor')
+  const {control, watch, register, setValue} = useFormContext()
+  const {fields, append, remove} = useFieldArray({
+    control,
+    name: 'editorComponents'
+  })
 
   // Создание нового компонента (селект)
   const addComponentHandler = (): void => {
-    componentsHandler((prev) => {
-      return [...prev, {name: 'select'}]
-    })
+    append({name: 'select'})
   }
 
   // Удаление компонента
   const deleteHandler = (index: number): void => {
-    componentsHandler(prev => {
-      let newList = [...prev]
-      newList.splice(index, 1)
-      return newList
-    })
+    remove(index)
   }
 
   // Выбор компонента
   const selectHandler = (index: number, value: string): void => {
-    let data: ComponentI
-    componentsHandler(prev => {
-      let newList = [...prev]
-      newList.splice(index, 1, defaultValues.filter(data => data.name === value)[0])
-      console.log('newList', newList)
-      return newList
-    })
+    setValue(`editorComponents.${index}`, defaultValues.filter(data => data.name === value)[0])
   }
-
-  useEffect(() => {
-    const createComponents = (list: ComponentI[]): void => {
-      let newList: ReactNode[] = []
-      list.forEach((data, index) => {
-        if (data.name === 'select') {
-          newList.push(<SelectComponent
-            key={index}
-            index={index}
-            deleteHandler={deleteHandler}
-            selectHandler={selectHandler}
-          />)
-        } else if (data.name === 'title') {
-          newList.push(<Title
-            key={index}
-            index={index}
-            deleteHandler={deleteHandler}
-            // @ts-ignore
-            data={data.document}
-          />)
-        }
-      })
-      setComponents(newList)
-    }
-    if (componentsList) {
-      createComponents(componentsList)
-    }
-
-  }, [componentsList]);
 
   return (
     <div className={cl.pageEditor}>
-      {components}
+      {fields.map((field, index) => {
+        return (
+          <Controller
+            key={field.id}
+            name={`editorComponents.${index}`}
+            control={control}
+            render={({field: {value}}) => {
+              if (value.name === 'select') {
+                return (<SelectComponent
+                  index={index}
+                  deleteHandler={deleteHandler}
+                  selectHandler={selectHandler}
+                />)
+              } else if (value.name === 'title') {
+                return <Title index={index} deleteHandler={deleteHandler}/>
+              } else if (value.name === 'subtitle') {
+                return <Subtitle index={index} deleteHandler={deleteHandler}/>
+              } else if (value.name === 'text') {
+                return <Text index={index} deleteHandler={deleteHandler}/>
+              } else if (value.name === 'person-card') {
+                return <PersonCard index={index} deleteHandler={deleteHandler}/>
+              } else if (value.name === 'accordion') {
+
+              } else if (value.name === 'page-link') {
+                return <PageLink index={index} deleteHandler={deleteHandler}/>
+              }
+            }}
+          />
+        )
+      })}
       <button
         type={'button'}
         className={cn('button button_accept', cl.addBtn)}

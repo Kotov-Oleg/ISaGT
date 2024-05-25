@@ -1,22 +1,21 @@
 import React, {FC} from 'react';
-import {ComponentsPropsI} from "src/components/pages/admin/page-editor/PageEditor";
-
-import * as cl from '../PageEditor.module.scss'
-import {TitleI} from "src/types/pageEditor";
 import {useFormContext} from "react-hook-form";
+import * as cl from "src/components/pages/admin/page-editor/PageEditor.module.scss";
 import TextareaAutosize from "react-textarea-autosize";
+import {ComponentsPropsI} from "src/components/pages/admin/page-editor/PageEditor";
 
 interface PropsI extends ComponentsPropsI {
 
 }
 
-const Title: FC<PropsI> = ({index, deleteHandler}) => {
+
+const Text: FC<PropsI> = ({index, deleteHandler}) => {
   const {register} = useFormContext()
 
   return (
     <div className={cl.editorComponent}>
       <div className={cl.componentTitle}>
-        Заголовок
+        Текст
       </div>
       <div className={cl.deleteBtnContainer}>
         <button
@@ -36,4 +35,4 @@ const Title: FC<PropsI> = ({index, deleteHandler}) => {
   );
 };
 
-export default Title;
+export default Text;

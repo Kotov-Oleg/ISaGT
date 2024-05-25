@@ -1,0 +1,27 @@
+.checkbox {
+  appearance: none;
+  background-color: #eee;
+  box-shadow: none;
+  border: 1px solid var(--border-color);
+  width: 1.8rem ;
+  height: 1.8rem;
+  min-width: 1.8rem;
+  min-height: 1.8rem;
+  border-radius: 4px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.checkbox:checked {
+  background-image: url('../../data/icons/check.svg');
+  background-size: 1.6rem;
+}
+
+.checkbox:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.checkbox:focus-visible {
+  outline: none !important;
+}

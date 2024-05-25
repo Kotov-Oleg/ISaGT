@@ -1,5 +1,6 @@
 import {$authHost, $host} from "./index";
 import {ResponseMessageI} from './types';
+import {PageI} from "src/types/pageEditor";
 
 interface NewsPageCountParamsI {
   q: string
@@ -59,7 +60,7 @@ export const getOneNews = async (id: number): Promise<OneNewsI> => {
 interface CreateNewsI {
   title: string
   date: string
-  document: Object
+  document: string
   fileName: string
 }
 

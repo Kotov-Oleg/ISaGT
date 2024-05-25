@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: .7rem;
   padding: 1rem;
+  font-size: 1.6rem;
 }
 
 .editorComponent {
@@ -23,5 +24,8 @@
 
 .componentTitle {
   font-size: 2rem;
-  font-weight: 600;
+}
+
+.fieldTitle {
+  font-size: 1.6rem;
 }

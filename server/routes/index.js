@@ -12,3 +12,5 @@ router.use('/slider', require('./sliderRouter'))
 
 
 module.exports = router
+
+

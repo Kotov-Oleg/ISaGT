@@ -1,6 +1,4 @@
-// Импорт переменных среды из '.env' в 'process.env'
 require('dotenv').config()
-
 const path = require('path')
 const express = require("express")
 const cors = require('cors')
@@ -8,21 +6,15 @@ const fileUpload = require('express-fileupload')
 const router = require('./routes/index')
 const minioClient = require('./db/minioConnect.js')
 
-
 // Определение порта
 const port = process.env.PORT
-
 // Создание express приложения
 const app = express()
 // Подключение парсера JSON
 app.use(express.json())
-
 // Подключение CORS
 app.use(cors())
-
 app.use(fileUpload({}))
-
-// Расположены в правильном порядке
 // Подключение роутера запросов
 app.use('/api', router)
 // Middleware для раздачи статики из MinIO

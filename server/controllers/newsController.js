@@ -81,7 +81,6 @@ class NewsController {
     try {
       // Достаем данные из запроса
       const {title, date, document, fileName} = req.body
-
       // Запрос
       let query = `
         INSERT INTO news (title, date, preview, document)
@@ -92,7 +91,6 @@ class NewsController {
           '${document}'
         )
       `
-      console.log('query', query)
       await db.query(query)
       // Удаление тегов с сохраненого файла
       await minioClient.removeObjectTagging('images', fileName)
@@ -103,6 +101,7 @@ class NewsController {
       res.status(500).json({message})
     }
   }
+
 
   // Запрос на редактирование новости
   async updateNews(req, res) {

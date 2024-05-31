@@ -48,6 +48,7 @@ const SortableList: React.FC = () => {
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
+    console.log('event', event)
     if (active.id !== over?.id) {
       setItems((items) => {
         const oldIndex = items.indexOf(active.id as string);

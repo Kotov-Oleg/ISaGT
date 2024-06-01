@@ -98,7 +98,8 @@ const Form: FC<PropsI> = ({
         title: data.title,
         date: dateOnServer(data.date),
         document: JSON.stringify({}),
-        fileName: data.fileList[0].name
+        fileName: data.fileList[0].name,
+        facultyId: 1
       })
     } else {
       await updateNews({

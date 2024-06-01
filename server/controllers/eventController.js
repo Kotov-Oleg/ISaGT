@@ -5,18 +5,18 @@ const {Formatter} = require('fracturedjsonjs');
 const minioClient = require("../db/minioConnect");
 const formatter = new Formatter();
 
-class EventsController {
+class EventController {
   // Запрос количества страниц новостей
   async getEventsPageCount(req, res) {
     console.log('request: events page count')
     console.log(`data:    ${formatter.Serialize(req.query)}`)
     try {
-      const {q, rowsPerPage} = req.query
+      const {q, rowsPerPage, facultyId} = req.query
       const qLower = q.toLowerCase()
 
       let query =  `
         SELECT CEIL(count(*)/${rowsPerPage}::double precision) AS count
-        FROM events WHERE lower(title) LIKE '%${qLower}%'
+        FROM event WHERE lower(title) LIKE '%${qLower}%' AND id_faculty = ${facultyId};
       `
       const {count} = (await db.query(query)).rows[0]
       setTimeout(res.status(200).json(count), 10000)
@@ -32,18 +32,18 @@ class EventsController {
     console.log('request: all_events')
     console.log(`data:    ${formatter.Serialize(req.query)}`)
     try {
-      const {q, rowsPerPage, page, filter} = req.query
+      const {q, rowsPerPage, page, filter, facultyId} = req.query
       const qLower = q.toLowerCase()
 
       let query =  `
         SELECT id, title, date, preview, time
-        FROM events WHERE lower(title) LIKE '%${qLower}%'
+        FROM event WHERE lower(title) LIKE '%${qLower}%' AND id_faculty = ${facultyId}
         ${filter === 'today' ? 'AND date <= CURRENT_DATE' : ''}            
         LIMIT ${rowsPerPage} OFFSET ${rowsPerPage*(page-1)};
       `
-      const events = await db.query(query)
+      const events = (await db.query(query)).rows
 
-      res.status(200).json(events.rows)
+      res.status(200).json(events)
     } catch (error) {
       const message = 'Не удалось получить список мероприятий!'
       console.log('\x1b[31m%s\x1b[0m', `${message}\n${err}`)
@@ -53,20 +53,20 @@ class EventsController {
 
   // Запрос списка мероприятий для админки
   async getEventsAdmin(req, res) {
-    console.log('request: all_events')
+    console.log('request: all_events_admin')
     console.log(`data:    ${formatter.Serialize(req.query)}`)
     try {
-      const {q, rowsPerPage, page} = req.query
+      const {q, rowsPerPage, page, facultyId} = req.query
       const qLower = q.toLowerCase()
 
       let query =  `
-        SELECT id, title, date, time
-        FROM events WHERE lower(title) LIKE '%${qLower}%'
+        SELECT id, title, date, time, preview
+        FROM event WHERE lower(title) LIKE '%${qLower}%' AND id_faculty = ${facultyId}
         LIMIT ${rowsPerPage} OFFSET ${rowsPerPage*(page-1)};
       `
-      const events = await db.query(query)
+      const events = (await db.query(query)).rows
 
-      res.status(200).json(events.rows)
+      res.status(200).json(events)
     } catch (error) {
       const message = 'Не удалось получить список мероприятий!'
       console.log('\x1b[31m%s\x1b[0m', `${message}\n${err}`)
@@ -81,13 +81,10 @@ class EventsController {
     try {
       const eventsId = Number(req.params.id)
 
-      let query =  `
-        SELECT *
-        FROM events WHERE id = ${eventsId}
-      `
-      const news = await db.query(query)
+      let query =  `SELECT title, date, time, preview, document FROM event WHERE id = ${eventsId};`
+      const news = (await db.query(query)).rows[0]
 
-     res.status(200).json(news.rows[0])
+     res.status(200).json(news)
     } catch (error) {
       const message = 'Не удалось загрузить мероприятие!'
       console.log('\x1b[31m%s\x1b[0m', `${message}\n${error}`)
@@ -99,24 +96,24 @@ class EventsController {
     console.log('request: create event')
     console.log(`data:    ${formatter.Serialize(req.body)}`)
     try {
-      const {title, date, time, document, fileName} = req.body
+      const {title, date, time, document, fileName, facultyId} = req.body
 
       // Запрос
       let query = `
-        INSERT INTO events (title, date, time, preview, document)
+        INSERT INTO event (title, date, time, preview, document, id_faculty)
         VALUES (
           '${title}',
           '${date}',
           '${time}',
           '${fileName}',
-          '${document}'
-        )
+          '${document}',
+           ${facultyId}
+        );
       `
-      console.log('query', query)
       await db.query(query)
       // Удаление тегов с сохраненого файла
       await minioClient.removeObjectTagging('images', fileName)
-      res.status(200).send('Мероприятие успешно создано!')
+      res.status(200).json({message: 'Мероприятие успешно создано!'})
     } catch (error) {
       const message = 'Не удалось создать мероприятие!'
       console.log('\x1b[31m%s\x1b[0m', `${message}\n${error}`)
@@ -133,11 +130,11 @@ class EventsController {
 
       const query = `
         UPDATE event SET
-          title = '${title}',
-          date = '${date}',
-          time = '${time}',
-          document = '${document}',
-          preview = '${fileName}'
+          title      = '${title}',
+          date       = '${date}',
+          time       = '${time}',
+          document   = '${document}',
+          preview    = '${fileName}'
         WHERE id = ${id};
       `
       await db.query(query)
@@ -156,7 +153,7 @@ class EventsController {
     try {
       const {id} = req.params
 
-      const query = `DELETE FROM event WHERE id = ${id}`
+      const query = `DELETE FROM event WHERE id = ${id};`
 
       await db.query(query)
       res.status(200).json({message: 'Мероприятие успешно удалено!'})
@@ -169,4 +166,4 @@ class EventsController {
 
 }
 
-module.exports = new EventsController()
+module.exports = new EventController()

@@ -5,6 +5,7 @@ import {PageI} from "src/types/pageEditor";
 interface NewsPageCountParamsI {
   q: string
   rowsPerPage: number
+  facultyId: number
 }
 
 export interface NewsParamsI extends NewsPageCountParamsI {
@@ -57,11 +58,15 @@ export const getOneNews = async (id: number): Promise<OneNewsI> => {
   } catch (err: any) { throw new Error(err.response.data.message) }
 }
 
-interface CreateNewsI {
+interface BaseNewsI {
   title: string
   date: string
   document: string
   fileName: string
+}
+
+interface CreateNewsI extends BaseNewsI {
+  facultyId: number
 }
 
 // Добавление новости | title.length <= 150
@@ -72,7 +77,7 @@ export const createNews = async (data: CreateNewsI): Promise<ResponseMessageI> =
   } catch (err: any) { throw new Error(err.response.data.message) }
 }
 
-interface UpdateNewsI extends CreateNewsI {
+interface UpdateNewsI extends BaseNewsI {
   id: number
 }
 

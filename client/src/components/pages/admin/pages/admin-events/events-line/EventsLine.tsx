@@ -1,6 +1,6 @@
 import React, {FC, useState} from 'react';
 import * as cl from './EventsLine.module.scss';
-import {EventLineI} from "src/api/eventsAPI";
+import {EventLineI} from "src/api/eventAPI";
 import {dateOnClient} from "src/scripts/validation/change";
 
 interface PropsI extends EventLineI {

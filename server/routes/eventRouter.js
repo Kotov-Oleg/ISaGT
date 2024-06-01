@@ -1,6 +1,6 @@
 const Router = require('express')
 const router = new Router()
-const eventsController = require('../controllers/eventsController')
+const eventsController = require('../controllers/eventController')
 const authMiddleware = require('../middleware/authMiddleware')
 const checkAccess = require('../middleware/checkAccessMiddleware')
 

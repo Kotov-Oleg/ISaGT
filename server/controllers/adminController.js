@@ -18,12 +18,13 @@ class AdminController {
         SELECT
           ad.id, ad.surname, ad.name, ad.patronymic, ad.login, ad.password,
           json_build_object(
-            'super',  ac.super,
-            'slider', ac.slider,
-            'news',   ac.news,
-            'pages',  ac.pages,
-            'events', ac.events,
-            'faq',    ac.faq
+            'super',   ac.super,
+            'faculty', ac.faculty,
+            'slider',  ac.slider,
+            'news',    ac.news,
+            'pages',   ac.pages,
+            'events',  ac.events,
+            'faq',     ac.faq
           ) AS access
         FROM admin ad JOIN access ac ON ad.id = ac.id;
       `
@@ -31,7 +32,7 @@ class AdminController {
 
       res.status(200).json(admins)
     } catch (err) {
-      const message = '[admin:32] Не удалось получить список администратовров!'
+      const message = 'Не удалось получить список администратовров!'
       console.log('\x1b[31m%s\x1b[0m', `${message}\n${err}`)
       res.status(500).json({message})
     }
@@ -49,7 +50,7 @@ class AdminController {
 
       res.status(200).json(value)
     } catch (err) {
-      const message = '[admin:50] Не удалось проверить уникальность логина!'
+      const message = 'Не удалось проверить уникальность логина!'
       console.log('\x1b[31m%s\x1b[0m', `${message}\n${err}`)
       res.status(500).json({message})
     }
@@ -75,16 +76,14 @@ class AdminController {
 
         SELECT CAST(currval('admin_id_seq') AS integer) AS "adminId";
       `
-      console.log('query1', query)
       const {adminId} = (await db.query(query))[1].rows[0]
 
       query = `
         -- Создание доступов администратора
-        INSERT INTO access (id, super, slider, news, pages, events, faq)
-        SELECT ${adminId}, d.super, d.slider, d.news, d.pages, d.events, d.faq
+        INSERT INTO access (id, super, faculty, slider, news, pages, events, faq)
+        SELECT ${adminId}, d.super, d.faculty, d.slider, d.news, d.pages, d.events, d.faq
         FROM json_populate_record(null::json_access, '${JSON.stringify(access)}') AS d;
       `
-      console.log('query2', query)
       await db.query(query)
 
       res.status(200).json({message: 'Администратор успешно добавлен!'})
@@ -114,14 +113,15 @@ class AdminController {
 
         -- Обновление доступов администратора
         UPDATE access SET
-          super  = subq.super,
-          slider = subq.slider,
-          news   = subq.news,
-          pages  = subq.pages,
-          events = subq.events,
-          faq    = subq.faq
+          super   = subq.super,
+          faculty = subq.faculty,
+          slider  = subq.slider,
+          news    = subq.news,
+          pages   = subq.pages,
+          events  = subq.events,
+          faq     = subq.faq
         FROM (
-          SELECT super, slider, news, pages, events, faq
+          SELECT super, faculty, slider, news, pages, events, faq
           FROM json_populate_record(null::json_access, '${JSON.stringify(access)}')
         ) AS subq
         WHERE id = ${adminId};
@@ -131,7 +131,7 @@ class AdminController {
 
       res.status(200).json({message: 'Данные администратора успешно обновлены!'})
     } catch (err) {
-      const message = '[admin:126] Не удалось обновить данные администратора!'
+      const message = 'Не удалось обновить данные администратора!'
       console.log('\x1b[31m%s\x1b[0m', `${message}\n${err}`)
       res.status(500).json({message})
     }
@@ -152,7 +152,7 @@ class AdminController {
 
       res.status(200).json({message: 'Администратор успешно удален!'})
     } catch (err) {
-      const message = '[admin:147] Не удалось удалить администратора!'
+      const message = 'Не удалось удалить администратора!'
       console.log('\x1b[31m%s\x1b[0m', `${message}\n${err}`)
       res.status(500).json({message})
     }
@@ -171,7 +171,7 @@ class AdminController {
 
       res.status(200).json(options)
     } catch (err) {
-      const message = '[admin:169] Не удалось получить список доступов!'
+      const message = 'Не удалось получить список доступов!'
       console.log('\x1b[31m%s\x1b[0m', `${message}\n${err}`)
       res.status(500).json({message})
     }

@@ -7,11 +7,11 @@ import NewsForm from "src/components/pages/admin/pages/admin-news/news-form/News
 import cn from "classnames";
 import NewsHead from "src/components/pages/admin/pages/admin-news/news-head/NewsHead";
 import {useFetchData} from "src/scripts/fetchData";
-import {getEvents} from "src/api/eventsAPI";
+import {getEvents} from "src/api/eventAPI";
 
 
 const AdminEvents = () => {
-  const {data, update} = useFetchData(() => getEvents({page: 1, q: '', rowsPerPage: 50}))
+  const {data, update} = useFetchData(() => getEvents({page: 1, q: '', rowsPerPage: 50, facultyId: 1, filter: 'all'}))
   const [eventComponents, setEventComponents] = useState<ReactNode[]>([])
 
   useEffect(() => {

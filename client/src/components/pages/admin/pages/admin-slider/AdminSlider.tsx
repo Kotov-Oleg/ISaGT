@@ -9,7 +9,7 @@ import SliderHead from "src/components/pages/admin/pages/admin-slider/slider-hea
 import SliderLine from "src/components/pages/admin/pages/admin-slider/slider-line/SliderLine";
 
 const AdminSlider = () => {
-  const {data, update} = useFetchData(() => getSliders())
+  const {data, update} = useFetchData(() => getSliders(1))
   const [sliderComponents, setSliderComponents] = useState<ReactNode[]>([])
 
   useEffect(() => {

@@ -3,6 +3,7 @@ import {ResponseMessageI} from "./types";
 
 export interface AccessI {
   super: boolean
+  faculty: boolean
   slider: boolean
   news: boolean
   pages: boolean

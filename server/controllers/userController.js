@@ -29,12 +29,13 @@ class UserController {
       const {login, password} = req.body
       const query = `
         SELECT a.id, password, surname, name, patronymic, json_build_object(
-          'super',  a2.super,
-          'slider', a2.slider,
-          'news',   a2.news,
-          'pages',  a2.pages,
-          'events', a2.events,
-          'faq',    a2.faq
+          'super',   a2.super,
+          'faculty', a2.faculty,
+          'slider',  a2.slider,
+          'news',    a2.news,
+          'pages',   a2.pages,
+          'events',  a2.events,
+          'faq',     a2.faq
         ) AS access
         FROM admin a JOIN public.access a2 on a.id = a2.id
         WHERE '${login}' = a.login;

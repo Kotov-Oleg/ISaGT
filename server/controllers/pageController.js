@@ -5,17 +5,18 @@ const {Formatter} = require('fracturedjsonjs');
 const {query} = require("express");
 const formatter = new Formatter();
 
-class PagesController {
+class PageController {
 
   async getPages(req, res) {
-    console.log('request: page')
+    console.log('request: pages')
     console.log(`data:    ${formatter.Serialize(req.params)}`)
     try {
-      let query = `
-        SELECT * FROM pages;
-      `
-      const pages = await db.query(query)
-      res.status(200).json(pages.rows)
+      const {id: facultyId} = req.params
+
+      let query = `SELECT id, alias, document FROM page WHERE id_faculty = ${facultyId};`
+      const pages = (await db.query(query)).rows
+
+      res.status(200).json(pages)
     } catch (error) {
       const message = 'Не удалось получить список страниц!'
       console.log('\x1b[31m%s\x1b[0m', `${message}\n${error}`)
@@ -26,18 +27,14 @@ class PagesController {
   // Запрос одной новости
   async getPage(req, res) {
     console.log('request: page')
-    console.log(`data:    ${formatter.Serialize(req.params)}`)
+    console.log(`data:    ${formatter.Serialize(req.query)}`)
     try {
-      const {page_name} = req.params
+      const {alias, facultyId} = req.query
 
-      let query =  `
-        SELECT *
-        FROM pages WHERE name = '${page_name}' 
-      `
+      let query =  `SELECT document FROM page WHERE alias = '${alias}' AND id_faculty = ${facultyId};`
+      const {document} = (await db.query(query)).rows[0]
 
-      const page = await db.query(query)
-
-      res.status(200).json(page.rows[0])
+      res.status(200).json(document)
     } catch (error) {
       const message = 'Не удалось получить страницу!'
       console.log('\x1b[31m%s\x1b[0m', `${message}\n${error}`)
@@ -46,4 +43,4 @@ class PagesController {
   };
 }
 
-module.exports = new PagesController()
+module.exports = new PageController()

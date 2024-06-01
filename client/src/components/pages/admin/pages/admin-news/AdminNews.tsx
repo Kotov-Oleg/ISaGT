@@ -12,7 +12,7 @@ import NewsForm from "src/components/pages/admin/pages/admin-news/news-form/News
 
 
 const AdminNews = () => {
-  const {data, update} = useFetchData(() => getNews({page: 1, q: '', rowsPerPage: 50, filter: 'all'}))
+  const {data, update} = useFetchData(() => getNews({page: 1, q: '', rowsPerPage: 50, filter: 'all', facultyId: 1}))
 
   const [newsComponents, setNewsComponents] = useState<ReactNode[]>([])
 

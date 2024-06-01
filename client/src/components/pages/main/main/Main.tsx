@@ -10,7 +10,7 @@ const Main = () => {
   return (
     <div>
       {data && (
-        <PageCollector document={data.data}/>
+        <PageCollector document={data}/>
       )}
     </div>
   );

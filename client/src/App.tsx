@@ -17,15 +17,22 @@ import {useUserStore} from "src/store/userStore";
 // Импорт запросов
 import {checkAuth} from "src/api/userAPI";
 import Loader from "src/components/react-blocks/loader/Loader";
+import {useFacultyStore} from "src/store/facultyStore";
+import {getFaculties} from "src/api/facultyAPI";
 
 
 const App: FC = () => {
   const isAuth = useUserStore(state => state.isAuth)
   const login = useUserStore(state => state.login)
+
+  const {faculties, loadFaculties} = useFacultyStore()
+
+  // Загрузка страницы
   const [isLoading, setIsLoading] = useState(true)
 
-  // Автоматическая авторизация при наличии токена
+
   useEffect(() => {
+    // Автоматическая авторизация при наличии токена
     const token: string | null = localStorage.getItem('token')
     if (token) {
       checkAuth()
@@ -34,6 +41,9 @@ const App: FC = () => {
     } else {
       setIsLoading(false)
     }
+    // Загрузка факультетов
+    // getFaculties()
+    //   .then(res => loadFaculties(res))
   }, []);
 
   if (isLoading) {
@@ -47,7 +57,7 @@ const App: FC = () => {
       router={createBrowserRouter([
         ...unauthorizedRoutes(isAuth),
         ...adminRoutes(isAuth),
-        ...defaultRoutes()
+        ...defaultRoutes(faculties)
       ])}
     />
   );

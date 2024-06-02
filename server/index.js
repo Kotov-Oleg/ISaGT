@@ -19,18 +19,22 @@ app.use(fileUpload({}))
 app.use('/api', router)
 // Middleware для раздачи статики из MinIO
 app.use('/', (req, res, next) => {
-  // удаляем первый слеш из пути
-  const objectName = req.path.slice(1);
-  // Получаем объект из MinIO
-  minioClient.getObject('images', objectName, (err, dataStream) => {
-    if (err) {
-      console.log(err)
-      res.status(404).send('Файл не найден');
-      return;
-    }
-    // Отправляем содержимое объекта в ответ на запрос
-    dataStream.pipe(res);
-  });
+  try {
+    // удаляем первый слеш из пути
+    const objectName = req.path.slice(1);
+    // Получаем объект из MinIO
+    minioClient.getObject('images', objectName, (err, dataStream) => {
+      if (err) {
+        console.log(err)
+        res.status(404).send('Файл не найден');
+        return;
+      }
+      // Отправляем содержимое объекта в ответ на запрос
+      dataStream.pipe(res);
+    });
+  } catch (err) {
+    console.log('Ошибка получения статики', err)
+  }
 });
 
 // Запуск сервера

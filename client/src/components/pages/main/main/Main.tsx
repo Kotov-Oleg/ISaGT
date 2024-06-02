@@ -5,13 +5,14 @@ import {getPage} from "src/api/pageAPI";
 
 const Main = () => {
 
-  const {data} = useFetchData(() => getPage('test', 1))
+  // const {data} = useFetchData(() => getPage('test', 1))
 
   return (
     <div>
-      {data && (
-        <PageCollector document={data}/>
-      )}
+      Главная страница
+      {/*{data && (*/}
+      {/*  <PageCollector document={data}/>*/}
+      {/*)}*/}
     </div>
   );
 };

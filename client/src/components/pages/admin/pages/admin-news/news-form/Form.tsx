@@ -49,12 +49,6 @@ const Form: FC<PropsI> = ({
   update
 }) => {
 
-  // Изображения
-  // const [fileList, setFileList] = useState<UploadFile[]>([]);
-  // const [removeList, setRemoveList] = useState<string[]>([])
-
-  // const [editorImages, setEditorImages] = useState<string[]>([])
-  // const [editorComponents, setEditorComponents] = useState<ComponentI[]>([])
 
   const form = useForm<FormI>({
     defaultValues: async (): Promise<FormI> => {
@@ -71,6 +65,7 @@ const Form: FC<PropsI> = ({
         console.log('form render')
         await getOneNews(id)
           .then(res => {
+            console.log('res', res)
             form.reset({
               id: res.id,
               title: res.title,
@@ -82,8 +77,10 @@ const Form: FC<PropsI> = ({
                 url: apiUrl + res.preview
               }],
               removeList: [],
-              editorImages: [], // TODO доделать логику с бека
-              editorComponents: [] // TODO
+              // @ts-ignore
+              editorImages: res.document.images, // TODO доделать типизацию
+              // @ts-ignore
+              editorComponents: res.document.components // TODO
             })
           })
       }
@@ -97,7 +94,7 @@ const Form: FC<PropsI> = ({
       await createNews({
         title: data.title,
         date: dateOnServer(data.date),
-        document: JSON.stringify({}),
+        document: JSON.stringify({images: data.editorImages, components: data.editorComponents}),
         fileName: data.fileList[0].name,
         facultyId: 1
       })
@@ -106,7 +103,7 @@ const Form: FC<PropsI> = ({
         id: data.id,
         title: data.title,
         date: dateOnServer(data.date),
-        document: JSON.stringify({}),
+        document: JSON.stringify({images: data.editorImages, components: data.editorComponents}),
         fileName: data.fileList[0].name
       })
       await deleteImages(data.removeList)

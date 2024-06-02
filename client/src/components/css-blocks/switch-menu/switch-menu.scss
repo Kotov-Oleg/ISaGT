@@ -1,0 +1,11 @@
+.switch-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: .7rem;
+    background: var(--switch-background);
+    height: 3rem;
+    gap: .7rem;
+    padding: 0 .35rem;
+}

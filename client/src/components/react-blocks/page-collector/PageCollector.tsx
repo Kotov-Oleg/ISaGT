@@ -8,9 +8,6 @@ import PersonCard from "src/components/react-blocks/page-collector/person-card/P
 import Accordion from "src/components/react-blocks/page-collector/accordion/Accordion";
 import PageLink from "src/components/react-blocks/page-collector/page-link/PageLink";
 
-
-
-
 export interface DocumentI {
   name: string
   document: any

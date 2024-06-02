@@ -1,0 +1,21 @@
+.switch-menu__btn {
+    text-decoration: none;
+    text-align: center;
+    color: var(--dark-text);
+    border: 1px solid var(--border-color);
+    font-size: 1.6rem;
+    padding: 0 .7rem;
+    background-color: var(--body-color);
+    border-radius: .5rem;
+    height: 2.4rem;
+    line-height: 2.4rem;
+}
+
+.switch-menu__btn.active {
+    color: var(--white-text);
+    background-color: var(--active-page);
+}
+
+.switch-menu__btn:focus-visible {
+    outline: none !important;
+}

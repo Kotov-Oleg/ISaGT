@@ -5,6 +5,8 @@ import {useUserStore} from "src/store/userStore";
 import {useNavigate} from "react-router-dom";
 import {mainRoute} from "src/routes/defaultRoutes";
 
+const faculties = [{id: 1, name: 'ИСиГТ'}, {id: 2, name: 'ИГиО'}]
+
 const AdminNavbar = () => {
   const user = useUserStore(state => state.user)
   const logout = useUserStore(state => state.logout)
@@ -20,7 +22,12 @@ const AdminNavbar = () => {
   return (
     <div className={cl.navbar}>
       <div className={cl.title}>
-        ИСиГТ АДМИН
+        Факультеты РГГМУ
+      </div>
+      <div className={'switch-menu'}>
+        {faculties.map(faculty =>
+          <div key={faculty.id} className={'switch-menu__btn'}>{faculty.name}</div>
+        )}
       </div>
       <div className={cl.user}>
         <div className={cl.userName}>{`${user.surname} ${user.name}`}</div>

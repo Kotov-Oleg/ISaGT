@@ -24,7 +24,7 @@ class NewsController {
       res.status(200).json(count)
     } catch (error) {
       const message = 'Не удалось получить количество страниц!'
-      console.log('\x1b[31m%s\x1b[0m', `${message}\n${err}`)
+      console.log('\x1b[31m%s\x1b[0m', `${message}\n${error}`)
       res.status(500).json({message})
     }
   };
@@ -39,7 +39,7 @@ class NewsController {
 
       let query =  ` 
         SELECT id, title, date, preview
-        FROM news WHERE lower(title) LIKE '%${qLower}%' AND id_faculty = ${facultyId};
+        FROM news WHERE lower(title) LIKE '%${qLower}%' AND id_faculty = ${facultyId}
         ${filter === 'today' ? 'AND date <= CURRENT_DATE' : ''}
         ORDER BY date DESC LIMIT ${rowsPerPage} OFFSET ${rowsPerPage*(page-1)};
       `
@@ -48,7 +48,7 @@ class NewsController {
       res.status(200).json(news)
     } catch (error) {
       const message = 'Не удалось получить список новостей!'
-      console.log('\x1b[31m%s\x1b[0m', `${message}\n${err}`)
+      console.log('\x1b[31m%s\x1b[0m', `${message}\n${error}`)
       res.status(500).json({message})
     }
   };
@@ -66,7 +66,7 @@ class NewsController {
       res.status(200).json(news)
     } catch (error) {
       const message = 'Не удалось получить новость!'
-      console.log('\x1b[31m%s\x1b[0m', `${message}\n${err}`)
+      console.log('\x1b[31m%s\x1b[0m', `${message}\n${error}`)
       res.status(500).json({message})
     }
   };
@@ -119,9 +119,9 @@ class NewsController {
       // Удаление тегов с сохраненого файла
       await minioClient.removeObjectTagging('images', fileName)
       res.status(200).json({message: 'Новость успешно обновлена!'})
-    } catch (err) {
+    } catch (error) {
       const message = 'Не удалось обновить новость!'
-      console.log('\x1b[31m%s\x1b[0m', `${message}\n${err}`)
+      console.log('\x1b[31m%s\x1b[0m', `${message}\n${error}`)
       res.status(500).json({message})
     }
   }
@@ -137,9 +137,9 @@ class NewsController {
 
       await db.query(query)
       res.status(200).json({message: 'Новость успешно удалена!'})
-    } catch (err) {
+    } catch (error) {
       const message = 'Не удалось удалить новость!'
-      console.log('\x1b[31m%s\x1b[0m', `${message}\n${err}`)
+      console.log('\x1b[31m%s\x1b[0m', `${message}\n${error}`)
       res.status(500).json({message})
     }
   }

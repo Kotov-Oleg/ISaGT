@@ -7,7 +7,7 @@ export interface IndividualPageI {
 
 // Страница новости / мероприятия
 export interface PageI {
-  images?: string[]
+  images: string[]
   components: ComponentI[]
 }
 

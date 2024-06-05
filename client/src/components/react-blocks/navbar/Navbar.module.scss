@@ -1,13 +1,22 @@
-.navbar {
-  width: 100%;
+.gradientContainer {
   background: rgb(62,101,180);
   background: linear-gradient(45deg, rgba(62,101,180,1) 0%, rgba(92,191,170,1) 100%);
 }
+.navbar {
+  width: 100%;
+  height: 5.5rem;
+  box-sizing: border-box;
+  padding: 0 10rem 0 3rem;
+}
 .navbarContent {
-  width: 128rem;
+  width: 160rem;
   margin: auto;
   display: flex;
   justify-content: space-between;
+}
+.titleContainer {
+  display: flex;
+  gap: 5rem;
 }
 .title {
   text-decoration: none;
@@ -32,4 +41,64 @@
 }
 .link:active {
   color: var(--white-text);
+}
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.burgerBtn {
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+}
+.slider {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+:global(.slick-dots) {
+  bottom: 1rem;
+  width: 50%;
+  margin: 0;
+  text-align: left;
+  //ri: 1rem;
+}
+.slide {
+  height: 60rem;
+  width: 160rem !important;
+  display: flex !important;
+  margin-left: auto;
+  margin-right: 8rem;
+}
+.leftSlide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 50%;
+  height: 100%;
+  padding: 5rem 5rem 5rem 0;
+  box-sizing: border-box;
+}
+.rightSlide {
+  display: flex;
+  width: 50%;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.slideTitle {
+  font-size: 6.4rem;
+  font-weight: bold;
+  color: var(--white-text);
+}
+.slideBody {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--white-text);
+}
+.photo {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
 }

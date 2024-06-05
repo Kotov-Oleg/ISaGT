@@ -8,6 +8,7 @@ import {redirect, useNavigate} from "react-router-dom";
 import {adminRoute} from "src/routes/authorizedRoutes";
 import {login} from "src/api/userAPI";
 import {useUserStore} from "src/store/userStore";
+import {useFacultyStore} from "src/store/facultyStore";
 
 interface FormI {
   login: string
@@ -25,13 +26,14 @@ const AuthorizationPage = () => {
       password: ''
     }
   })
+
   const onSubmit: SubmitHandler<FormI> = async (data) => {
     console.log('data', data)
     login(data.login, data.password)
       .then((data) => {
         // Перенаправление на главную страницу админки при успешной авторизации
         authUser(data)
-        navigate('/' + adminRoute)
+        navigate(adminRoute)
       })
       .catch(err => {
         console.log(err)

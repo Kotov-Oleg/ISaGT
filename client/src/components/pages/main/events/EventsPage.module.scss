@@ -1,0 +1,26 @@
+.eventsPage {
+  width: 100%;
+  background-color: #f2f4f7;
+}
+
+.eventsFeed {
+  width: 160rem;
+  margin: auto;
+}
+
+.title {
+  font-size: 3.6rem;
+  font-weight: bold;
+}
+
+.eventCard {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0px 0px 30px;
+  width: 100%;
+  justify-content: space-between;
+  color: #000;
+  border-radius: 4px;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+  text-decoration: none;
+}

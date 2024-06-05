@@ -3,6 +3,7 @@ import {devtools} from "zustand/middleware";
 
 
 export interface FacultyI {
+  id: number
   fullName: string
   abbreviation: string
   alias: string
@@ -20,7 +21,9 @@ export const useFacultyStore = create<FacultiesI>()(
   devtools(
     (set) => ({
       faculties: [],
-      loadFaculties: (a: FacultyI[]) => set(state => ({...state, faculties: a}))
+      loadFaculties: (a: FacultyI[]) => set(state => {
+        return ({faculties: a})
+      })
     })
   )
 )

@@ -7,55 +7,88 @@ import Main from "src/components/pages/main/main/Main";
 import Navbar from "src/components/react-blocks/navbar/Navbar";
 import Direkciya from "src/components/pages/main/direkciya/Direkciya";
 import {FacultyI, useFacultyStore} from "src/store/facultyStore";
+import FacultyRoute from "src/routes/FacultyRoute";
+import Kafedra from "src/components/pages/main/kafedra/Kafedra";
+import Education from "src/components/pages/main/education/Education";
+import Science from "src/components/pages/main/science/Science";
+import NewsPage from "src/components/pages/main/news/NewsPage";
+import OneNewsPage from "src/components/pages/main/news/one-news-page/OneNewsPage";
+import EventsPage from "src/components/pages/main/events/EventsPage";
+import OneEventPage from "src/components/pages/main/events/one-event-page/OneEventPage";
 
-export const mainRoute: string = '/'
-export const direkciyaRoute: string = 'direkciya'
-export const snoRoute: string = 'sno'
-export const ulncRoute: string = 'ulnc'
+
 export const kafedryRoute: string = 'kafedry'
+export const direkciyaRoute: string = 'direkciya'
+export const educationRoute: string = 'education'
+export const scienceRoute: string = 'science'
+export const newsRoute: string = 'news'
+export const eventsRoute: string = 'events'
+
 
 
 
 export const defaultRoutes = (faculties: FacultyI[]): RouteObject[] => {
 
-  // const {faculties} = useFacultyStore()
-
-  // Проверка факультета на валидность
-  const FacultyRoute = () => {
-    const { faculty } = useParams();
-
-    if (faculties.findIndex(f=> f.alias === faculty) !== -1) {
-      return <Main />;
-    } else {
-      return <Navigate to={'/' + faculties[0].alias} replace/>;
-    }
-  };
 
   return [
     {
-      path: '/:faculty',
-      element: <FacultyRoute/>,
-
+      path: '/',
+      element: <FacultyRoute faculties={faculties}/>
     },
     {
-      path: '',
       element: <Navbar/>,
       children: [
         {
-          path: direkciyaRoute,
-          element: <Direkciya/>
-        },
-        {
-          path: snoRoute,
-        },
-        {
-          path: ulncRoute,
-        },
-        {
-          path: kafedryRoute
+          path: ':faculty',
+          children: [
+            {
+              index: true,
+              element: <FacultyRoute faculties={faculties}/>
+            },
+            {
+              path: kafedryRoute,
+              element: <Kafedra/>
+            },
+            {
+              path: direkciyaRoute,
+              element: <Direkciya/>
+            },
+            {
+              path: educationRoute,
+              element: <Education/>
+            },
+            {
+              path: scienceRoute,
+              element: <Science/>
+            },
+            {
+              path: newsRoute,
+              children: [
+                {
+                  index: true,
+                  element: <NewsPage/>
+                },
+                {
+                  path: ':newsId',
+                  element: <OneNewsPage/>
+                }
+              ]
+            },            {
+              path: eventsRoute,
+              children: [
+                {
+                  index: true,
+                  element: <EventsPage/>
+                },
+                {
+                  path: ':eventId',
+                  element: <OneEventPage/>
+                }
+              ]
+            },
+          ]
         }
       ]
-    },
-
+    }
   ]
 }

@@ -1,0 +1,90 @@
+.grayBlock {
+  width: 100%;
+  background-color: #f2f4f7;
+  padding: 4rem 0;
+}
+
+.infoBlock {
+  width: 128rem;
+  margin: auto;
+}
+
+.blockTitle {
+  margin-bottom: 3rem;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 2.6rem;
+  color: rgba(56, 142, 255, 0.7);
+  font-weight: 600;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.newsBlock {
+  width: 100%
+}
+
+.newsCards {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.newsCard {
+  border-radius: .5rem;
+  height: 30rem;
+  width: 30rem;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  padding: .5rem;
+}
+
+.newsCard:hover {
+
+}
+
+.newsImg {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: .5rem;
+}
+
+.newsTitle {
+  //appearance: none;
+  //text-decoration: none;
+  color: var(--dark-text);
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.newsTitle:active {
+  text-decoration: none;
+  color: var(--dark-text);
+}
+
+.eventsBlock {
+  width: 50%;
+}
+
+.eventCards {
+  height: 63rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 3rem;
+  gap: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+}
+
+.eventCard {
+  height: 15%;
+  width: 100%;
+  background-color: black;
+}

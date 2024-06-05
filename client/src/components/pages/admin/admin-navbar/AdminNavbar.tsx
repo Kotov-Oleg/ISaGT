@@ -2,21 +2,21 @@ import React from 'react';
 
 import * as cl from './AdminNavbar.module.scss'
 import {useUserStore} from "src/store/userStore";
-import {useNavigate} from "react-router-dom";
-import {mainRoute} from "src/routes/defaultRoutes";
-
-const faculties = [{id: 1, name: 'ИСиГТ'}, {id: 2, name: 'ИГиО'}]
+import {NavLink, useNavigate} from "react-router-dom";
+import {adminRoute} from "src/routes/authorizedRoutes";
+import {useFacultyStore} from "src/store/facultyStore";
 
 const AdminNavbar = () => {
   const user = useUserStore(state => state.user)
   const logout = useUserStore(state => state.logout)
+  const faculties = useFacultyStore(state => state.faculties)
 
   const navigate = useNavigate();
 
 
   const logoutHandler = (): void => {
     logout()
-    navigate(mainRoute)
+    navigate('/')
   }
 
   return (
@@ -26,7 +26,7 @@ const AdminNavbar = () => {
       </div>
       <div className={'switch-menu'}>
         {faculties.map(faculty =>
-          <div key={faculty.id} className={'switch-menu__btn'}>{faculty.name}</div>
+          <NavLink key={faculty.id} className={'switch-menu__btn'} to={`/${adminRoute}/${faculty.alias}`}>{faculty.abbreviation}</NavLink>
         )}
       </div>
       <div className={cl.user}>

@@ -11,51 +11,60 @@ import EditorPages from "src/components/pages/admin/pages/editor-pages/EditorPag
 import AdminAccounts from "src/components/pages/admin/pages/admin-accounts/AdminAccounts";
 import AdminFAQ from "src/components/pages/admin/pages/admin-faq/AdminFAQ";
 import AdminSchedule from "src/components/pages/admin/pages/admin-schedule/AdminSchedule";
+import AdminFaculty from "src/routes/AdminFaculty";
+import {FacultyI, useFacultyStore} from "src/store/facultyStore";
 
-export const adminRoute: string = ''
-export const adminNewsRoute: string = 'admin-news'
-export const adminEventsRoute: string = 'admin-events'
-export const adminSliderRoute: string = 'admin-slider'
-export const adminEditorPagesRoute: string = 'admin-editor-pages'
-export const adminAccountsRoute: string = 'admin-accounts'
-export const adminFAQRoute: string = 'admin-faq'
-export const adminScheduleRoute: string = 'admin-schedule'
+export const adminRoute: string = 'admin'
+export const adminNewsRoute: string = 'news'
+export const adminEventsRoute: string = 'events'
+export const adminSliderRoute: string = 'slider'
+export const adminEditorPagesRoute: string = 'editor-pages'
+export const adminAccountsRoute: string = 'accounts'
+export const adminFAQRoute: string = 'faq'
+export const adminScheduleRoute: string = 'schedule'
 
-export const adminRoutes = (isAuth: boolean): RouteObject[] => {
+export const adminRoutes = (isAuth: boolean, faculties: FacultyI[]): RouteObject[] => {
+
+
   console.log('isAuth', isAuth)
   if (isAuth) {
     return [{
       path: adminRoute,
-      element: <Admin/>,
+      element: <AdminFaculty faculties={faculties}/>,
       children: [
         {
-          path: adminNewsRoute,
-          element: <AdminNews/>
+          path: ':faculty',
+          children: [
+            {
+              path: adminNewsRoute,
+              element: <AdminNews/>
+            },
+            {
+              path: adminEventsRoute,
+              element: <AdminEvents/>
+            },
+            {
+              path: adminSliderRoute,
+              element: <AdminSlider/>
+            },
+            {
+              path: adminEditorPagesRoute,
+              element: <EditorPages/>
+            },
+            {
+              path: adminAccountsRoute,
+              element: <AdminAccounts/>
+            },
+            {
+              path: adminFAQRoute,
+              element: <AdminFAQ/>
+            },
+            {
+              path: adminScheduleRoute,
+              element: <AdminSchedule/>
+            }
+          ]
         },
-        {
-          path: adminEventsRoute,
-          element: <AdminEvents/>
-        },
-        {
-          path: adminSliderRoute,
-          element: <AdminSlider/>
-        },
-        {
-          path: adminEditorPagesRoute,
-          element: <EditorPages/>
-        },
-        {
-          path: adminAccountsRoute,
-          element: <AdminAccounts/>
-        },
-        {
-          path: adminFAQRoute,
-          element: <AdminFAQ/>
-        },
-        {
-          path: adminScheduleRoute,
-          element: <AdminSchedule/>
-        }
       ]
     }]
   } else {

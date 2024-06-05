@@ -54,8 +54,8 @@
 }
 .slider {
   width: 100%;
-  display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 :global(.slick-dots) {
   bottom: 1rem;
@@ -101,4 +101,143 @@
   width: 100%;
   height: 100%;
   border-radius: 2rem;
+}
+
+@media (max-width: 1600px) {
+  .navbar {
+    padding: 0 8rem 0 2rem;
+  }
+  .navbarContent {
+    width: 120rem;
+  }
+  .slide {
+    height: 50rem;
+    width: 140rem !important;
+  }
+  .slideTitle {
+    font-size: 5rem;
+  }
+  .slideBody {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 1280px) {
+  .navbar {
+    padding: 0 6rem 0 1rem;
+  }
+  .navbarContent {
+    width: 100rem;
+  }
+  .slide {
+    height: 45rem;
+    width: 120rem !important;
+  }
+  .leftSlide {
+    padding: 4rem 4rem 4rem 0;
+  }
+  .slideTitle {
+    font-size: 4rem;
+  }
+  .slideBody {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .navbar {
+    padding: 0 4rem 0 1rem;
+  }
+  .navbarContent {
+    width: 80rem;
+  }
+  .slide {
+    height: 40rem;
+    width: 100rem !important;
+  }
+  .leftSlide {
+    padding: 3rem 3rem 3rem 0;
+  }
+  .slideTitle {
+    font-size: 3rem;
+  }
+  .slideBody {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 744px) {
+  .navbar {
+    padding: 0 2rem 0 1rem;
+  }
+  .navbarContent {
+    width: 60rem;
+  }
+  .slide {
+    height: 35rem;
+    width: 80rem !important;
+  }
+  .leftSlide {
+    padding: 2rem 2rem 2rem 0;
+  }
+  .slideTitle {
+    font-size: 2.5rem;
+  }
+  .slideBody {
+    font-size: 1.5rem;
+  }
+  .rightSlide img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    height: 4rem;
+    padding: 0 1rem;
+  }
+  .navbarContent {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .titleContainer {
+    gap: 2rem;
+  }
+  .title {
+    font-size: 3rem;
+  }
+  .navigation {
+    gap: 2rem;
+    flex-direction: column;
+  }
+  .btnContainer {
+    display: none;
+  }
+  .slide {
+    flex-direction: column !important;
+    height: auto;
+    width: 100% !important;
+    margin-right: 0;
+  }
+  .leftSlide {
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+  }
+  .slideTitle {
+    font-size: 2rem;
+  }
+  .slideBody {
+    font-size: 1.2rem;
+  }
+  .rightSlide {
+    width: 100%;
+    justify-content: center;
+  }
+  .photo {
+    width: 90%;
+    height: auto;
+  }
 }

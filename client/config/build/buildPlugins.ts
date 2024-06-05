@@ -1,9 +1,10 @@
-import webpack, { Configuration, DefinePlugin } from "webpack";
+import webpack, { Configuration } from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import {BuildOptions} from "./types/types";
 import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer"
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+import DotenvWebpackPlugin from "dotenv-webpack";
 
 export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
     const {mode, paths, analyze} = options;
@@ -14,9 +15,14 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
     // Общий массив плагинов
     const plugins: Configuration['plugins'] = [
         new HtmlWebpackPlugin({template: paths.html}),
-        // Глобальные переменные доступные во всем проекте
+
+        // Подключение переменных среды
+        new DotenvWebpackPlugin({
+            path: paths.env
+        }),
+        // // Глобальные переменные доступные во всем проекте
         // new DefinePlugin({
-        //
+        //     'process.env.API_URL': JSON.stringify()
         // }),
     ]
 

@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 
-import {BrowserRouter, createBrowserRouter, Navigate, Route, RouterProvider, Routes, useParams} from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 // Импорт стилей
 import './index.scss';
@@ -31,7 +31,6 @@ const App: FC = () => {
   console.log('faculties', faculties)
   // Загрузка страницы
   const [isLoading, setIsLoading] = useState(true)
-
 
   useEffect(() => {
     // Автоматическая авторизация при наличии токена

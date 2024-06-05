@@ -4,7 +4,7 @@ export interface ResponseMessageI {
   message: string
 }
 
-export const baseURL: string = 'http://localhost:5000/';
+export const baseURL: string = process.env.API_URL;
 
 const $host: AxiosInstance = axios.create({
   baseURL,

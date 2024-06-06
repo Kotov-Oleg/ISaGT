@@ -47,7 +47,16 @@ export const defaultRoutes = (faculties: FacultyI[]): RouteObject[] => {
             },
             {
               path: kafedryRoute,
-              element: <Kafedra/>
+              children: [
+                {
+                  index: true,
+                  element: <Navigate to={'1'}/>
+                },
+                {
+                  path: ':depId',
+                  element: <Kafedra />
+                }
+              ]
             },
             {
               path: direkciyaRoute,

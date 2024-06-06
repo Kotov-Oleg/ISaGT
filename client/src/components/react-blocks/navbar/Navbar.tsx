@@ -37,11 +37,11 @@ const Navbar = () => {
               </NavLink>
             </div>
             <div className={cl.navigation}>
-              <NavLink className={cl.link} to={`${faculty}/${kafedryRoute}`}>
-                Кафедры
-              </NavLink>
               <NavLink className={cl.link} to={`${faculty}/${direkciyaRoute}`}>
                 Дирекция
+              </NavLink>
+              <NavLink className={cl.link} to={`${faculty}/${kafedryRoute}`}>
+                Кафедры
               </NavLink>
               <NavLink className={cl.link} to={`${faculty}/${educationRoute}`}>
                 Образование
@@ -61,7 +61,7 @@ const Navbar = () => {
             slidesToShow={1}
             slidesToScroll={1}
             arrows={false}
-            autoplay={true}
+            // autoplay={true}
             autoplaySpeed={6000}
           >
             {/*Слайд 1*/}

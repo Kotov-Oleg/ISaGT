@@ -1,11 +1,68 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+
+import * as cl from './NewsPage.module.scss'
+import {getNews, NewsLineI} from "src/api/newsAPI";
+import {Link} from "react-router-dom";
+import {baseURL} from "src/api";
+import dayjs from "dayjs";
+import cn from "classnames";
 
 const NewsPage = () => {
+  const [newsData, setNewsData] = useState<NewsLineI[]>([])
+  const [query, setQuery] = useState<string>('')
+
+
+
+  useEffect(() => {
+    const loadNews = async (q: string) => {
+      getNews({q: q, rowsPerPage: 20, page: 1, facultyId: 1, filter: 'today'})
+        .then(res => setNewsData(res))
+    }
+    loadNews(query)
+  }, [query]);
+
   return (
-    <div>
-      Новости
-    </div>
-  );
+    <>
+      <div className={cl.titleContainer}>
+        <div className={cl.title}>
+          Новости
+        </div>
+        <input
+          type="text"
+          className={cn('input', cl.input)}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+      </div>
+      <div className={cl.newsSection}>
+        {newsData.map(news => {
+          const date = dayjs(news.date).format('DD.MM.YYYY')
+          return (
+            <Link
+              key={news.id}
+              className={cl.card}
+              to={''}
+            >
+              <img
+                className={cl.cardImg}
+                src={baseURL + news.preview}
+                alt={news.title}
+              />
+              <div className={cl.cardContent}>
+                <span className={cl.cardTitle}>
+                  {news.title}
+                </span>
+                <div className={cl.cardDate}>
+                  {date}
+                </div>
+              </div>
+            </Link>
+          )
+        })}
+      </div>
+    </>
+  )
+    ;
 };
 
 export default NewsPage;

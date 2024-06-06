@@ -21,6 +21,7 @@ import {getFaculties} from "src/api/facultyAPI";
 import {defaultRoutes} from "src/routes/defaultRoutes";
 
 
+
 const App: FC = () => {
   const isAuth = useUserStore(state => state.isAuth)
   const login = useUserStore(state => state.login)

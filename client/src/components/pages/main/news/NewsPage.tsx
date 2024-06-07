@@ -6,18 +6,20 @@ import {Link} from "react-router-dom";
 import {baseURL} from "src/api";
 import dayjs from "dayjs";
 import cn from "classnames";
+import useDebounce from "src/scripts/useDebounce";
+import {validateString} from "src/scripts/validation/change";
 
 const NewsPage = () => {
   const [newsData, setNewsData] = useState<NewsLineI[]>([])
   const [query, setQuery] = useState<string>('')
 
 
+  const loadNews = useDebounce(async (q: string) => {
+    getNews({q: validateString(q), rowsPerPage: 20, page: 1, facultyId: 1, filter: 'today'})
+      .then(res => setNewsData(res))
+  }, 1000)
 
   useEffect(() => {
-    const loadNews = async (q: string) => {
-      getNews({q: q, rowsPerPage: 20, page: 1, facultyId: 1, filter: 'today'})
-        .then(res => setNewsData(res))
-    }
     loadNews(query)
   }, [query]);
 

@@ -36,13 +36,28 @@ html {
   font-size: 10px;
 }
 
-
 body {
   margin: 0;
   font-family: 'Segoe UI', serif;
   color: var(--dark-text);
   font-size: 1.8rem;
+
+  //display: flex;
+  //flex-direction: column;
+  //min-height: 100vh;
+  //background-color: red;
 }
+
+//.main {
+//  flex-grow: 1;
+//  background: rgba(56, 142, 255, 0.7);
+//}
+
+//footer {
+//  /* Чтобы footer не уменьшался */
+//  flex-shrink: 0;
+//  background: black;
+//}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

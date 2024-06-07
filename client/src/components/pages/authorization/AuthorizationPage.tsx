@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import * as cl from './AuthotizationPage.module.scss'
 
@@ -17,7 +17,7 @@ interface FormI {
 
 const AuthorizationPage = () => {
   const navigate = useNavigate();
-
+  const isAuth = useUserStore(state => state.isAuth)
   const authUser = useUserStore(state => state.login)
 
   const {register, handleSubmit} = useForm<FormI>({
@@ -33,12 +33,18 @@ const AuthorizationPage = () => {
       .then((data) => {
         // Перенаправление на главную страницу админки при успешной авторизации
         authUser(data)
-        navigate(adminRoute)
       })
       .catch(err => {
         console.log(err)
       })
   }
+
+  // TODO Открытие админки при авторизации
+  // useEffect(() => {
+  //   if (isAuth) {
+  //     navigate('/' + adminRoute)
+  //   }
+  // }, [isAuth]);
 
   return (
     <div className={cl.page}>

@@ -14,3 +14,15 @@ export const dateOnClient = (a: string | null): string => {
   }
 }
 
+// Удаление лишних символов из строк
+export const validateString = (a: string): string => {
+  // Удаляем одинарные кавычки
+  let processedString = a.replace(/'/g, '');
+  // Заменяем двойное тире на одинарное
+  processedString = processedString.replace(/--/g, '-');
+  // Удаляем обратные кавычки
+  processedString = processedString.replace(/`/g, '');
+  // Удаляем комбинацию символов (${)
+  processedString = processedString.replace(/\$\{/g, '');
+  return processedString.trimStart();
+}

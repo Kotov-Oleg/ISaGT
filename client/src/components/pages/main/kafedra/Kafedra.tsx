@@ -6,7 +6,7 @@ import cn from "classnames";
 import {baseURL} from "src/api";
 
 const Kafedra = () => {
-  const {depId} = useParams()
+  const {depId } = useParams()
 
   const [number, setNumber] = useState<number>(1)
 

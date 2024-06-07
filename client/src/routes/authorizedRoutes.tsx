@@ -7,7 +7,7 @@ import Admin from "src/components/pages/admin/Admin";
 import AdminNews from "src/components/pages/admin/pages/admin-news/AdminNews";
 import AdminEvents from "src/components/pages/admin/pages/admin-events/AdminEvents";
 import AdminSlider from "src/components/pages/admin/pages/admin-slider/AdminSlider";
-import EditorPages from "src/components/pages/admin/pages/editor-pages/EditorPages";
+import AdminPages from "src/components/pages/admin/pages/editor-pages/AdminPages";
 import AdminAccounts from "src/components/pages/admin/pages/admin-accounts/AdminAccounts";
 import AdminFAQ from "src/components/pages/admin/pages/admin-faq/AdminFAQ";
 import AdminSchedule from "src/components/pages/admin/pages/admin-schedule/AdminSchedule";
@@ -25,8 +25,6 @@ export const adminScheduleRoute: string = 'schedule'
 
 export const adminRoutes = (isAuth: boolean, faculties: FacultyI[]): RouteObject[] => {
 
-
-  console.log('isAuth', isAuth)
   if (isAuth) {
     return [{
       path: adminRoute,
@@ -49,7 +47,7 @@ export const adminRoutes = (isAuth: boolean, faculties: FacultyI[]): RouteObject
             },
             {
               path: adminEditorPagesRoute,
-              element: <EditorPages/>
+              element: <AdminPages/>
             },
             {
               path: adminAccountsRoute,

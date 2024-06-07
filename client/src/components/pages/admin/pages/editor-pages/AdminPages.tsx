@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EditorPages = () => {
+const AdminPages = () => {
   return (
     <div>
       Редактор страниц
@@ -8,4 +8,4 @@ const EditorPages = () => {
   );
 };
 
-export default EditorPages;
+export default AdminPages;

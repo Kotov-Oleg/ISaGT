@@ -1,13 +1,13 @@
 import React, {FC, useEffect, useState} from 'react';
 
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, RouterProvider, useNavigate} from "react-router-dom";
 
 // Импорт стилей
 import './index.scss';
 import './components/css-blocks/index.scss'
 
 // Импорт маршрутов
-import {adminRoutes} from "src/routes/authorizedRoutes";
+import {adminRoute, adminRoutes} from "src/routes/authorizedRoutes";
 import {unauthorizedRoutes} from "src/routes/unauthorizedRoutes";
 
 // Импорт стора юзера
@@ -55,6 +55,7 @@ const App: FC = () => {
     // Выполняем все запросы и выключаем загрузку
     Promise.all(promises).finally(() => setIsLoading(false));
   }, []);
+
 
   if (isLoading) {
     return (
